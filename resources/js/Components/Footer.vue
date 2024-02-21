@@ -16,15 +16,15 @@
                                     Alto de Pinheiros | São Paulo/SP</p>
                             </li>
                             <li>
-                                <a href="https://tailwindcss.com/" class="icons-socials-footer mb-4"><img
+                                <a href="tel:+551129257235" class="icons-socials-footer mb-4"><img
                                         src="/imgs/icons/phone.png" alt=""> Fone: (11) 2925-7235</a>
                             </li>
                             <li>
-                                <a href="https://tailwindcss.com/" class="icons-socials-footer mb-4"><img
+                                <a href="https://wa.me/5511941624610" target="_blank" class="icons-socials-footer mb-4"><img
                                         src="/imgs/icons/whatsapp.png" alt=""> Whatsapp: (11) 94162-4610</a>
                             </li>
                             <li>
-                                <a href="https://tailwindcss.com/" class="icons-socials-footer mb-4"><img
+                                <a href="mailto:contato@clinicarampani.com.br" class="icons-socials-footer mb-4" target="_blank"><img
                                         src="/imgs/icons/email.png" alt=""> Email: contato@clinicarampani.com.br</a>
                             </li>
                         </ul>
@@ -62,9 +62,6 @@
                 <div class="flex mt-4 sm:justify-center justify-center sm:mt-0">
                     <a target="_blank" class="icons-socials">
                         <img src="/imgs/icons/instagram.png" alt="Icon Instagram">
-                    </a>
-                    <a target="_blank" class="icons-socials">
-                        <img src="/imgs/icons/whatsapp.png" alt="Icon Instagram">
                     </a>
                     <a target="_blank" class="icons-socials">
                         <img src="/imgs/icons/tiktok.png" alt="Icon Tiktok">

@@ -5,6 +5,7 @@ import BannerTop from '@/Components/BannerTop.vue';
 import FirstSection from '@/Components/FirstSection.vue';
 import BannerDeals from '@/Components/BannerDeals.vue';
 import InspirationalPhrase from '@/Components/InspirationalPhrase.vue';
+import BtnWhatsapp from '@/Components/BtnWhatsapp.vue';
 
 
 </script>
@@ -26,6 +27,8 @@ import InspirationalPhrase from '@/Components/InspirationalPhrase.vue';
     <InspirationalPhrase>
 
     </InspirationalPhrase>
+
+    <BtnWhatsapp></BtnWhatsapp>
 
     <Footer>
 
