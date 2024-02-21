@@ -2,7 +2,9 @@
 import NavBar from '@/Components/NavBar.vue';
 import Footer from '@/Components/Footer.vue';
 import BannerTop from '@/Components/BannerTop.vue';
+import FirstSection from '@/Components/FirstSection.vue';
 import BannerDeals from '@/Components/BannerDeals.vue';
+import InspirationalPhrase from '@/Components/InspirationalPhrase.vue';
 
 
 </script>
@@ -14,7 +16,16 @@ import BannerDeals from '@/Components/BannerDeals.vue';
     <BannerTop>
 
     </BannerTop>
-    <div class="" style="height: 100vh;background-color: blueviolet;"></div>
+
+    <FirstSection></FirstSection>
+
+    <BannerDeals>
+
+    </BannerDeals>
+
+    <InspirationalPhrase>
+
+    </InspirationalPhrase>
 
     <Footer>
 

@@ -22,7 +22,7 @@ onMounted(() => {
 
 
 
-    <nav class="bg-transparent border-gray-200 dark:bg-gray-900 fixed w-full top-0 z-50">
+    <nav class="bg-transparent border-gray-200 dark:bg-gray-900 absolute w-full top-0 z-50">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-4 md:mx-auto pt-3 pb-4">
             <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="/imgs/logo-white.png" class="img-logo" alt="Ramapani Logo" />
