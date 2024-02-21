@@ -13,13 +13,17 @@
     --color-text-clean: #d1d5db;
     --transition-standard: all 0.5s;
 }
+::selection {
+    background-color: var(--color-standard);
+    color: var(--color-white);
+}
 
 ::-webkit-scrollbar {
     width: 5px;
 }
 
 ::-webkit-scrollbar-track {
-    background-color: #EBEBEB;
+    background-color: #ebebeb;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -32,11 +36,12 @@
     opacity: 1;
 }
 
-.bg-transparent{
+.bg-transparent {
     background-color: transparent;
 }
 
-.text-nav, .text-nav-actived{
+.text-nav,
+.text-nav-actived {
     display: inline-flex;
     align-items: center;
     line-height: 1.25rem;
@@ -46,20 +51,20 @@
     margin: 0 1rem;
 }
 
-.text-nav-actived{
+.text-nav-actived {
     color: var(--color-white);
     border-color: var(--color-white);
     border-bottom-width: 2px;
 }
 
-.text-nav{
+.text-nav {
     color: var(--color-white);
     border-color: transparent;
     border-bottom-width: 2px;
     transition: var(--transition-standard);
 }
 
-.text-nav:hover{
+.text-nav:hover {
     color: var(--color-text-standard);
     border-color: var(--color-white);
 }
@@ -81,16 +86,28 @@
     background-color: var(--color-standard-hover);
 }
 
+.btn-rose {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-white);
+    text-transform: uppercase;
+    padding: 15px;
+    background-color: var(--color-standard);
+    border-radius: 25px 0px;
+}
+
 .img-logo {
     max-width: 150px;
 }
 
-.icons-socials, .icons-socials-footer {
+.icons-socials,
+.icons-socials-footer {
     display: flex;
     align-items: center;
 }
 
-.icons-socials img, .icons-socials-footer img {
+.icons-socials img,
+.icons-socials-footer img {
     transition: var(--transition-standard);
     cursor: pointer;
 }
