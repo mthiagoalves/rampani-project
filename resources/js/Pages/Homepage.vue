@@ -5,8 +5,9 @@ import BannerTop from '@/Components/BannerTop.vue';
 import FirstSection from '@/Components/FirstSection.vue';
 import BannerDeals from '@/Components/BannerDeals.vue';
 import InspirationalPhrase from '@/Components/InspirationalPhrase.vue';
-import BtnWhatsapp from '@/Components/BtnWhatsapp.vue';
 import CommentsGoogle from '@/Components/CommentsGoogle.vue';
+import FormContact from '@/Components/FormContact.vue';
+import BtnWhatsapp from '@/Components/BtnWhatsapp.vue';
 
 
 </script>
@@ -29,12 +30,14 @@ import CommentsGoogle from '@/Components/CommentsGoogle.vue';
 
     </InspirationalPhrase>
 
-    <BtnWhatsapp></BtnWhatsapp>
 
     <CommentsGoogle>
 
     </CommentsGoogle>
 
+    <FormContact></FormContact>
+
+    <BtnWhatsapp></BtnWhatsapp>
     <Footer>
 
     </Footer>

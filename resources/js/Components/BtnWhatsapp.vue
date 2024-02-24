@@ -3,7 +3,7 @@
         <li>
             <a href="https://web.whatsapp.com/send?phone=5511941624610&text=Ol%C3%A1,%20estou%20no%20site%20e%20gostaria%20de%20conhecer%20mais%20sobre%20os%20servi%C3%A7os."
                 class="icons-socials-footer mb-4" target="_blank"><img src="/imgs/icons/whatsapp-white.png">
-                Como podemos te ajudar?</a>
+                <span class="hidden sm:block">Como podemos te ajudar?</span></a>
         </li>
     </div>
 </template>
@@ -32,8 +32,19 @@
 
 @media(max-width: 756px) {
     .btn-whatsapp {
-        bottom: 10%;
-        right: 1%;
+        bottom: 5%;
+        right: 3%;
+    }
+
+    .btn-whatsapp li a {
+        padding: 15px;
+        border-radius: 25px;
+        background-color: var(--color-standard);
+    }
+
+    .btn-whatsapp li a img {
+        margin: 0;
+        max-width: 25px;
     }
 }
 </style>
