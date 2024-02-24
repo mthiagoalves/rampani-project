@@ -1,8 +1,8 @@
 <template>
     <div class="container mx-auto mt-20 mb-32">
-        <swiper :modules="modules" :slides-per-view="3" :pagination="{ clickable: true, dynamicBullets: true }" :loop="true"
-            :loop-additional-slides="6" centeredSlides @swiper="onSwiper" @slideChange="onSlideChange" :autoplay="{ delay: 3000, disableOnInteraction: false }"
-            class="swiper-comments-google">
+        <swiper :modules="modules" :slides-per-view="slidesPerView" :pagination="{ clickable: true, dynamicBullets: true }" :loop="true"
+            :loop-additional-slides="6" centeredSlides @swiper="onSwiper" @slideChange="onSlideChange"
+            :autoplay="{ delay: 3000, disableOnInteraction: false }" class="swiper-comments-google">
             <swiper-slide>
                 <div class="card-google flex-col">
                     <div class="flex justify-between flex-start">
@@ -191,7 +191,7 @@
 
 <style>
 .card-google {
-    width: 600px;
+    width: 100%;
     height: 230px;
     margin: 10px;
     padding: 1rem 1rem;
@@ -253,18 +253,57 @@
 }
 
 .swiper-slide.swiper-slide-active {
-    color: #fff;
-    border-radius: 25px 0;
-    backdrop-filter: blur(3px) saturate(180%);
-    -webkit-backdrop-filter: blur(3px) saturate(180%);
-    background-color: rgba(228, 162, 163, 0.47);
-    border: 1px solid rgba(255, 255, 255, 0.125);
-    -webkit-box-shadow: 7px 7px 26px -11px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 7px 7px 26px -11px rgba(0, 0, 0, 0.75);
-    box-shadow: 7px 7px 26px -11px rgba(0, 0, 0, 0.75);
     transition: var(--transition-standard);
     transform: scale(1.4);
     z-index: 2;
+}
+
+@media(min-width: 756px) {
+    .swiper-slide.swiper-slide-active {
+        color: #fff;
+        border-radius: 25px 0;
+        backdrop-filter: blur(3px) saturate(180%);
+        -webkit-backdrop-filter: blur(3px) saturate(180%);
+        background-color: rgba(228, 162, 163, 0.47);
+        border: 1px solid rgba(255, 255, 255, 0.125);
+        -webkit-box-shadow: 7px 7px 26px -11px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 7px 7px 26px -11px rgba(0, 0, 0, 0.75);
+        box-shadow: 7px 7px 26px -11px rgba(0, 0, 0, 0.75);
+        transition: var(--transition-standard);
+        transform: scale(1.4);
+        z-index: 2;
+    }
+}
+
+@media(max-width: 756px) {
+    .depoimment {
+        font-size: .75rem;
+    }
+
+    .card-google {
+        width: 65%;
+    }
+    .card-google img {
+        max-width: 45px;
+    }
+
+    .card-google .google-icon img {
+        max-width: 30px;
+    }
+
+    .card-google .icon-star {
+        max-width: 12px;
+        margin: 0;
+    }
+
+    .div-client {
+        margin-right: 40px;
+    }
+
+    .div-client h3 {
+        text-align: start;
+        font-size: .6rem;
+    }
 }
 </style>
 
@@ -287,10 +326,13 @@ export default {
             console.log('slide change');
         };
 
+        const slidesPerView = window.innerWidth >= 768 ? 3 : 1;
+
         return {
             onSwiper,
             onSlideChange,
             modules: [A11y, Autoplay],
+            slidesPerView,
         };
     },
 };
