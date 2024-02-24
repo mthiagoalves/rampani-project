@@ -260,7 +260,6 @@
 
 @media(min-width: 756px) {
     .swiper-slide.swiper-slide-active {
-        color: #fff;
         border-radius: 25px 0;
         backdrop-filter: blur(3px) saturate(180%);
         -webkit-backdrop-filter: blur(3px) saturate(180%);

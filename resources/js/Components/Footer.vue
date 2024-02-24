@@ -1,6 +1,7 @@
 <template>
     <footer class="bg-white dark:bg-gray-900">
         <div class="mx-auto w-full max-w-screen-xl py-6 lg:py-8">
+            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-12" />
             <div class="md:flex md:justify-between mx-4 md:mx-auto">
                 <div class="mb-6 md:mb-0">
                     <a href="#" class="flex items-center">
