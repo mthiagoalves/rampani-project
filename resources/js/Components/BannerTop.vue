@@ -64,7 +64,7 @@
 }
 
 .text-banner {
-    top: 25%;
+    top: 30%;
     left: 8%;
 }
 
@@ -74,6 +74,7 @@
     color: var(--color-white);
     line-height: 1;
     margin-bottom: 2rem;
+    text-transform: uppercase;
 }
 
 .text-banner a {

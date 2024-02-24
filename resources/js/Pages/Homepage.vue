@@ -6,6 +6,7 @@ import FirstSection from '@/Components/FirstSection.vue';
 import BannerDeals from '@/Components/BannerDeals.vue';
 import InspirationalPhrase from '@/Components/InspirationalPhrase.vue';
 import BtnWhatsapp from '@/Components/BtnWhatsapp.vue';
+import CommentsGoogle from '@/Components/CommentsGoogle.vue';
 
 
 </script>
@@ -29,6 +30,10 @@ import BtnWhatsapp from '@/Components/BtnWhatsapp.vue';
     </InspirationalPhrase>
 
     <BtnWhatsapp></BtnWhatsapp>
+
+    <CommentsGoogle>
+
+    </CommentsGoogle>
 
     <Footer>
 

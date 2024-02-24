@@ -5,6 +5,10 @@
     scroll-behavior: smooth;
 }
 
+body {
+    overflow-x: hidden;
+}
+
 :root {
     --color-standard: #e4a2a3;
     --color-white: #ffffff;
@@ -36,8 +40,46 @@
     opacity: 1;
 }
 
+.md\:h-120 {
+    height: 42rem;
+}
+
+@media (min-width: 768px) {
+    .md\:h-120 {
+        height: 30rem;
+    }
+}
+
+.text-clean-rose {
+    color: var(--color-standard);
+}
+
 .bg-transparent {
     background-color: transparent;
+}
+
+.first-section {
+    background-color: var(--color-white);
+    text-align: center;
+}
+
+.title-section {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-standard);
+}
+
+.bg-clean-rose {
+    background-color: #eedede78;
+}
+
+.text-card {
+    font-size: 1rem;
+    color: var(--color-text-standard-hover);
+}
+
+.img-card-methods {
+    filter: invert(0.25);
 }
 
 .text-nav,
