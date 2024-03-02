@@ -1,7 +1,7 @@
 <template>
     <div class="grid grid-cols-1 gap-1 sm:grid-cols-2 sm:gap-2 align-center">
         <div>
-            <div class="h-auto max-w-full rounded-lg maps">
+            <div class="h-auto max-w-full rounded-lg maps px-4">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d117049.7708377174!2d-46.79439538831038!3d-23.53950280428456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x94ce57cf4256961f%3A0x14c5781a8739123f!2sAv.%20S%C3%A3o%20Gualter%2C%20499%20-%20Alto%20de%20Pinheiros%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2005455-000%2C%20Brasil!3m2!1d-23.5395245!2d-46.711993799999995!5e0!3m2!1spt-BR!2spt!4v1708798349169!5m2!1spt-BR!2spt"
                     width="600" height="500" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -61,7 +61,7 @@
                     </div>
                     <label for="remember" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Eu concordo com
                         os
-                        <a href="#" class="color-text">termos e condições</a>.</label>
+                        <a :href="route('terms-and-conditions')" class="color-text">termos e condições</a>.</label>
                 </div>
                 <div class="px-4">
                     <button type="submit" class="btn-submit">Enviar</button>
