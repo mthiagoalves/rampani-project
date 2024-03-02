@@ -1,7 +1,8 @@
 <template>
     <div class="container mx-auto mt-20 mb-32">
-        <swiper :modules="modules" :slides-per-view="slidesPerView" :pagination="{ clickable: true, dynamicBullets: true }" :loop="true"
-            :loop-additional-slides="6" centeredSlides @swiper="onSwiper" @slideChange="onSlideChange"
+        <swiper :modules="modules" :slides-per-view="slidesPerView"
+            :pagination="{ clickable: true, dynamicBullets: true }" :loop="true" :loop-additional-slides="6"
+            centeredSlides @swiper="onSwiper" @slideChange="onSlideChange"
             :autoplay="{ delay: 3000, disableOnInteraction: false }" class="swiper-comments-google">
             <swiper-slide>
                 <div class="card-google flex-col">
@@ -24,8 +25,10 @@
                         </a>
                     </div>
                     <div class="depoimment mt-4 text-start leading-none">
-                        Gente, a clínica é incrível, o atendimento…eu fui indicada por amiga que é cliente a anos. Tem de
-                        tudo lá, eu fiz um procedimento que chama lavieen, na primeira sessão minha pele já deu um glow up,
+                        Gente, a clínica é incrível, o atendimento…eu fui indicada por amiga que é cliente a anos. Tem
+                        de
+                        tudo lá, eu fiz um procedimento que chama lavieen, na primeira sessão minha pele já deu um glow
+                        up,
                         surreal 🫶
                     </div>
                 </div>
@@ -52,8 +55,10 @@
                     </div>
                     <div class="depoimment mt-4 text-start leading-none">
                         Melhor clínica de São Paulo! Estética completa em um só lugar, as profissionais do espaço prezam
-                        integralmente por nosso bem-estar, alta tecnologia com diversos aparelhos que compõem os tratamentos
-                        personalizados. Eu amo e indico de olhos fechados o espaço e toda equipe da Dra. Juliana Rampani,
+                        integralmente por nosso bem-estar, alta tecnologia com diversos aparelhos que compõem os
+                        tratamentos
+                        personalizados. Eu amo e indico de olhos fechados o espaço e toda equipe da Dra. Juliana
+                        Rampani,
                         excelência define!
                     </div>
                 </div>
@@ -191,8 +196,6 @@
 
 <style>
 .card-google {
-    width: 100%;
-    height: 230px;
     margin: 10px;
     padding: 1rem 1rem;
     border-radius: 25px 0;
@@ -206,12 +209,16 @@
     transition: var(--transition-standard);
 }
 
+.card-google h3 {
+    font-size: .6rem;
+}
+
 .card-google img {
-    max-width: 64px;
+    max-width: 40px;
 }
 
 .card-google .google-icon img {
-    max-width: 45px;
+    max-width: 20px;
 }
 
 .div-client img {
@@ -219,12 +226,12 @@
 }
 
 .card-google .icon-star {
-    max-width: 20px;
+    max-width: 10px;
     margin: 0;
 }
 
 .depoimment {
-    font-size: 1rem;
+    font-size: .6rem;
 }
 
 .swiper-button-prev,
@@ -238,52 +245,31 @@
 
 .swiper {
     width: 100%;
-    overflow: visible;
+    margin: 40px 0;
+    padding: 45px 0;
 }
 
 .swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0px;
-    background: white;
-    transition: all 0.3s ease;
+    opacity: 0.4;
+    overflow: hidden;
+    transition: .7s;
 }
 
 .swiper-slide.swiper-slide-active {
-    transition: var(--transition-standard);
-    transform: scale(1.4);
-    z-index: 2;
-}
-
-@media(min-width: 756px) {
-    .swiper-slide.swiper-slide-active {
-        border-radius: 25px 0;
-        backdrop-filter: blur(3px) saturate(180%);
-        -webkit-backdrop-filter: blur(3px) saturate(180%);
-        background-color: rgba(228, 162, 163, 0.47);
-        border: 1px solid rgba(255, 255, 255, 0.125);
-        -webkit-box-shadow: 7px 7px 26px -11px rgba(0, 0, 0, 0.75);
-        -moz-box-shadow: 7px 7px 26px -11px rgba(0, 0, 0, 0.75);
-        box-shadow: 7px 7px 26px -11px rgba(0, 0, 0, 0.75);
-        transition: var(--transition-standard);
-        transform: scale(1.4);
-        z-index: 2;
-    }
+    opacity: 1;
+    z-index: 1;
+    transform: scale(1.5);
 }
 
 @media(max-width: 756px) {
-    .depoimment {
-        font-size: .75rem;
-    }
 
     .card-google {
-        width: 65%;
+        width: 60%;
+        margin: 15px auto;
     }
+
     .card-google img {
-        max-width: 45px;
+        max-width: 40x;
     }
 
     .card-google .google-icon img {
@@ -325,7 +311,7 @@ export default {
             console.log('slide change');
         };
 
-        const slidesPerView = window.innerWidth >= 768 ? 3 : 1;
+        const slidesPerView = window.innerWidth >= 768 ? 5.75 : 1;
 
         return {
             onSwiper,
