@@ -45,10 +45,10 @@
                         <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Informações</h2>
                         <ul class="text-gray-500 dark:text-gray-400 font-medium">
                             <li class="mb-4">
-                                <a href="#" class="hover:underline">Política de Privacidade</a>
+                                <a :href="route('privacy-policy')" class="hover:underline">Política de Privacidade</a>
                             </li>
                             <li>
-                                <a href="#" class="hover:underline">Termos e Condições</a>
+                                <a :href="route('terms-and-conditions')" class="hover:underline">Termos e Condições</a>
                             </li>
                         </ul>
                     </div>
@@ -57,7 +57,7 @@
             <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
             <div class="sm:flex sm:items-center sm:justify-between mx-4 md:mx-auto text-center">
                 <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a
-                        href="https://clinicarampani.com.br" class="hover:underline">Clinica Rampani</a>. All Rights
+                        :href="route('homepage')" class="hover:underline">Clinica Rampani</a>. All Rights
                     Reserved.
                 </span>
                 <div class="flex mt-4 sm:justify-center justify-center sm:mt-0">
