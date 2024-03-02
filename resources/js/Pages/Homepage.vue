@@ -1,46 +1,36 @@
 <script setup>
-import NavBar from '@/Components/NavBar.vue';
-import Footer from '@/Components/Footer.vue';
+
 import BannerTop from '@/Components/BannerTop.vue';
 import FirstSection from '@/Components/FirstSection.vue';
 import BannerDeals from '@/Components/BannerDeals.vue';
 import InspirationalPhrase from '@/Components/InspirationalPhrase.vue';
 import CommentsGoogle from '@/Components/CommentsGoogle.vue';
 import FormContact from '@/Components/FormContact.vue';
-import BtnWhatsapp from '@/Components/BtnWhatsapp.vue';
+import MainLayout from '@/Layouts/MainLayout.vue';
 
 
 </script>
 <template>
-    <NavBar>
+    <MainLayout>
+        <BannerTop>
 
-    </NavBar>
+        </BannerTop>
 
-    <BannerTop>
+        <FirstSection></FirstSection>
 
-    </BannerTop>
+        <BannerDeals>
 
-    <FirstSection></FirstSection>
+        </BannerDeals>
 
-    <BannerDeals>
+        <InspirationalPhrase>
 
-    </BannerDeals>
-
-    <InspirationalPhrase>
-
-    </InspirationalPhrase>
+        </InspirationalPhrase>
 
 
-    <CommentsGoogle>
+        <CommentsGoogle>
 
-    </CommentsGoogle>
+        </CommentsGoogle>
 
-    <FormContact></FormContact>
-
-    <BtnWhatsapp></BtnWhatsapp>
-    <Footer>
-
-    </Footer>
+        <FormContact></FormContact>
+    </MainLayout>
 </template>
-
-<style></style>
