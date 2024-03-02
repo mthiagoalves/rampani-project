@@ -80,39 +80,4 @@
 .align-center{
     align-items: center;
 }
-
-.color-text{
-    color: var(--color-standard);
-    border-bottom: 1px solid transparent;
-    transition: --transition-standard;
-}
-
-.color-text:hover{
-    border-bottom: 1px solid var(--color-standard);
-
-}
-
-.focus-standard:focus,
-.border-standard {
-    border-color: var(--color-standard) !important;
-    outline: none;
-    box-shadow: 0 0 3px var(--color-standard);
-}
-
-.btn-submit {
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: var(--color-white);
-    text-transform: uppercase;
-    padding: 5px 25px;
-    background-color: var(--color-standard);
-    border-radius: 25px 0px;
-}
-
-[type='checkbox']:checked:hover,
-[type='checkbox']:checked:focus,
-[type='radio']:checked:hover,
-[type='radio']:checked:focus,
-[type='checkbox']:checked {
-    background-color: #e4a2a3;
-}</style>
+</style>
