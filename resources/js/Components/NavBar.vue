@@ -1,23 +1,18 @@
 <script setup>
-import { onMounted } from 'vue';
-import { Head } from '@inertiajs/vue3';
 import NavLink from '@/Components/NavLink.vue';
 import { initFlowbite } from 'flowbite';
+import { onMounted, computed } from 'vue';
+
+const isHomePage = computed(() => route().current('homepage'));
 
 onMounted(() => {
     initFlowbite();
 });
 </script>
 <template>
-    <Head>
-
-    </Head>
-
-
-
-    <nav class="bg-transparent border-gray-200 dark:bg-gray-900 absolute w-full top-0 z-50">
+    <nav :class="{'bg-transparent': isHomePage, 'bg-standard': !isHomePage}" class="border-gray-200 dark:bg-gray-900 absolute w-full top-0 z-10">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-4 md:mx-auto pt-3 pb-4">
-            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <a :href="route('homepage')" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="/imgs/logo-white.png" class="img-logo" alt="Ramapani Logo" />
             </a>
             <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
@@ -41,7 +36,7 @@ onMounted(() => {
                     </svg>
                 </button>
             </div>
-            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1 bg-transparent"
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
                 id="navbar-cta">
                 <ul
                     class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:border-gray-700">
@@ -49,10 +44,11 @@ onMounted(() => {
                         <NavLink :href="route('homepage')" :active="route().current('homepage')">
                             Inicio
                         </NavLink>
-                        <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                        <NavLink :href="route('procedures')" :active="route().current('procedures')">
                             Procedimentos
                         </NavLink>
-                        <a href="https://clinicarampani.com.br/juliana-rampani/" target="_blank" class="text-nav transition duration-150 ease-in-out">
+                        <a href="https://clinicarampani.com.br/juliana-rampani/" target="_blank"
+                            class="text-nav transition duration-150 ease-in-out">
                             Dra. Juliana Rampani
                         </a>
                         <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
