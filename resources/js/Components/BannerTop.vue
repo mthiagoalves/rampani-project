@@ -1,3 +1,7 @@
+<script setup>
+import Modal from '@/Components/Modal.vue';
+</script>
+
 <template>
     <div class="mx-auto relative">
         <div class="flex">
@@ -7,15 +11,18 @@
             </div>
         </div>
         <div class="text-banner absolute">
-            <p>Onde a beleza começa <br class="hidden sm:block"> quando você decide <br class="hidden sm:block"> se cuidar!
+            <p>Onde a beleza começa <br class="hidden sm:block"> quando você decide <br class="hidden sm:block">
+                se cuidar!
             </p>
-            <a href="">
+            <a data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="" type="button">
                 Agende agora!
             </a>
         </div>
         <div class="scroll-down-1"></div>
         <div class="scroll-down-2"></div>
     </div>
+    <Modal></Modal>
+
 </template>
 
 <style scoped>
@@ -41,7 +48,7 @@
     width: 2em;
     height: 2em;
     background-color: transparent;
-    z-index: 80;
+    z-index: 10;
     position: absolute;
     border-width: 0 0.25em 0.25em 0;
     border-style: solid;
@@ -49,7 +56,6 @@
     animation: scrolldown 1.2s ease-in-out infinite 0.15s;
     left: 50%;
     transform: translateY(0%) rotate(45deg);
-
     opacity: 0;
 }
 
@@ -85,6 +91,12 @@
     padding: 15px;
     background-color: var(--color-white);
     border-radius: 25px 0px;
+    cursor: pointer;
+    transition: var(--transition-standard);
+}
+
+.text-banner a:hover {
+    background-color: #ececec;
 }
 
 @media(max-width: 756px) {
