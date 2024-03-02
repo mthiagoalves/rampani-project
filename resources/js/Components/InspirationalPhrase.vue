@@ -23,7 +23,8 @@
                                 Equipe Multidisciplinar
                             </h5>
                             <span class="text-xs text-gray-400 leading-none">Confie sua beleza aos especialistas. Nossa
-                                equipe é composta por profissionais apaixonados e especializados em diversas disciplinas.
+                                equipe é composta por profissionais apaixonados e especializados em diversas
+                                disciplinas.
                                 Dermatologistas, esteticistas, fisioterapeutas e mais se unem para criar abordagens
                                 personalizadas, garantindo que cada cliente receba atenção especializada, moldando
                                 resultados únicos e impressionantes.</span>
@@ -42,7 +43,8 @@
                             <h5 class="text-card font-bold leading-none mb-4">
                                 Aparelhos de Última Geração
                             </h5>
-                            <span class="text-xs text-gray-400 leading-none">Na vanguarda da inovação, investimos nos mais
+                            <span class="text-xs text-gray-400 leading-none">Na vanguarda da inovação, investimos nos
+                                mais
                                 avançados aparelhos disponíveis. Da mais recente tecnologia em tratamentos faciais aos
                                 procedimentos corporais mais modernos, nossos equipamentos de última geração asseguram
                                 resultados eficazes e confortáveis. Na Clínica Rampani, não seguimos tendências;
@@ -62,10 +64,14 @@
                             <h5 class="text-card font-bold leading-none mb-4">
                                 Atendimento Único e Sofisticado
                             </h5>
-                            <span class="text-xs text-gray-400 leading-none">Cada cliente é uma obra-prima única, e tratamos
-                                assim desde o primeiro contato. Nosso atendimento vai além do profissionalismo, envolvendo-o
-                                em uma experiência acolhedora e sofisticada. Na Clínica Rampani, não apenas transformamos a
-                                sua aparência; elevamos sua jornada estética a um nível de serviço que você merece.</span>
+                            <span class="text-xs text-gray-400 leading-none">Cada cliente é uma obra-prima única, e
+                                tratamos
+                                assim desde o primeiro contato. Nosso atendimento vai além do profissionalismo,
+                                envolvendo-o
+                                em uma experiência acolhedora e sofisticada. Na Clínica Rampani, não apenas
+                                transformamos a
+                                sua aparência; elevamos sua jornada estética a um nível de serviço que você
+                                merece.</span>
                         </div>
                     </div>
                 </div>
@@ -73,6 +79,7 @@
         </div>
     </div>
 </template>
+
 <style>
 .inspirational-phrase {
     padding: 3rem;
@@ -107,7 +114,9 @@
     .inspirational-phrase h1 {
         font-size: 2rem;
     }
+
     .inspirational-phrase p {
-    font-size: 1.3rem;
+        font-size: 1.3rem;
+    }
 }
-}</style>
+</style>
