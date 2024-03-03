@@ -1,54 +1,40 @@
+<script setup>
+import Modal from '@/Components/Modal.vue';
+import { ref, watch } from 'vue';
+
+const selectedDeal = ref(null);
+
+const setDeal = (deal) => {
+    selectedDeal.value = deal;
+};
+
+const updateSelectedDeal = (newValue) => {
+    selectedDeal.value = newValue;
+};
+
+const banners = [
+    { id: 1, imgSrc: '/imgs/banners/banner-01.png', imgSrcMobile: '/imgs/banners/banner-01-m.png', deal: 'Deals 1' },
+    { id: 2, imgSrc: '/imgs/banners/banner-02.png', imgSrcMobile: '/imgs/banners/banner-02-m.png', deal: 'Deals 2' },
+    { id: 3, imgSrc: '/imgs/banners/banner-03.png', imgSrcMobile: '/imgs/banners/banner-03-m.png', deal: 'Deals 3' },
+    { id: 4, imgSrc: '/imgs/banners/banner-04.png', imgSrcMobile: '/imgs/banners/banner-04-m.png', deal: 'Deals 4' },
+    { id: 5, imgSrc: '/imgs/banners/banner-05.png', imgSrcMobile: '/imgs/banners/banner-05-m.png', deal: 'Deals 5' },
+    { id: 6, imgSrc: '/imgs/banners/banner-06.png', imgSrcMobile: '/imgs/banners/banner-06-m.png', deal: 'Deals 6' },
+];
+</script>
+
 <template>
     <div id="default-carousel" class="relative w-full" data-carousel="slide">
-        <!-- Carousel wrapper -->
         <div class="relative h-120 overflow-hidden rounded-lg md:h-120">
-            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="/imgs/banners/banner-01.png"
-                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 hidden sm:block"
-                    alt="...">
-                    <img src="/imgs/banners/banner-01-m.png"
-                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 block sm:hidden"
-                    alt="...">
-            </div>
-            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="/imgs/banners/banner-02.png"
-                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 hidden sm:block"
-                    alt="...">
-                    <img src="/imgs/banners/banner-02-m.png"
-                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 block sm:hidden"
-                    alt="...">
-            </div>
-            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="/imgs/banners/banner-03.png"
-                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 hidden sm:block"
-                    alt="...">
-                    <img src="/imgs/banners/banner-03-m.png"
-                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 block sm:hidden"
-                    alt="...">
-            </div>
-            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="/imgs/banners/banner-04.png"
-                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 hidden sm:block"
-                    alt="...">
-                    <img src="/imgs/banners/banner-04-m.png"
-                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 block sm:hidden"
-                    alt="...">
-            </div>
-            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="/imgs/banners/banner-05.png"
-                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 hidden sm:block"
-                    alt="...">
-                    <img src="/imgs/banners/banner-05-m.png"
-                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 block sm:hidden"
-                    alt="...">
-            </div>
-            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="/imgs/banners/banner-06.png"
-                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 hidden sm:block"
-                    alt="...">
-                    <img src="/imgs/banners/banner-06-m.png"
-                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 block sm:hidden"
-                    alt="...">
+            <div v-for="banner in banners" :key="banner.id" class="hidden duration-700 ease-in-out" data-carousel-item>
+                <a type="button" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
+                    @click="setDeal(banner.deal)">
+                    <img :src="banner.imgSrc"
+                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 hidden sm:block"
+                        alt="...">
+                    <img :src="banner.imgSrcMobile"
+                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 block sm:hidden"
+                        alt="...">
+                </a>
             </div>
         </div>
         <!-- Slider indicators -->
@@ -92,4 +78,5 @@
             </span>
         </button>
     </div>
+    <Modal :selectedDeal="selectedDeal" @update:selectedDeal="updateSelectedDeal"></Modal>
 </template>

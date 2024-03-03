@@ -1,5 +1,16 @@
 <script setup>
-    import Modal from '@/Components/Modal.vue';
+import Modal from '@/Components/Modal.vue';
+import { ref, watch } from 'vue';
+
+let selectedDeal = ref(null);
+
+const setDeal = (deal) => {
+    selectedDeal.value = deal;
+};
+
+watch(selectedDeal, (newVal, oldVal) => {
+    console.log('Selected Deal in Parent Component:', newVal);
+});
 </script>
 
 <template>
@@ -14,14 +25,15 @@
             <p>Onde a beleza começa <br class="hidden sm:block"> quando você decide <br class="hidden sm:block">
                 se cuidar!
             </p>
-            <a data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="" type="button">
+            <a type="button" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
+                @click="setDeal('Agendamento geral')">
                 Agende agora!
             </a>
         </div>
         <div class="scroll-down-1"></div>
         <div class="scroll-down-2"></div>
     </div>
-    <Modal></Modal>
+    <Modal :selectedDeal="selectedDeal"></Modal>
 
 </template>
 

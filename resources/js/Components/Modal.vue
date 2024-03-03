@@ -1,3 +1,56 @@
+<script>
+import axios from 'axios';
+import Swal from 'sweetalert2';
+
+export default {
+    props: ['selectedDeal'],
+    data() {
+        return {
+            localSelectedDeal: null,
+        };
+    },
+    watch: {
+        selectedDeal(newValue) {
+            this.localSelectedDeal = newValue;
+        },
+    },
+    methods: {
+        async submitForm() {
+            console.log('Selected Deal in Modal:', this.localSelectedDeal);
+
+            const formData = {
+                first_name: this.$refs.first_name.value,
+                last_name: this.$refs.last_name.value,
+                phone: this.$refs.phone.value,
+                email: this.$refs.email.value,
+                selectedDeal: this.localSelectedDeal,
+            };
+
+            try {
+                const response = await axios.post('/geral-scheduling', formData);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sucesso!',
+                    text: response.data.message,
+                    confirmButtonColor: '#e4a2a3',
+                    confirmButtonText: 'OK',
+                    willOpen: () => {
+                        const confirmButton = Swal.getConfirmButton();
+                        confirmButton.setAttribute('data-modal-hide', 'authentication-modal');
+                    }
+                });
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro!',
+                    text: 'Ocorreu um erro ao processar o agendamento.',
+                });
+            }
+        },
+    },
+};
+</script> 
+
 <template>
     <!-- Main modal -->
     <div id="authentication-modal" tabindex="-1" aria-hidden="true"
@@ -25,7 +78,7 @@
                 <div class="p-4 md:p-5">
                     <form class="space-y-4" action="#" @submit.prevent="submitForm">
                         <div class="grid gap-4 mb-4 md:grid-cols-1">
-                            <input type="hidden" name="interest_in" value="Agendamento Geral" class="hidden">
+                            <input type="hidden" v-model="localSelectedDeal" />
                             <div>
                                 <label for="first_name"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome</label>
@@ -62,42 +115,3 @@
         </div>
     </div>
 </template>
-
-<script>
-import axios from 'axios';
-import Swal from 'sweetalert2';
-
-export default {
-    methods: {
-        async submitForm() {
-            const formData = {
-                first_name: this.$refs.first_name.value,
-                last_name: this.$refs.last_name.value,
-                phone: this.$refs.phone.value,
-                email: this.$refs.email.value,
-            };
-
-            try {
-                const response = await axios.post('/geral-scheduling', formData);
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Sucesso!',
-                    text: response.data.message,
-                    confirmButtonColor: '#e4a2a3',
-                    confirmButtonText: 'OK',
-                    willOpen: () => {
-                        const confirmButton = Swal.getConfirmButton();
-                        confirmButton.setAttribute('data-modal-hide', 'authentication-modal');
-                    }
-                });
-            } catch (error) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Erro!',
-                    text: 'Ocorreu um erro ao processar o agendamento.',
-                });
-            }
-        },
-    },
-};
-</script>
