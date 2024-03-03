@@ -13,33 +13,33 @@
                 Mande sua mensagem para a clínica.
             </h2>
 
-            <form>
+            <form @submit.prevent="submitFormMessage">
                 <div class="grid gap-6 mb-6 md:grid-cols-2 px-4">
                     <div>
                         <label for="first_name"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome</label>
-                        <input type="text" id="first_name"
+                        <input type="text" id="first_name" ref="first_name"
                             class="bg-clean-rose text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus-standard border-standard"
                             placeholder="Juliana" required />
                     </div>
                     <div>
                         <label for="last_name"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sobrenome</label>
-                        <input type="text" id="last_name"
+                        <input type="text" id="last_name" ref="last_name"
                             class="bg-clean-rose text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-white focus-standard border-standard"
                             placeholder="Rampani" required />
                     </div>
                     <div>
                         <label for="phone"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contato</label>
-                        <input type="tel" id="phone"
+                        <input type="tel" id="phone" ref="phone"
                             class="bg-clean-rose text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-white focus-standard border-standard"
-                            placeholder=" (11) 94162-4610" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required />
+                            placeholder=" (11) 94162-4610" required />
                     </div>
                     <div>
                         <label for="Email"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                        <input type="email" id="email"
+                        <input type="email" id="email" ref="email"
                             class="bg-clean-rose text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-white focus-standard border-standard"
                             placeholder="contato@clinicaramapni.com.br" required />
                     </div>
@@ -48,18 +48,19 @@
 
                     <label for="message"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mensagem</label>
-                    <textarea id="message" rows="4"
+                    <textarea id="message" rows="4" ref="message"
                         class="block p-2.5 w-full text-sm text-gray-900 bg-clean-rose rounded-lg dark:placeholder-gray-400 dark:text-white focus-standard border-standard"
                         placeholder="Digite sua mensagem..." required></textarea>
 
                 </div>
                 <div class="flex items-start mb-6 px-4">
                     <div class="flex items-center h-5">
-                        <input id="remember" type="checkbox" value=""
+                        <input id="remember" type="checkbox" value="" ref="terms_and_conditions"
                             class="w-4 h-4 rounded border-standard bg-clean-rose focus-standard dark:ring-offset-gray-800"
                             required />
                     </div>
-                    <label for="remember" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Eu concordo com
+                    <label for="remember" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Eu concordo
+                        com
                         os
                         <a :href="route('terms-and-conditions')" class="color-text">termos e condições</a>.</label>
                 </div>
@@ -77,7 +78,58 @@
     width: 100%;
 }
 
-.align-center{
+.align-center {
     align-items: center;
 }
 </style>
+
+<script>
+import axios from 'axios';
+import Swal from 'sweetalert2';
+
+export default {
+    methods: {
+        async submitFormMessage() {
+            const formData = {
+                first_name: this.$refs.first_name.value,
+                last_name: this.$refs.last_name.value,
+                phone: this.$refs.phone.value,
+                email: this.$refs.email.value,
+                message: this.$refs.message.value,
+                terms_and_conditions: this.$refs.terms_and_conditions.checked
+            };
+
+            try {
+                const response = await axios.post('/process-message', formData);
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sucesso!',
+                    text: response.data.message,
+                    confirmButtonColor: '#e4a2a3',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.isConfirmed || result.isDismissed) {
+                        this.clearForm();
+                    }
+                });
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro!',
+                    text: 'Ocorreu um erro ao processar a mensagem.',
+                });
+            }
+        },
+        clearForm() {
+            this.$refs.first_name.value = '';
+            this.$refs.last_name.value = '';
+            this.$refs.phone.value = '';
+            this.$refs.email.value = '';
+            this.$refs.message.value = '';
+            this.$refs.terms_and_conditions.checked = false;
+        },
+    },
+};
+
+</script>

@@ -19,6 +19,8 @@ Route::get('/politica-de-privacidade', [FrontendController::class, 'getPrivacyPo
 
 Route::post('/geral-scheduling', [FormsController::class, 'geralScheduling'])->name('geralScheduling');
 
+Route::post('/process-message', [FormsController::class, 'processMessage'])->name('processMessage');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
