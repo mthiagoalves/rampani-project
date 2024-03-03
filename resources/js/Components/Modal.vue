@@ -23,42 +23,81 @@
                 </div>
                 <!-- Modal body -->
                 <div class="p-4 md:p-5">
-                    <form class="space-y-4" action="#">
+                    <form class="space-y-4" action="#" @submit.prevent="submitForm">
                         <div class="grid gap-4 mb-4 md:grid-cols-1">
+                            <input type="hidden" name="interest_in" value="Agendamento Geral" class="hidden">
                             <div>
                                 <label for="first_name"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome</label>
-                                <input type="text" id="first_name"
+                                <input type="text" id="first_name" ref="first_name"
                                     class="bg-clean-rose text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus-standard border-standard"
                                     placeholder="Juliana" required />
                             </div>
                             <div>
                                 <label for="last_name"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sobrenome</label>
-                                <input type="text" id="last_name"
+                                <input type="text" id="last_name" ref="last_name"
                                     class="bg-clean-rose text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-white focus-standard border-standard"
-                                    placeholder="Rampani" required />
+                                    placeholder="Rampani" />
                             </div>
                             <div>
                                 <label for="phone"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contato</label>
-                                <input type="tel" id="phone"
+                                <input type="tel" id="phone" ref="phone"
                                     class="bg-clean-rose text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-white focus-standard border-standard"
-                                    placeholder=" (11) 94162-4610" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required />
+                                    placeholder="(11) 94162-4610" required />
                             </div>
                             <div>
                                 <label for="Email"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                                <input type="email" id="email"
+                                <input type="email" id="email" ref="email"
                                     class="bg-clean-rose text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-white focus-standard border-standard"
                                     placeholder="contato@clinicarampani.com.br" required />
                             </div>
                         </div>
-                        <button type="submit"
-                            class="w-full btn-rose-modal">Agendar</button>
+                        <button type="submit" class="w-full btn-rose-modal">Agendar</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+import axios from 'axios';
+import Swal from 'sweetalert2';
+
+export default {
+    methods: {
+        async submitForm() {
+            const formData = {
+                first_name: this.$refs.first_name.value,
+                last_name: this.$refs.last_name.value,
+                phone: this.$refs.phone.value,
+                email: this.$refs.email.value,
+            };
+
+            try {
+                const response = await axios.post('/geral-scheduling', formData);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sucesso!',
+                    text: response.data.message,
+                    confirmButtonColor: '#e4a2a3',
+                    confirmButtonText: 'OK',
+                    willOpen: () => {
+                        const confirmButton = Swal.getConfirmButton();
+                        confirmButton.setAttribute('data-modal-hide', 'authentication-modal');
+                    }
+                });
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro!',
+                    text: 'Ocorreu um erro ao processar o agendamento.',
+                });
+            }
+        },
+    },
+};
+</script>

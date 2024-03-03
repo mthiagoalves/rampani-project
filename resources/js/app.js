@@ -1,5 +1,6 @@
 import './bootstrap';
 import '../css/app.css';
+import 'es6-promise/auto';
 
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
