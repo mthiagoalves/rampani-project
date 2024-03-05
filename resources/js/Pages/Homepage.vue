@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from 'vue';
 
 import BannerTop from '@/Components/BannerTop.vue';
 import FirstSection from '@/Components/FirstSection.vue';
@@ -7,20 +8,25 @@ import InspirationalPhrase from '@/Components/InspirationalPhrase.vue';
 import CommentsGoogle from '@/Components/CommentsGoogle.vue';
 import FormContact from '@/Components/FormContact.vue';
 import MainLayout from '@/Layouts/MainLayout.vue';
+import Modal from '@/Components/Modal.vue';
 
+const selectedDeal = ref(null);
+
+const setDeal = (deal) => {
+    selectedDeal.value = deal;
+};
 
 </script>
+
 <template>
     <MainLayout>
-        <BannerTop>
+        <BannerTop :selectedDeal="selectedDeal" @setDeal="setDeal">
 
         </BannerTop>
 
         <FirstSection></FirstSection>
 
-        <BannerDeals>
-
-        </BannerDeals>
+        <BannerDeals :selectedDeal="selectedDeal" @setDeal="setDeal"></BannerDeals>
 
         <InspirationalPhrase>
 
@@ -32,5 +38,7 @@ import MainLayout from '@/Layouts/MainLayout.vue';
         </CommentsGoogle>
 
         <FormContact></FormContact>
+
+        <Modal :selectedDeal="selectedDeal"></Modal>
     </MainLayout>
 </template>

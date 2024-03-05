@@ -4,26 +4,16 @@ import Swal from 'sweetalert2';
 
 export default {
     props: ['selectedDeal'],
-    data() {
-        return {
-            localSelectedDeal: null,
-        };
-    },
-    watch: {
-        selectedDeal(newValue) {
-            this.localSelectedDeal = newValue;
-        },
-    },
     methods: {
         async submitForm() {
-            console.log('Selected Deal in Modal:', this.localSelectedDeal);
+            console.log('Selected Deal in Modal:', this.selectedDeal);
 
             const formData = {
                 first_name: this.$refs.first_name.value,
                 last_name: this.$refs.last_name.value,
                 phone: this.$refs.phone.value,
                 email: this.$refs.email.value,
-                selectedDeal: this.localSelectedDeal,
+                selectedDeal: this.selectedDeal,
             };
 
             try {
@@ -49,7 +39,7 @@ export default {
         },
     },
 };
-</script> 
+</script>
 
 <template>
     <!-- Main modal -->
@@ -78,35 +68,27 @@ export default {
                 <div class="p-4 md:p-5">
                     <form class="space-y-4" action="#" @submit.prevent="submitForm">
                         <div class="grid gap-4 mb-4 md:grid-cols-1">
-                            <input type="hidden" v-model="localSelectedDeal" />
-                            <div>
-                                <label for="first_name"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome</label>
-                                <input type="text" id="first_name" ref="first_name"
-                                    class="bg-clean-rose text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus-standard border-standard"
-                                    placeholder="Juliana" required />
-                            </div>
-                            <div>
-                                <label for="last_name"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sobrenome</label>
-                                <input type="text" id="last_name" ref="last_name"
-                                    class="bg-clean-rose text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-white focus-standard border-standard"
-                                    placeholder="Rampani" />
-                            </div>
-                            <div>
-                                <label for="phone"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contato</label>
-                                <input type="tel" id="phone" ref="phone"
-                                    class="bg-clean-rose text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-white focus-standard border-standard"
-                                    placeholder="(11) 94162-4610" required />
-                            </div>
-                            <div>
-                                <label for="Email"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                                <input type="email" id="email" ref="email"
-                                    class="bg-clean-rose text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-white focus-standard border-standard"
-                                    placeholder="contato@clinicarampani.com.br" required />
-                            </div>
+                            <input type="hidden" :value="selectedDeal" />
+                            <label for="first_name"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome</label>
+                            <input type="text" id="first_name" ref="first_name"
+                                class="bg-clean-rose text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus-standard border-standard"
+                                placeholder="Juliana" required />
+                            <label for="last_name"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sobrenome</label>
+                            <input type="text" id="last_name" ref="last_name"
+                                class="bg-clean-rose text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-white focus-standard border-standard"
+                                placeholder="Rampani" />
+                            <label for="phone"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contato</label>
+                            <input type="tel" id="phone" ref="phone"
+                                class="bg-clean-rose text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-white focus-standard border-standard"
+                                placeholder="(11) 94162-4610" required />
+                            <label for="Email"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                            <input type="email" id="email" ref="email"
+                                class="bg-clean-rose text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-white focus-standard border-standard"
+                                placeholder="contato@clinicarampani.com.br" required />
                         </div>
                         <button type="submit" class="w-full btn-rose-modal">Agendar</button>
                     </form>

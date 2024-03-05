@@ -1,16 +1,13 @@
 <script setup>
-import Modal from '@/Components/Modal.vue';
-import { ref, watch } from 'vue';
+import { defineEmits, defineProps } from 'vue';
 
-let selectedDeal = ref(null);
+const props = defineProps(['selectedDeal']);
+const emit = defineEmits();
 
 const setDeal = (deal) => {
-    selectedDeal.value = deal;
+    props.selectedDeal = deal;
+    emit('setDeal', deal);
 };
-
-watch(selectedDeal, (newVal, oldVal) => {
-    console.log('Selected Deal in Parent Component:', newVal);
-});
 </script>
 
 <template>
@@ -33,8 +30,6 @@ watch(selectedDeal, (newVal, oldVal) => {
         <div class="scroll-down-1"></div>
         <div class="scroll-down-2"></div>
     </div>
-    <Modal :selectedDeal="selectedDeal"></Modal>
-
 </template>
 
 <style scoped>

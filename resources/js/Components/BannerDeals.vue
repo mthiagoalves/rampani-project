@@ -1,15 +1,12 @@
 <script setup>
-import Modal from '@/Components/Modal.vue';
-import { ref, watch } from 'vue';
+import { defineEmits, defineProps } from 'vue';
 
-const selectedDeal = ref(null);
+const props = defineProps(['selectedDeal']);
+const emit = defineEmits();
 
 const setDeal = (deal) => {
-    selectedDeal.value = deal;
-};
-
-const updateSelectedDeal = (newValue) => {
-    selectedDeal.value = newValue;
+    props.selectedDeal = deal;
+    emit('setDeal', deal);
 };
 
 const banners = [
@@ -78,5 +75,4 @@ const banners = [
             </span>
         </button>
     </div>
-    <Modal :selectedDeal="selectedDeal" @update:selectedDeal="updateSelectedDeal"></Modal>
 </template>
