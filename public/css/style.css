@@ -71,7 +71,6 @@ body {
     background-color: #eedede78;
 }
 
-
 .first-section {
     background-color: var(--color-white);
     text-align: center;
@@ -158,7 +157,8 @@ body {
     transition: var(--transition-standard);
 }
 
-.btn-rose-modal:hover, .btn-rose-modal-2:hover {
+.btn-rose-modal:hover,
+.btn-rose-modal-2:hover {
     background-color: var(--color-standard-hover) !important;
 }
 
@@ -235,4 +235,22 @@ body {
 [type="radio"]:checked:focus,
 [type="checkbox"]:checked {
     background-color: #e4a2a3 !important;
+}
+
+@media (max-width: 567px) {
+    .navbar-background-white {
+        background-color: #ffffff;
+    }
+    .navbar-background-white a {
+        color: #ce9495;
+        border-bottom: 1px solid transparent;
+    }
+    .navbar-background-white a:hover {
+        color: #ce9495;
+        border-bottom: 1px solid #ce9495;
+    }
+
+    .navbar-background-rose {
+        background-color: #ce9495;
+    }
 }

@@ -61,13 +61,13 @@
                     Reserved.
                 </span>
                 <div class="flex mt-4 sm:justify-center justify-center sm:mt-0">
-                    <a target="_blank" class="icons-socials">
+                    <a target="_blank" class="icons-socials" href="https://www.instagram.com/clinicarampani/">
                         <img src="/imgs/icons/instagram.png" alt="Icon Instagram">
                     </a>
                     <a target="_blank" class="icons-socials">
                         <img src="/imgs/icons/tiktok.png" alt="Icon Tiktok">
                     </a>
-                    <a target="_blank" class="icons-socials">
+                    <a target="_blank" class="icons-socials" href="https://www.facebook.com/rampaniestetica">
                         <img src="/imgs/icons/facebook.png" alt="Icon Facebook">
                     </a>
                 </div>
