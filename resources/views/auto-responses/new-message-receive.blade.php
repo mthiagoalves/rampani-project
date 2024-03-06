@@ -24,12 +24,6 @@
             background-color: #e4a2a3;
         }
 
-        .header img {
-            max-width: 20%;
-            height: auto;
-            margin-top: 10px;
-        }
-
         .title {
             font-size: 20px;
             padding-bottom: 10px;
@@ -52,14 +46,11 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="title">Uma nova lead recebida - Agendamento de {{ $emailData['selectedDeal'] }}</div>
+            <div class="title">Uma nova messagem recebida.</div>
         </div>
         <div class="content">
             <p>
                 Nome do cliente: <b>{{ $emailData['first_name'] }} {{ $emailData['last_name'] }}</b>
-            </p>
-            <p>
-                Telefone: <b>{{ $emailData['date'] }}</b>
             </p>
             <p>
                 Telefone: <b>{{ $emailData['phone'] }}</b>
@@ -68,7 +59,7 @@
                 Email: <b>{{ $emailData['email'] }}</b>
             </p>
             <p>
-                Procedimento escolhido: <b>{{ $emailData['selectedDeal'] }}</b>
+                Mensagem: <b>{{ $emailData['message'] }}</b>
             </p>
         </div>
     </div>

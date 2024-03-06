@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\AutoResponseMail;
 use App\Mail\AutoResponseMailBrand;
+use App\Mail\AutoResponseMailBrandMessage;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -61,6 +62,17 @@ class FormsController extends Controller
         } elseif ($validator->fails()) {
             return ["error" => implode(PHP_EOL, $validator->errors()->all())];
         }
+
+        $emailData = [
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'phone' => $request->input('phone'),
+            'email' => $request->input('email'),
+            'message' => $request->input('message'),
+        ];
+
+        Mail::to('contato@clinicarampani.com.br')
+            ->send(new AutoResponseMailBrandMessage($emailData));
 
         return response()->json(["message" => "Obrigado pela mensagem, ficamos felizes em poder ouvir você! Caso for preciso, entraremos em contato em breve."]);
     }

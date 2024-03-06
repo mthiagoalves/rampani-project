@@ -6,7 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class AutoResponseMailBrand extends Mailable
+class AutoResponseMailBrandMessage extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -19,6 +19,6 @@ class AutoResponseMailBrand extends Mailable
 
     public function build()
     {
-        return $this->view('auto-responses.new-lead-receive')->with('emailData', $this->emailData)->subject('Nova Lead recebida!');;
+        return $this->view('auto-responses.new-message-receive')->with('emailData', $this->emailData)->subject('Nova Mensagem recebida!.');;
     }
 }
