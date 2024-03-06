@@ -234,6 +234,12 @@
     font-size: .6rem;
 }
 
+@media(min-width: 756px) {
+    .depoimment {
+        height: 90px;
+    }
+}
+
 .swiper-button-prev,
 .swiper-button-next {
     color: var(--color-standard);
@@ -316,7 +322,7 @@ export default {
         return {
             onSwiper,
             onSlideChange,
-            modules: [A11y, Autoplay],
+            modules: [A11y],
             slidesPerView,
         };
     },
