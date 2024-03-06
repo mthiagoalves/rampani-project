@@ -1,5 +1,5 @@
 <template>
-    <div class="grid grid-cols-1 gap-1 sm:grid-cols-2 sm:gap-2 align-center">
+    <div class="grid grid-cols-1 gap-1 sm:grid-cols-2 sm:gap-2 align-center" id="contact">
         <div>
             <div class="h-auto max-w-full rounded-lg maps px-4">
                 <iframe

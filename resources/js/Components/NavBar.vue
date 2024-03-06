@@ -51,10 +51,10 @@ onMounted(() => {
                             class="text-nav transition duration-150 ease-in-out">
                             Dra. Juliana Rampani
                         </a>
-                        <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                        <NavLink href="https://clinicarampani.com.br/blog/" :active="route().current('dashboard')">
                             Blog
                         </NavLink>
-                        <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                        <NavLink href="#contact">
                             Contato
                         </NavLink>
                     </li>
