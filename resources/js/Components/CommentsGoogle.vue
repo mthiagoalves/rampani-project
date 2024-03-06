@@ -322,7 +322,7 @@ export default {
         return {
             onSwiper,
             onSlideChange,
-            modules: [A11y],
+            modules: [A11y, Autoplay],
             slidesPerView,
         };
     },
