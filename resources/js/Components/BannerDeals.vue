@@ -24,7 +24,7 @@ const banners = [
         <div class="relative h-120 overflow-hidden rounded-lg md:h-120">
             <div v-for="banner in banners" :key="banner.id" class="hidden duration-700 ease-in-out" data-carousel-item>
                 <a type="button" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
-                    @click="setDeal(banner.deal)">
+                    @click="setDeal(banner.deal)" class="btn-deals">
                     <img :src="banner.imgSrc"
                         class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 hidden sm:block"
                         alt="...">
@@ -76,3 +76,9 @@ const banners = [
         </button>
     </div>
 </template>
+
+<style>
+.btn-deals {
+    cursor: pointer;
+}
+</style>
