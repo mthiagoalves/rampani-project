@@ -96,8 +96,9 @@
 .inspirational-phrase p {
     margin-bottom: 2rem;
     text-align: end;
-    font-size: 2rem;
+    font-size: 3.4rem;
     color: var(--color-standard);
+    font-family: 'Tangerine', cursive;
 }
 
 .img-card {
@@ -116,7 +117,7 @@
     }
 
     .inspirational-phrase p {
-        font-size: 1.3rem;
+        font-size: 2.2rem;
     }
 }
 </style>

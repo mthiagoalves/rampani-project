@@ -92,7 +92,7 @@
                 <div class="card-google flex-col">
                     <div class="flex justify-between flex-start">
                         <div class="div-client flex items-start">
-                            <img src="/imgs/clients/marcela-pereira.png">
+                            <img src="/imgs/clients/beatriz-figueiredo.png">
                             <div class="flex-col">
                                 <h3>Beatriz Figueiredo</h3>
                                 <div class="flex items-center">
@@ -232,12 +232,8 @@
 
 .depoimment {
     font-size: .6rem;
-}
+    height: 90px;
 
-@media(min-width: 756px) {
-    .depoimment {
-        height: 90px;
-    }
 }
 
 .swiper-button-prev,

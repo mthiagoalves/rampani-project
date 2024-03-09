@@ -32,6 +32,15 @@ const showingNavigationDropdown = ref(false);
                                 <NavLinkBackoffice :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </NavLinkBackoffice>
+                                <NavLinkBackoffice :href="route('dashboard')" :active="route().current('dashboard')">
+                                    Homepage
+                                </NavLinkBackoffice>
+                                <NavLinkBackoffice :href="route('dashboard')" :active="route().current('dashboard')">
+                                    Procedimentos
+                                </NavLinkBackoffice>
+                                <NavLinkBackoffice :href="route('dashboard')" :active="route().current('dashboard')">
+                                    Campanhas
+                                </NavLinkBackoffice>
                             </div>
                         </div>
 
