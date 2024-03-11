@@ -10,7 +10,7 @@ onMounted(() => {
 });
 </script>
 <template>
-    <nav :class="{'bg-transparent': isHomePage, 'bg-standard': !isHomePage}" class="border-gray-200 dark:bg-gray-900 absolute w-full top-0 z-10">
+    <nav :class="{'bg-transparent': isHomePage, 'bg-standard': !isHomePage}" class="border-gray-200 dark:bg-gray-900 absolute w-full top-0 z-10 give-mg">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-4 md:mx-auto pt-3 pb-4">
             <a :href="route('homepage')" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="/imgs/logo-white.png" class="img-logo" alt="Ramapani Logo" />
@@ -51,9 +51,12 @@ onMounted(() => {
                             class="text-nav transition duration-150 ease-in-out">
                             Dra. Juliana Rampani
                         </a>
-                        <a href="https://clinicarampani.com.br/blog/" class="text-nav transition duration-150 ease-in-out">
+                        <NavLink :href="route('clinic')" :active="route().current('clinic')">
+                            A Clínica
+                        </NavLink>
+                        <NavLink :href="route('blog')" :active="route().current('blog')">
                             Blog
-                        </a>
+                        </NavLink>
                         <NavLink href="#contact">
                             Contato
                         </NavLink>

@@ -24,7 +24,7 @@ const setDeal = (deal) => {
             </p>
             <a type="button" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
                 @click="setDeal('Agendamento geral')">
-                Agende agora!
+                Conheça nossa clínica!
             </a>
         </div>
         <div class="scroll-down-1"></div>

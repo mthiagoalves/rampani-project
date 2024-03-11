@@ -20,6 +20,16 @@ class FrontendController extends Controller
         return Inertia::render('Procedures');
     }
 
+    public function getBlog()
+    {
+        return Inertia::render('Blog');
+    }
+
+    public function getTheClinic()
+    {
+        return Inertia::render('Clinic');
+    }
+
     public function getTermsAndConditions()
     {
         return Inertia::render('TermsAndConditions');

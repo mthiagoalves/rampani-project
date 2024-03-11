@@ -15,6 +15,10 @@ Route::get('/termos-e-condicoes', [FrontendController::class, 'getTermsAndCondit
 
 Route::get('/politica-de-privacidade', [FrontendController::class, 'getPrivacyPolicy'])->name('privacy-policy');
 
+Route::get('/blog', [FrontendController::class, 'getBlog'])->name('blog');
+
+Route::get('/a-clinica', [FrontendController::class, 'getTheClinic'])->name('clinic');
+
 // Forms Process
 
 Route::post('/geral-scheduling', [FormsController::class, 'geralScheduling'])->name('geralScheduling');
