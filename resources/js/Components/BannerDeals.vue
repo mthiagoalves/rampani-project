@@ -15,7 +15,6 @@ const banners = [
     { id: 3, imgSrc: '/imgs/banners/banner-03.png', imgSrcMobile: '/imgs/banners/banner-03-m.png', deal: 'Deals 3' },
     { id: 4, imgSrc: '/imgs/banners/banner-04.png', imgSrcMobile: '/imgs/banners/banner-04-m.png', deal: 'Deals 4' },
     { id: 5, imgSrc: '/imgs/banners/banner-05.png', imgSrcMobile: '/imgs/banners/banner-05-m.png', deal: 'Deals 5' },
-    { id: 6, imgSrc: '/imgs/banners/banner-06.png', imgSrcMobile: '/imgs/banners/banner-06-m.png', deal: 'Deals 6' },
 ];
 </script>
 
