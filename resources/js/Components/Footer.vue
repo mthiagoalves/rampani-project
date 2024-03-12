@@ -1,5 +1,5 @@
 <template>
-    <footer class="bg-white dark:bg-gray-900">
+    <footer class="bg-white dark:bg-gray-900" id="contact">
         <div class="mx-auto w-full max-w-screen-xl py-6 lg:py-8">
             <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-12" />
             <div class="md:flex md:justify-between mx-4 md:mx-auto">

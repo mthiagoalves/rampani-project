@@ -52,8 +52,8 @@ const setDeal = (deal) => {
 </script>
 
 <template>
-    <div class="container ml-auto mr-auto mt-32">
-        <h1 class="text-3xl lg:text-4xl title-section text-center">
+    <div class="container ml-auto mr-auto mt-20">
+        <h1 class="text-3xl lg:text-4xl py-6 title-section text-center">
             Procedimentos
         </h1>
         <p class="text-center sm:mb-10">

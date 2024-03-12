@@ -12,10 +12,11 @@ const setDeal = (deal) => {
 
 <template>
     <div class="mx-auto relative">
+        <div class="gradient-div"></div>
         <div class="flex">
             <div class="w-100">
-                <img src="/imgs/aesthetics.png" alt="" class="img-banner hidden sm:block">
-                <img src="/imgs/aesthetics-m.png" alt="" class="img-banner block sm:hidden">
+                <img src="https://dummyimage.com/1920x800/ad9345/fff" alt="" class="img-banner hidden sm:block">
+                <img src="https://dummyimage.com/850x1350/ad9345/fff" alt="" class="img-banner block sm:hidden">
             </div>
         </div>
         <div class="text-banner absolute">
@@ -110,5 +111,14 @@ const setDeal = (deal) => {
     .text-banner {
         top: 15%;
     }
+}
+
+.gradient-div {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 150px;
+    background: rgb(228, 162, 163);
+    background: linear-gradient(180deg, rgba(228, 162, 163, 0.9131302179074755) 0%, rgba(228, 162, 163, 0.5489845596441701) 35%, rgba(228, 162, 163, 0) 100%);
 }
 </style>

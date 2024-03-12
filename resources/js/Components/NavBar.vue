@@ -1,16 +1,25 @@
 <script setup>
 import NavLink from '@/Components/NavLink.vue';
 import { initFlowbite } from 'flowbite';
-import { onMounted, computed } from 'vue';
+import { onMounted, computed, defineEmits, ref, defineProps } from 'vue';
+
+const navbarRef = ref(null); // Criando uma ref para o elemento da barra de navegação
+const emit = defineEmits();
 
 const isHomePage = computed(() => route().current('homepage'));
 
 onMounted(() => {
+    setTimeout(() => {
+        const navbarHeight = document.querySelector('.give-mg').offsetHeight;
+        emit('navbarHeight', navbarHeight);
+    }, 200);
+
     initFlowbite();
 });
 </script>
 <template>
-    <nav :class="{'bg-transparent': isHomePage, 'bg-standard': !isHomePage}" class="border-gray-200 dark:bg-gray-900 absolute w-full top-0 z-10 give-mg">
+    <nav ref="navbarRef" :class="{ 'bg-transparent': isHomePage, 'bg-standard': !isHomePage }"
+        class="border-gray-200 dark:bg-gray-900 absolute w-full top-0 z-10 give-mg">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-4 md:mx-auto pt-3 pb-4">
             <a :href="route('homepage')" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="/imgs/logo-white.png" class="img-logo" alt="Ramapani Logo" />
@@ -36,10 +45,9 @@ onMounted(() => {
                     </svg>
                 </button>
             </div>
-            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
-                id="navbar-cta">
-                <ul
-                    class="font-medium p-4 md:p-0 mt-0 sm:mt-4 border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:border-gray-700" :class="{'navbar-background-white': isHomePage}">
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
+                <ul class="font-medium p-4 md:p-0 mt-0 sm:mt-4 border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:border-gray-700"
+                    :class="{ 'navbar-background-white': isHomePage }">
                     <li class="flex flex-col sm:flex-row align-center">
                         <NavLink :href="route('homepage')" :active="route().current('homepage')">
                             Inicio

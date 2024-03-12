@@ -13,10 +13,9 @@ const setDeal = (deal) => {
 </script>
 <template>
     <MainLayout>
-        <div class="mt-20">
-            <BannerDeals :selectedDeal="selectedDeal" @setDeal="setDeal"></BannerDeals>
 
-        </div>
+        <BannerDeals :selectedDeal="selectedDeal" @setDeal="setDeal"></BannerDeals>
+
         <Modal :selectedDeal="selectedDeal"></Modal>
 
     </MainLayout>

@@ -20,7 +20,7 @@ const banners = [
 
 <template>
     <div id="default-carousel" class="relative w-full" data-carousel="slide">
-        <div class="relative h-120 overflow-hidden rounded-lg md:h-120">
+        <div class="relative h-120 overflow-hidden md:h-120">
             <div v-for="banner in banners" :key="banner.id" class="hidden duration-700 ease-in-out" data-carousel-item>
                 <a type="button" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
                     @click="setDeal(banner.deal)" class="btn-deals">
