@@ -1,10 +1,9 @@
 <script setup>
 import { ref } from 'vue';
 
-import MainLayout from '@/Layouts/MainLayout.vue';
-import Modal from '@/Components/Modal.vue';
-import ClinicMansory from '@/Components/ClinicMansory.vue';
 import CtaSchedule from '@/Components/CtaSchedule.vue';
+import Modal from '@/Components/Modal.vue';
+import MainLayout from '@/Layouts/MainLayout.vue';
 
 const selectedDeal = ref(null);
 
@@ -17,11 +16,11 @@ const setDeal = (deal) => {
     <MainLayout>
         <div class="mt-20">
             <h1 class="text-3xl lg:text-4xl text-center py-6 title-section">
-                Nosso Espaço
+                Titulo do post
             </h1>
         </div>
 
-        <ClinicMansory></ClinicMansory>
+
 
         <CtaSchedule :selectedDeal="selectedDeal" @setDeal="setDeal"></CtaSchedule>
 

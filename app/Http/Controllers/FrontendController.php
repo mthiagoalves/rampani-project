@@ -17,7 +17,12 @@ class FrontendController extends Controller
 
     public function getProcedures()
     {
-        return Inertia::render('Procedures');
+        return Inertia::render('AllProcedures');
+    }
+
+    public function getProcedure()
+    {
+        return Inertia::render('Procedure');
     }
 
     public function getBlog()
