@@ -107,7 +107,7 @@
                 </div>
             </div>
             <div class="container ml-auto mr-auto flex flex-wrap items-start justify-center">
-                <a :href="route('procedures')" class="btn-rose mb-10">
+                <a :href="route('procedures')" class="btn-rose sm:my-auto my-4">
                     Todos os procedimentos
                 </a>
             </div>

@@ -11,7 +11,8 @@
 .btn-whatsapp {
     position: fixed;
     bottom: 3%;
-    right: -13%;
+    right: -200px;
+    width: 240px;
     z-index: 99999;
     transition: all 1s;
 }
