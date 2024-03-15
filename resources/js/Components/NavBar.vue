@@ -7,6 +7,7 @@ const navbarRef = ref(null); // Criando uma ref para o elemento da barra de nave
 const emit = defineEmits();
 
 const isHomePage = computed(() => route().current('homepage'));
+const isLandingMaleAesthetic = computed(() => route().current('male-aesthetic'));
 
 onMounted(() => {
     setTimeout(() => {
@@ -18,8 +19,8 @@ onMounted(() => {
 });
 </script>
 <template>
-    <nav ref="navbarRef" :class="{ 'bg-transparent': isHomePage, 'bg-standard': !isHomePage }"
-        class="border-gray-200 dark:bg-gray-900 absolute w-full top-0 z-10 give-mg">
+    <nav ref="navbarRef" :class="{ 'bg-transparent': isHomePage, 'bg-transparent': isLandingMaleAesthetic, 'bg-standard give-mg': !isHomePage, 'bg-standard give-mg': !isLandingMaleAesthetic }"
+        class="border-gray-200 dark:bg-gray-900 absolute w-full top-0 z-10">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-4 md:mx-auto pt-3 pb-4">
             <a :href="route('homepage')" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="/imgs/logo-white.png" class="img-logo" alt="Ramapani Logo" />

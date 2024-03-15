@@ -1,9 +1,8 @@
 <script setup>
 import { ref } from 'vue';
 
-import CtaSchedule from '@/Components/CtaSchedule.vue';
-import Modal from '@/Components/Modal.vue';
 import BannerTop from '@/Components/Landings/MaleAesthetic/BannerTop.vue';
+import Modal from '@/Components/Modal.vue';
 import MainLayout from '@/Layouts/MainLayout.vue';
 
 const selectedDeal = ref(null);
