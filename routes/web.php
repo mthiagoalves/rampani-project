@@ -20,6 +20,10 @@ Route::get('/blog', [FrontendController::class, 'getBlog'])->name('blog');
 
 Route::get('/a-clinica', [FrontendController::class, 'getTheClinic'])->name('clinic');
 
+// Landings Page
+Route::get('/estetica-intima-masculina', [FrontendController::class, 'getLandingMaleAesthetics'])->name('male-aesthetic');
+
+
 // Forms Process
 Route::post('/geral-scheduling', [FormsController::class, 'geralScheduling'])->name('geralScheduling');
 

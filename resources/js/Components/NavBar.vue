@@ -1,7 +1,7 @@
 <script setup>
 import NavLink from '@/Components/NavLink.vue';
 import { initFlowbite } from 'flowbite';
-import { onMounted, computed, defineEmits, ref, defineProps } from 'vue';
+import { computed, defineEmits, onMounted, ref } from 'vue';
 
 const navbarRef = ref(null); // Criando uma ref para o elemento da barra de navegação
 const emit = defineEmits();

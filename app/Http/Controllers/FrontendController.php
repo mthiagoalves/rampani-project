@@ -35,6 +35,10 @@ class FrontendController extends Controller
         return Inertia::render('Clinic');
     }
 
+    public function getLandingMaleAesthetics(){
+        return Inertia::render('Landings/MaleAesthetics');
+    }
+
     public function getTermsAndConditions()
     {
         return Inertia::render('TermsAndConditions');
