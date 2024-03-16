@@ -5,6 +5,10 @@ import BannerTop from '@/Components/Landings/MaleAesthetic/BannerTop.vue';
 import Modal from '@/Components/Landings/MaleAesthetic/Modal.vue';
 import MainLayout from '@/Layouts/MainLayout.vue';
 import FirstSection from '@/Components/Landings/MaleAesthetic/FirstSection.vue';
+import SecondSection from '@/Components/Landings/MaleAesthetic/SecondSection.vue';
+import ThirdSection from '@/Components/Landings/MaleAesthetic/ThirdSection.vue';
+import FourthSection from '@/Components/Landings/MaleAesthetic/FourthSection.vue';
+import OurSpace from '@/Components/Landings/MaleAesthetic/OurSpace.vue';
 
 const selectedDeal = ref(null);
 
@@ -19,6 +23,14 @@ const setDeal = (deal) => {
         <BannerTop :selectedDeal="selectedDeal" @setDeal="setDeal"></BannerTop>
 
         <FirstSection :selectedDeal="selectedDeal" @setDeal="setDeal"></FirstSection>
+
+        <SecondSection :selectedDeal="selectedDeal" @setDeal="setDeal"></SecondSection>
+
+        <OurSpace></OurSpace>
+
+        <ThirdSection></ThirdSection>
+
+        <FourthSection></FourthSection>
 
         <Modal :selectedDeal="selectedDeal"></Modal>
 
@@ -48,4 +60,5 @@ const setDeal = (deal) => {
 ::-webkit-scrollbar-thumb:hover {
     opacity: 1;
 }
-</style>
+</style>import SecondSectionVue from '@/Components/Landings/MaleAesthetic/SecondSection.vue';
+

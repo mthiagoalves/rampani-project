@@ -15,16 +15,8 @@ const setDeal = (deal) => {
         <div class="gradient-div"></div>
         <div class="flex">
             <div class="w-100">
-                <img
-                    src="https://dummyimage.com/1920x800/242424/0011ff"
-                    alt=""
-                    class="img-banner hidden sm:block"
-                />
-                <img
-                    src="https://dummyimage.com/850x1350/ad9345/fff"
-                    alt=""
-                    class="img-banner block sm:hidden"
-                />
+                <img src="https://dummyimage.com/1920x800/242424/0011ff" alt="" class="img-banner hidden sm:block" />
+                <img src="https://dummyimage.com/850x1350/242424/0011ff" alt="" class="img-banner block sm:hidden" />
             </div>
         </div>
         <div class="text-banner absolute">
@@ -40,13 +32,9 @@ const setDeal = (deal) => {
             <li class="mb-1">
                 + Prazer!
             </li>
-            <a
-                type="button"
-                data-modal-target="authentication-modal"
-                data-modal-toggle="authentication-modal"
-                @click="setDeal('Agendamento geral')"
-            >
-                Conheça agora!
+            <a type="button" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
+                @click="setDeal('Agendamento geral')">
+                Agendar agora!
             </a>
         </div>
         <div class="scroll-down-1"></div>
@@ -136,7 +124,7 @@ const setDeal = (deal) => {
 
 @media (max-width: 756px) {
     .text-banner {
-        top: 15%;
+        top: 22%;
     }
 }
 
@@ -146,12 +134,10 @@ const setDeal = (deal) => {
     width: 100%;
     height: 150px;
     background: rgb(61, 0, 0);
-    background: linear-gradient(
-        180deg,
-        rgba(61, 0, 0, 1) 0%,
-        rgba(75, 0, 0, 0.7609418767507002) 37%,
-        rgba(105, 0, 0, 0.42200630252100846) 63%,
-        rgba(184, 0, 0, 0) 100%
-    );
+    background: linear-gradient(180deg,
+            rgba(61, 0, 0, 1) 0%,
+            rgba(75, 0, 0, 0.7609418767507002) 37%,
+            rgba(105, 0, 0, 0.42200630252100846) 63%,
+            rgba(184, 0, 0, 0) 100%);
 }
 </style>

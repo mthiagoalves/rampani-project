@@ -1,11 +1,21 @@
+<script setup>
+import { computed, defineEmits, onMounted, ref } from 'vue';
+
+const navbarRef = ref(null);
+const emit = defineEmits();
+
+const isLandingMaleAesthetic = computed(() => route().current('male-aesthetic'));
+</script>
+
 <template>
     <footer class="bg-white dark:bg-gray-900" id="contact">
-        <div class="mx-auto w-full max-w-screen-xl py-6 lg:py-8">
+        <div class="mx-auto w-full max-w-screen-xl">
             <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-12" />
             <div class="md:flex md:justify-between mx-4 md:mx-auto">
                 <div class="mb-6 md:mb-0">
                     <a href="#" class="flex items-center">
-                        <img src="/imgs/logo-rosa.png" class="img-logo" alt="Ramapani Logo" />
+                        <img src="/imgs/logo-rosa.png" class="img-logo" alt="Ramapani Logo" v-if="!isLandingMaleAesthetic"/>
+                        <img src="/imgs/logo-rosa.png" class="img-logo" alt="Ramapani Logo" v-if="isLandingMaleAesthetic"/>
                     </a>
                 </div>
                 <div class="grid grid-cols-1 sm-grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
@@ -17,15 +27,21 @@
                                     Alto de Pinheiros | São Paulo/SP</p>
                             </li>
                             <li>
-                                <a href="tel:+551129257235" class="icons-socials-footer mb-4"><img
+                                <a href="tel:+551129257235" v-if="!isLandingMaleAesthetic" class="icons-socials-footer mb-4"><img
+                                        src="/imgs/icons/phone.png" alt=""> Fone: (11) 2925-7235</a>
+                                <a href="tel:+551129257235" v-if="isLandingMaleAesthetic" class="icons-socials-footer mb-4"><img
                                         src="/imgs/icons/phone.png" alt=""> Fone: (11) 2925-7235</a>
                             </li>
                             <li>
-                                <a href="https://wa.me/5511941624610" target="_blank" class="icons-socials-footer mb-4"><img
+                                <a href="https://wa.me/5511941624610" v-if="!isLandingMaleAesthetic" target="_blank" class="icons-socials-footer mb-4"><img
+                                        src="/imgs/icons/whatsapp.png" alt=""> Whatsapp: (11) 94162-4610</a>
+                                <a href="https://wa.me/5511941624610" v-if="isLandingMaleAesthetic" target="_blank" class="icons-socials-footer mb-4"><img
                                         src="/imgs/icons/whatsapp.png" alt=""> Whatsapp: (11) 94162-4610</a>
                             </li>
                             <li>
-                                <a href="mailto:contato@clinicarampani.com.br" class="icons-socials-footer mb-4" target="_blank"><img
+                                <a href="mailto:contato@clinicarampani.com.br" v-if="!isLandingMaleAesthetic" class="icons-socials-footer mb-4" target="_blank"><img
+                                        src="/imgs/icons/email.png" alt=""> Email: contato@clinicarampani.com.br</a>
+                                <a href="mailto:contato@clinicarampani.com.br" v-if="isLandingMaleAesthetic" class="icons-socials-footer mb-4" target="_blank"><img
                                         src="/imgs/icons/email.png" alt=""> Email: contato@clinicarampani.com.br</a>
                             </li>
                         </ul>
