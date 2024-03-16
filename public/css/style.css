@@ -116,7 +116,6 @@ body {
 }
 
 .text-nav:hover {
-    color: var(--color-text-standard);
     border-color: var(--color-white);
 }
 

@@ -3,6 +3,7 @@ import { ref } from 'vue';
 
 import BannerTop from '@/Components/Landings/MaleAesthetic/BannerTop.vue';
 import Modal from '@/Components/Landings/MaleAesthetic/Modal.vue';
+import ModalInfo from '@/Components/Landings/MaleAesthetic/ModalInfo.vue';
 import MainLayout from '@/Layouts/MainLayout.vue';
 import FirstSection from '@/Components/Landings/MaleAesthetic/FirstSection.vue';
 import SecondSection from '@/Components/Landings/MaleAesthetic/SecondSection.vue';
@@ -32,8 +33,9 @@ const setDeal = (deal) => {
 
         <FourthSection></FourthSection>
 
-        <Modal :selectedDeal="selectedDeal"></Modal>
+        <ModalInfo :selectedDeal="selectedDeal" @setDeal="setDeal"></ModalInfo>
 
+        <Modal :selectedDeal="selectedDeal"></Modal>
     </MainLayout>
 </template>
 

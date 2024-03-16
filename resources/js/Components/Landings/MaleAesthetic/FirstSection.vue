@@ -1,14 +1,3 @@
-<script setup>
-import { defineEmits, defineProps } from "vue";
-
-const props = defineProps(["selectedDeal"]);
-const emit = defineEmits();
-
-const setDeal = (deal) => {
-    props.selectedDeal = deal;
-    emit("setDeal", deal);
-};
-</script>
 <template>
     <div class="flex items-center w-screen first-section">
         <div class="container ml-auto mr-auto flex flex-wrap items-start justify-center">
@@ -26,8 +15,7 @@ const setDeal = (deal) => {
                     deserunt similique nesciunt eaque a quae error enim accusamus sapiente distinctio cupiditate eveniet
                     atque obcaecati recusandae. Quae, possimus temporibus.
                 </p>
-                <a type="button" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
-                    @click="setDeal('Mais informações')" class="btn-more-info">
+                <a type="button" data-modal-target="extralarge-modal" data-modal-toggle="extralarge-modal" class="btn-more-info">
                     MAIS INFO
                 </a>
             </div>
