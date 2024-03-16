@@ -16,7 +16,7 @@ const setDeal = (deal) => {
         <div class="flex">
             <div class="w-100">
                 <img
-                    src="https://dummyimage.com/1920x800/ad9345/fff"
+                    src="https://dummyimage.com/1920x800/242424/0011ff"
                     alt=""
                     class="img-banner hidden sm:block"
                 />

@@ -156,4 +156,12 @@ const setDeal = (deal) => {
     top: -40px;
     left: -80px;
 }
+
+@media screen and (max-width: 756px){
+    .div-card-abs {
+    top: -60px;
+    right: -15px;
+    left: auto;
+}
+}
 </style>

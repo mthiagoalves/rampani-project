@@ -35,6 +35,7 @@
     .btn-whatsapp {
         bottom: 5%;
         right: 3%;
+        width:auto;
     }
 
     .btn-whatsapp li a {
