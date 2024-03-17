@@ -50,6 +50,10 @@ const props = defineProps(['posts']);
                         <div class="overlay transition duration-300 rounded-lg flex items-center justify-center">
                             <h4 class="title-post px-6">{{ post.title }}</h4>
                             <img src="imgs/icons/open-book.png" alt="" class="h-16">
+                            <div class="div-text-category">
+                                <img src="/imgs/icons/tag.png" alt="" class="h-6">
+                                <p class="category-post ml-1">{{ post.category_id }}</p>
+                            </div>
                         </div>
                     </div>
                 </a>
@@ -78,6 +82,19 @@ const props = defineProps(['posts']);
     top: 30px;
     color: var(--color-white);
     font-size: 1.4rem;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.div-text-category{
+    position: absolute;
+    bottom: 30px;
+    display: flex;
+}
+
+.category-post {
+    color: var(--color-white);
+    font-size: 1.1rem;
     text-transform: uppercase;
     font-weight: 500;
 }
