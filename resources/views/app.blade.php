@@ -9,7 +9,7 @@
     <meta name="description" property="og:description" content="meta decription here">
     <meta name="image" property="og:image" content="/imgs/icons/title-icon.png">
     <link rel="icon" href="/imgs/icons/title-icon.png">
-    <link href="./css/style.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
 
     <title inertia>{{ config('app.name', 'Laravel') }}</title>
 

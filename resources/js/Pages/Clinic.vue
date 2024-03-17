@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue';
+import { Head } from '@inertiajs/vue3';
 
 import MainLayout from '@/Layouts/MainLayout.vue';
 import Modal from '@/Components/Modal.vue';
@@ -14,6 +15,9 @@ const setDeal = (deal) => {
 
 </script>
 <template>
+
+    <Head :title="$page.props.title" />
+
     <MainLayout>
         <div class="mt-20">
             <h1 class="text-3xl lg:text-4xl text-center py-6 title-section">

@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-
+import { Head } from '@inertiajs/vue3';
 import BannerTop from '@/Components/BannerTop.vue';
 import FirstSection from '@/Components/FirstSection.vue';
 import BannerDeals from '@/Components/BannerDeals.vue';
@@ -15,10 +15,15 @@ const selectedDeal = ref(null);
 const setDeal = (deal) => {
     selectedDeal.value = deal;
 };
-
 </script>
 
 <template>
+
+    <Head>
+        <title>{{ $page.props.title }}</title>
+        <meta head-key="description" name="description" content="This is a page specific description" />
+    </Head>
+
     <MainLayout>
         <BannerTop :selectedDeal="selectedDeal" @setDeal="setDeal">
 

@@ -18,6 +18,8 @@ Route::get('/politica-de-privacidade', [FrontendController::class, 'getPrivacyPo
 
 Route::get('/blog', [FrontendController::class, 'getBlog'])->name('blog');
 
+Route::get('/blog/{slug}', [FrontendController::class, 'getPost'])->name('post');
+
 Route::get('/a-clinica', [FrontendController::class, 'getTheClinic'])->name('clinic');
 
 // Landings Page

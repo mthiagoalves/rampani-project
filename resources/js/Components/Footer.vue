@@ -5,8 +5,8 @@ const isLandingMaleAesthetic = computed(() => route().current('male-aesthetic'))
 </script>
 
 <template>
-    <footer class="bg-white dark:bg-gray-900 pb-6" id="contact">
-        <div class="mx-auto w-full max-w-screen-xl">
+    <footer class="bg-white dark:bg-gray-900 pb-6">
+        <div class="mx-auto w-full max-w-screen-xl" id="contact">
             <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-12" />
             <div class="md:flex md:justify-between mx-4 md:mx-auto">
                 <div class="mb-6 md:mb-0">
@@ -81,14 +81,23 @@ const isLandingMaleAesthetic = computed(() => route().current('male-aesthetic'))
                         :href="route('homepage')" class="hover:underline">Clinica Rampani</a>. All Rights
                     Reserved.
                 </span>
-                <div class="flex mt-4 sm:justify-center justify-center sm:mt-0">
-                    <a target="_blank" class="icons-socials" href="https://www.instagram.com/clinicarampani/">
+                <div class="flex mt-4 justify-center sm:mt-0">
+                    <a target="_blank" class="icons-socials" v-if="!isLandingMaleAesthetic" href="https://www.instagram.com/clinicarampani/">
+                        <img src="/imgs/icons/instagram.png" alt="Icon Instagram">
+                    </a>
+                    <a target="_blank" class="icons-socials" v-if="isLandingMaleAesthetic" href="https://www.instagram.com/clinicarampani/">
                         <img src="/imgs/icons/instagram-red.png" alt="Icon Instagram">
                     </a>
-                    <a target="_blank" class="icons-socials">
+                    <a target="_blank" class="icons-socials" v-if="!isLandingMaleAesthetic">
+                        <img src="/imgs/icons/tiktok.png" alt="Icon Tiktok">
+                    </a>
+                    <a target="_blank" class="icons-socials" v-if="isLandingMaleAesthetic">
                         <img src="/imgs/icons/tiktok-red.png" alt="Icon Tiktok">
                     </a>
-                    <a target="_blank" class="icons-socials" href="https://www.facebook.com/rampaniestetica">
+                    <a target="_blank" class="icons-socials" v-if="!isLandingMaleAesthetic" href="https://www.facebook.com/rampaniestetica">
+                        <img src="/imgs/icons/facebook.png" alt="Icon Facebook">
+                    </a>
+                    <a target="_blank" class="icons-socials" v-if="isLandingMaleAesthetic" href="https://www.facebook.com/rampaniestetica">
                         <img src="/imgs/icons/facebook-red.png" alt="Icon Facebook">
                     </a>
                 </div>

@@ -1,7 +1,12 @@
 <script setup>
 import MainLayout from '@/Layouts/MainLayout.vue';
+import { Head } from '@inertiajs/vue3';
+
 </script>
 <template>
+
+    <Head :title="$page.props.title" />
+
     <MainLayout>
         <div class="container ml-auto mr-auto mt-32 sm:px-32">
             <h1 class="text-3xl lg:text-4xl title-section text-center sm:mb-12">
@@ -12,9 +17,11 @@ import MainLayout from '@/Layouts/MainLayout.vue';
                     1. Coleta de Informações Pessoais
                 </h4>
                 <p class="text-gray-500 dark:text-gray-400 font-medium sm:ml-10">
-                    1.1 Ao usar o site da <span class="text-clean-rose">Clinica Rampani</span>, podemos coletar informações
+                    1.1 Ao usar o site da <span class="text-clean-rose">Clinica Rampani</span>, podemos coletar
+                    informações
                     pessoais identificáveis, incluindo, mas não se
-                    limitando a: nome, endereço de e-mail, informações de contato, informações de pagamento e outros dados
+                    limitando a: nome, endereço de e-mail, informações de contato, informações de pagamento e outros
+                    dados
                     relevantes.
                     <br>
                     1.2 Essas informações podem ser coletadas quando você se registra no site, faz uma compra, preenche
@@ -30,10 +37,12 @@ import MainLayout from '@/Layouts/MainLayout.vue';
                     2.1 As informações pessoais coletadas podem ser usadas para os seguintes fins:
 
                     <li class="list-privacy">Processar transações e fornecer os produtos ou serviços solicitados.</li>
-                    <li class="list-privacy">Personalizar a experiência do usuário e responder às necessidades individuais.
+                    <li class="list-privacy">Personalizar a experiência do usuário e responder às necessidades
+                        individuais.
                     </li>
                     <li class="list-privacy">Fornecer suporte ao cliente.</li>
-                    <li class="list-privacy">Enviar e-mails periódicos, incluindo atualizações, informações sobre pedidos,
+                    <li class="list-privacy">Enviar e-mails periódicos, incluindo atualizações, informações sobre
+                        pedidos,
                         etc.</li>
                     <li class="list-privacy">Administrar promoções, pesquisas ou outros recursos do site.</li>
                 </p>
@@ -48,7 +57,8 @@ import MainLayout from '@/Layouts/MainLayout.vue';
                     3.1 Implementamos medidas de segurança para proteger suas informações pessoais contra acesso não
                     autorizado, alteração, divulgação ou destruição.
                     <br>
-                    3.2 No entanto, reconhecemos que nenhuma transmissão de dados pela internet é completamente segura, e
+                    3.2 No entanto, reconhecemos que nenhuma transmissão de dados pela internet é completamente segura,
+                    e
                     não podemos garantir a segurança absoluta das informações enviadas para nós.
                 </p>
             </div>
@@ -60,7 +70,8 @@ import MainLayout from '@/Layouts/MainLayout.vue';
                     4.1 Não vendemos, trocamos ou transferimos suas informações pessoais para terceiros sem o seu
                     consentimento, exceto quando necessário para fornecer os produtos ou serviços solicitados.
                     <br>
-                    4.2 Podemos divulgar informações pessoais quando acreditarmos que a divulgação é apropriada para cumprir
+                    4.2 Podemos divulgar informações pessoais quando acreditarmos que a divulgação é apropriada para
+                    cumprir
                     com a lei, proteger nossos direitos ou garantir a segurança dos usuários.
                 </p>
             </div>
@@ -81,7 +92,8 @@ import MainLayout from '@/Layouts/MainLayout.vue';
                     7.1 Reservamo-nos o direito de modificar esta política a qualquer momento. As alterações entrarão em
                     vigor imediatamente após a publicação no site.
                     <br>
-                    7.2 Recomendamos que você revise periodicamente esta política para estar ciente de quaisquer alterações.
+                    7.2 Recomendamos que você revise periodicamente esta política para estar ciente de quaisquer
+                    alterações.
                 </p>
             </div>
             <div class="my-10">

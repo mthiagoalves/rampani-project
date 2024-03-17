@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\BlogRepositorie;
 use App\Repositories\HomepageRepositorie;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -10,14 +11,12 @@ class FrontendController extends Controller
 {
     public function getHomepage()
     {
-        $content = HomepageRepositorie::getHomepageContent();
-
-        return Inertia::render('Homepage');
+        return Inertia::render('Homepage', ['title' => 'Clinica Rampani']);
     }
 
     public function getProcedures()
     {
-        return Inertia::render('AllProcedures');
+        return Inertia::render('AllProcedures', ['title' => 'Clinica Rampani - Todos os Procedimentos']);
     }
 
     public function getProcedure()
@@ -27,25 +26,36 @@ class FrontendController extends Controller
 
     public function getBlog()
     {
-        return Inertia::render('Blog');
+        $posts = BlogRepositorie::getAllPosts();
+
+        // dd($posts);
+
+        return Inertia::render('Blog', ['title' => 'Clínica Rampani - Blog', 'posts' => $posts]);
+    }
+
+    public function getPost($slug)
+    {
+        $post = BlogRepositorie::getPost($slug);
+
+        return Inertia::render('Blog/Post', ['title' => $post->title, 'post' => $post]);
     }
 
     public function getTheClinic()
     {
-        return Inertia::render('Clinic');
+        return Inertia::render('Clinic', ['title' => 'Clínica Rampani - Nossa Clínica']);
     }
 
     public function getLandingMaleAesthetics(){
-        return Inertia::render('Landings/MaleAesthetics');
+        return Inertia::render('Landings/MaleAesthetics', ['title' => 'Estética Intíma Masculina']);
     }
 
     public function getTermsAndConditions()
     {
-        return Inertia::render('TermsAndConditions');
+        return Inertia::render('TermsAndConditions', ['title' => 'Clínica Rampani - Termos e Condições']);
     }
 
     public function getPrivacyPolicy()
     {
-        return Inertia::render('PrivacyPolicy');
+        return Inertia::render('PrivacyPolicy', ['title' => 'Clínica Rampani - Política de Privacidade']);
     }
 }

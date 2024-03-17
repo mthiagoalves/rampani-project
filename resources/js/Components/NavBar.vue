@@ -66,9 +66,9 @@ onMounted(() => {
                         <NavLink :href="route('blog')" :active="route().current('blog')">
                             Blog
                         </NavLink>
-                        <NavLink href="#contact">
+                        <a href="#contact" class="text-nav transition duration-150 ease-in-out">
                             Contato
-                        </NavLink>
+                        </a>
                     </li>
                 </ul>
             </div>

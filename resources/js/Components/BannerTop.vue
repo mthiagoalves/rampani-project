@@ -21,7 +21,7 @@ const setDeal = (deal) => {
         </div>
         <div class="text-banner absolute">
             <p>Onde a beleza começa <br class="hidden sm:block"> quando você decide <br class="hidden sm:block">
-                se cuidar!
+                se cuidar!
             </p>
             <a type="button" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
                 @click="setDeal('Agendamento geral')">
@@ -109,7 +109,7 @@ const setDeal = (deal) => {
 
 @media(max-width: 756px) {
     .text-banner {
-        top: 15%;
+        top: 22%;
     }
 }
 

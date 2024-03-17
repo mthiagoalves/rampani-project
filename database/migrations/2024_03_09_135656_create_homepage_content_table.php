@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('address');
             $table->text('email');
             $table->text('phone');
+            $table->text('whatsapp');
             $table->text('openingHours');
             $table->text('instagram');
             $table->text('facebook');

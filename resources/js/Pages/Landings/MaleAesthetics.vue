@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue';
+import { Head } from '@inertiajs/vue3';
 
 import BannerTop from '@/Components/Landings/MaleAesthetic/BannerTop.vue';
 import Modal from '@/Components/Landings/MaleAesthetic/Modal.vue';
@@ -19,6 +20,9 @@ const setDeal = (deal) => {
 
 </script>
 <template>
+
+    <Head :title="$page.props.title" />
+
     <MainLayout>
 
         <BannerTop :selectedDeal="selectedDeal" @setDeal="setDeal"></BannerTop>
@@ -63,4 +67,3 @@ const setDeal = (deal) => {
     opacity: 1;
 }
 </style>import SecondSectionVue from '@/Components/Landings/MaleAesthetic/SecondSection.vue';
-

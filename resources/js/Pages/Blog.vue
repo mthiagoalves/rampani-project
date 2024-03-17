@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue';
+import { Head } from '@inertiajs/vue3';
 
 import MainLayout from '@/Layouts/MainLayout.vue';
 import BannerDeals from '@/Components/BannerDeals.vue';
@@ -13,6 +14,8 @@ const setDeal = (deal) => {
 };
 </script>
 <template>
+        <Head :title=" $page.props.title" />
+
     <MainLayout>
 
         <BannerDeals :selectedDeal="selectedDeal" @setDeal="setDeal"></BannerDeals>
@@ -24,7 +27,7 @@ const setDeal = (deal) => {
 
         </div>
 
-        <CardsBlog></CardsBlog>
+        <CardsBlog :posts="$page.props.posts"></CardsBlog>
 
         <Modal :selectedDeal="selectedDeal"></Modal>
 
