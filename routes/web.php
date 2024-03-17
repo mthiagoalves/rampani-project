@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\BakcofficeController;
 use App\Http\Controllers\FormsController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 Route::get('/', [FrontendController::class, 'getHomepage'])->name('homepage');
 
@@ -31,9 +31,14 @@ Route::post('/geral-scheduling', [FormsController::class, 'geralScheduling'])->n
 
 Route::post('/process-message', [FormsController::class, 'processMessage'])->name('processMessage');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', [BakcofficeController::class, 'getDashboard'])->name('dashboard');
+    Route::get('/backoffice/homepage', [BakcofficeController::class, 'getHomepage'])->name('backoffice.homepage');
+    Route::get('/backoffice/procedimentos', [BakcofficeController::class, 'getProcedures'])->name('backoffice.procedures');
+    Route::get('/backoffice/campanhas', [BakcofficeController::class, 'getCampain'])->name('backoffice.campain');
+    Route::get('/backoffice/blog', [BakcofficeController::class, 'getBlog'])->name('backoffice.blog');
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -41,4 +46,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
