@@ -28,7 +28,7 @@ const banners = [
                         class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 hidden sm:block"
                         alt="...">
                     <img :src="banner.imgSrcMobile"
-                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 block sm:hidden"
+                        class="absolute block w-1200 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 block sm:hidden"
                         alt="...">
                 </a>
             </div>

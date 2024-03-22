@@ -2,7 +2,8 @@
 import NavBar from '@/Components/NavBar.vue';
 import Footer from '@/Components/Footer.vue';
 import BtnWhatsapp from '@/Components/BtnWhatsapp.vue';
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
+import { initFlowbite } from 'flowbite';
 
 const receivedHeight = ref(0);
 const isHomePage = computed(() => route().current('homepage'));
@@ -10,6 +11,10 @@ const isHomePage = computed(() => route().current('homepage'));
 const receiveNavbarHeight = (height) => {
     receivedHeight.value = height;
 };
+
+onMounted(() => {
+    initFlowbite();
+});
 
 </script>
 
@@ -28,7 +33,6 @@ const receiveNavbarHeight = (height) => {
 <style scoped>
 /* Estilo para aplicar a margem superior */
 .mt-navbar-height {
-    margin-top: receivedHeight - 1 + 'px' ;
+    margin-top: receivedHeight - 1 + 'px';
 }
 </style>
-

@@ -28,7 +28,8 @@ const setDeal = (deal) => {
                 </div>
                 <div class="w-full sm:w-2/4 sm:h-64 sm:relative order-1 sm:order-2">
                     <div class="sm:absolute w-full h-full div-abs-img">
-                        <img src="https://dummyimage.com/850x850/242424/0011ff" alt="" class="sm:w-9/12 sm:ml-auto">
+                        <img src="https://dummyimage.com/850x850/242424/0011ff" alt=""
+                            class="md:w-9/12 sm:ml-auto img-rounded">
                     </div>
                 </div>
             </div>
@@ -78,6 +79,18 @@ const setDeal = (deal) => {
 @media(min-width: 756px) {
     .div-abs-img img {
         border-radius: 50%;
+    }
+}
+
+@media screen and (min-width: 1100px) and (max-width:1200px) {
+    .img-rounded {
+        width: 90%;
+    }
+}
+
+@media (min-width: 1550px) {
+    .img-rounded {
+        width: 60%;
     }
 }
 </style>

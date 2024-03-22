@@ -1,6 +1,5 @@
 <script setup>
 import NavLink from '@/Components/NavLink.vue';
-import { initFlowbite } from 'flowbite';
 import { computed, defineEmits, onMounted, ref } from 'vue';
 
 const navbarRef = ref(null); // Criando uma ref para o elemento da barra de navegação
@@ -14,18 +13,17 @@ onMounted(() => {
         const navbarHeight = document.querySelector('.give-mg').offsetHeight;
         emit('navbarHeight', navbarHeight);
     }, 200);
-
-    initFlowbite();
 });
 </script>
 <template>
-    <nav ref="navbarRef" :class="{ 'bg-transparent': isHomePage || isLandingMaleAesthetic, 'bg-standard give-mg': !isHomePage && !isLandingMaleAesthetic }"
+    <nav ref="navbarRef"
+        :class="{ 'bg-transparent': isHomePage || isLandingMaleAesthetic, 'bg-standard give-mg': !isHomePage && !isLandingMaleAesthetic }"
         class="border-gray-200 dark:bg-gray-900 absolute w-full top-0 z-10">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-4 md:mx-auto pt-3 pb-4">
             <a :href="route('homepage')" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="/imgs/logo-white.png" class="img-logo" alt="Ramapani Logo" />
             </a>
-            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            <div class="flex md:order-2 space-x-1 md:space-x-0 rtl:space-x-reverse">
                 <a target="_blank" class="icons-socials" href="https://www.instagram.com/clinicarampani/">
                     <img src="/imgs/icons/instagram-white.png" alt="Icon Instagram">
                 </a>
@@ -48,7 +46,7 @@ onMounted(() => {
             </div>
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
                 <ul class="font-medium p-4 md:p-0 mt-0 sm:mt-4 border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:border-gray-700"
-                    :class="{ 'navbar-background-white': isHomePage }">
+                    :class="{ 'navbar-background-white': isHomePage || isLandingMaleAesthetic }">
                     <li class="flex flex-col sm:flex-row align-center">
                         <NavLink :href="route('homepage')" :active="route().current('homepage')">
                             Inicio
@@ -75,3 +73,9 @@ onMounted(() => {
         </div>
     </nav>
 </template>
+
+<style scoped>
+.align-items {
+    align-items: center;
+}
+</style>

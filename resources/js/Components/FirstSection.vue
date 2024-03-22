@@ -1,7 +1,7 @@
 <template>
     <div class="flex items-center w-screen min-h-screen first-section">
-        <div class="container ml-auto mr-auto flex flex-wrap items-start justify-center">
-            <div class="w-full pl-5 lg:pl-2 mb-4 mt-4">
+        <div class="container ml-auto mr-auto flex flex-wrap items-start justify-center lg:px-2 px-3">
+            <div class="w-full  mb-4 mt-4">
                 <h1 class="text-3xl lg:text-4xl title-section">
                     Principais Procedimentos
                 </h1>
@@ -9,7 +9,7 @@
                     Os procedimentos menos invasivos do mercado, com a melhor tecnologia!
                 </p>
             </div>
-            <div class="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
+            <div class="w-full md:w-1/2 lg:w-1/4 mb-5">
                 <div
                     class="bg-white rounded-lg m-h-64 p-6 transform hover:translate-y-2 hover:shadow-xl transition duration-300">
                     <figure class="mb-2">
@@ -25,7 +25,7 @@
                     </div>
                 </div>
             </div>
-            <div class="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
+            <div class="w-full md:w-1/2 lg:w-1/4 mb-5">
                 <div
                     class="bg-white rounded-lg m-h-64 p-6 transform hover:translate-y-2 hover:shadow-xl transition duration-300">
                     <figure class="mb-2">
@@ -35,15 +35,13 @@
                         <div>
                             <h5 class="text-card font-bold leading-none">
                                 Bioestimulador de colágeno
-
-
                             </h5>
                             <span class="text-xs text-gray-400 leading-none">O poder do bioestimulador de colágeno.</span>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
+            <div class="w-full md:w-1/2 lg:w-1/4 mb-5">
                 <div
                     class="bg-white rounded-lg m-h-64 p-6 transform hover:translate-y-2 hover:shadow-xl transition duration-300">
                     <figure class="mb-2">
@@ -59,7 +57,7 @@
                     </div>
                 </div>
             </div>
-            <div class="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
+            <div class="w-full md:w-1/2 lg:w-1/4 mb-5">
                 <div
                     class="bg-white rounded-lg m-h-64 p-6 transform hover:translate-y-2 hover:shadow-xl transition duration-300">
                     <figure class="mb-2">
@@ -75,7 +73,7 @@
                     </div>
                 </div>
             </div>
-            <div class="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
+            <div class="w-full md:w-1/2 lg:w-1/4 mb-5">
                 <div
                     class="bg-white rounded-lg m-h-64 p-6 transform hover:translate-y-2 hover:shadow-xl transition duration-300">
                     <figure class="mb-2">
@@ -91,7 +89,7 @@
                     </div>
                 </div>
             </div>
-            <div class="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
+            <div class="w-full md:w-1/2 lg:w-1/4 mb-5">
                 <div class="bg-white rounded-lg m-h-64 p-6 transform hover:translate-y-2 hover:shadow-xl transition duration-300">
                     <figure class="mb-2">
                         <img src="/imgs/icons/botox.png" alt="" class="h-40 ml-auto mr-auto img-card-methods" />
