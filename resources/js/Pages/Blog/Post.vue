@@ -57,56 +57,59 @@ const copyLink = (event) => {
         <meta head-key="description" name="description" content="This is a page specific description" />
     </Head>
     <MainLayout>
-        <div class="title-background h-64 flex flex-col justify-center align-center sm:mb-16 mb-10 relative"
-            :style="{ backgroundImage: `url('https://dummyimage.com/1500x400/3a9e41/2b339c')` }">
-            <div class="overlay">
-            </div>
-            <div class="text-banner">
-                <h1 class="text-3xl lg:text-4xl text-center py-6 title-section uppercase">
-                    {{ $page.props.post.title }}
-                </h1>
-                <div class="flex align-center justify-center">
-                    <img src="/imgs/icons/tag.png" alt="" class="h-6">
-                    <p class="text-2xl text-white ml-1">{{ $page.props.post.category_id }}</p>
+        <template #main>
+            <div class="title-background h-64 flex flex-col justify-center align-center sm:mb-16 mb-10 relative"
+                :style="{ backgroundImage: `url('https://dummyimage.com/1500x400/3a9e41/2b339c')` }">
+                <div class="overlay">
+                </div>
+                <div class="text-banner">
+                    <h1 class="text-3xl lg:text-4xl text-center py-6 title-section uppercase">
+                        {{ $page.props.post.title }}
+                    </h1>
+                    <div class="flex align-center justify-center">
+                        <img src="/imgs/icons/tag.png" alt="" class="h-6">
+                        <p class="text-2xl text-white ml-1">{{ $page.props.post.category_id }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="container mx-auto">
-            <p></p>
-            <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8 px-4 sm:px-0">
-                <div class="lg:col-span-2">
-                    <p v-html="$page.props.post.description"></p>
-                </div>
-                <div class="sm:block hidden flex flex-col">
-                    <a :href="route('male-aesthetic')">
-                        <img src="https://dummyimage.com/500x700/754c75/fff" alt="">
-                    </a>
-                    <div class="mt-4">
-                        <p>
-                            Acompanhe-nos nas redes sociais
-                        </p>
-                        <div class="flex mt-4 justify-start sm:mt-2">
-                            <a target="_blank" class="social-icons" href="https://www.instagram.com/clinicarampani/">
-                                <img src="/imgs/icons/instagram.png" alt="Icon Instagram" class="mr-4">
-                            </a>
-                            <a target="_blank" class="social-icons">
-                                <img src="/imgs/icons/tiktok.png" alt="Icon Tiktok" class="mr-4">
-                            </a>
-                            <a target="_blank" class="social-icons" href="https://www.facebook.com/rampaniestetica">
-                                <img src="/imgs/icons/facebook.png" alt="Icon Facebook" class="mr-4">
-                            </a>
-                            <a class="social-icons" href="#" @click="copyLink($event)" title="Copiar Link">
-                                <img src="/imgs/icons/share.png" alt="Icon Share">
-                            </a>
+            <div class="container mx-auto">
+                <p></p>
+                <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8 px-4 sm:px-0">
+                    <div class="lg:col-span-2">
+                        <p v-html="$page.props.post.description"></p>
+                    </div>
+                    <div class="sm:block hidden flex flex-col">
+                        <a :href="route('male-aesthetic')">
+                            <img src="https://dummyimage.com/500x700/754c75/fff" alt="">
+                        </a>
+                        <div class="mt-4">
+                            <p>
+                                Acompanhe-nos nas redes sociais
+                            </p>
+                            <div class="flex mt-4 justify-start sm:mt-2">
+                                <a target="_blank" class="social-icons"
+                                    href="https://www.instagram.com/clinicarampani/">
+                                    <img src="/imgs/icons/instagram.png" alt="Icon Instagram" class="mr-4">
+                                </a>
+                                <a target="_blank" class="social-icons">
+                                    <img src="/imgs/icons/tiktok.png" alt="Icon Tiktok" class="mr-4">
+                                </a>
+                                <a target="_blank" class="social-icons" href="https://www.facebook.com/rampaniestetica">
+                                    <img src="/imgs/icons/facebook.png" alt="Icon Facebook" class="mr-4">
+                                </a>
+                                <a class="social-icons" href="#" @click="copyLink($event)" title="Copiar Link">
+                                    <img src="/imgs/icons/share.png" alt="Icon Share">
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <CtaSchedule :selectedDeal="selectedDeal" @setDeal="setDeal"></CtaSchedule>
+            <CtaSchedule :selectedDeal="selectedDeal" @setDeal="setDeal"></CtaSchedule>
 
-        <Modal :selectedDeal="selectedDeal"></Modal>
+            <Modal :selectedDeal="selectedDeal"></Modal>
+        </template>
 
     </MainLayout>
 </template>

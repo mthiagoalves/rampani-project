@@ -19,17 +19,19 @@ const setDeal = (deal) => {
     <Head :title="$page.props.title" />
 
     <MainLayout>
-        <div class="mt-20">
-            <h1 class="text-3xl lg:text-4xl text-center py-6 title-section">
-                Nosso Espaço
-            </h1>
-        </div>
+        <template #main>
+            <div class="mt-20">
+                <h1 class="text-3xl lg:text-4xl text-center py-6 title-section">
+                    Nosso Espaço
+                </h1>
+            </div>
 
-        <ClinicMansory></ClinicMansory>
+            <ClinicMansory></ClinicMansory>
 
-        <CtaSchedule :selectedDeal="selectedDeal" @setDeal="setDeal"></CtaSchedule>
+            <CtaSchedule :selectedDeal="selectedDeal" @setDeal="setDeal"></CtaSchedule>
 
-        <Modal :selectedDeal="selectedDeal"></Modal>
+            <Modal :selectedDeal="selectedDeal"></Modal>
+        </template>
 
     </MainLayout>
 </template>

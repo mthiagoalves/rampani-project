@@ -23,7 +23,7 @@ onMounted(() => {
         <NavBar @navbarHeight="receiveNavbarHeight">
         </NavBar>
         <div :style="{ marginTop: !isHomePage ? (receivedHeight - 1) + 'px' : '0' }">
-            <slot />
+            <slot name="main" />
         </div>
         <BtnWhatsapp></BtnWhatsapp>
         <Footer></Footer>

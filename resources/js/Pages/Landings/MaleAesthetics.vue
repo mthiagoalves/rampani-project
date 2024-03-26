@@ -24,22 +24,24 @@ const setDeal = (deal) => {
     <Head :title="$page.props.title" />
 
     <MainLayout>
+        <template #main>
+            <BannerTop :selectedDeal="selectedDeal" @setDeal="setDeal"></BannerTop>
 
-        <BannerTop :selectedDeal="selectedDeal" @setDeal="setDeal"></BannerTop>
+            <FirstSection :selectedDeal="selectedDeal" @setDeal="setDeal"></FirstSection>
 
-        <FirstSection :selectedDeal="selectedDeal" @setDeal="setDeal"></FirstSection>
+            <SecondSection :selectedDeal="selectedDeal" @setDeal="setDeal"></SecondSection>
 
-        <SecondSection :selectedDeal="selectedDeal" @setDeal="setDeal"></SecondSection>
+            <OurSpace></OurSpace>
 
-        <OurSpace></OurSpace>
+            <ThirdSection></ThirdSection>
 
-        <ThirdSection></ThirdSection>
+            <FourthSection></FourthSection>
 
-        <FourthSection></FourthSection>
+            <ModalInfo :selectedDeal="selectedDeal" @setDeal="setDeal"></ModalInfo>
 
-        <ModalInfo :selectedDeal="selectedDeal" @setDeal="setDeal"></ModalInfo>
+            <Modal :selectedDeal="selectedDeal"></Modal>
+        </template>
 
-        <Modal :selectedDeal="selectedDeal"></Modal>
     </MainLayout>
 </template>
 

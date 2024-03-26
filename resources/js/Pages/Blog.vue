@@ -14,22 +14,26 @@ const setDeal = (deal) => {
 };
 </script>
 <template>
-        <Head :title=" $page.props.title" />
+
+    <Head :title="$page.props.title" />
 
     <MainLayout>
 
-        <BannerDeals :selectedDeal="selectedDeal" @setDeal="setDeal"></BannerDeals>
+        <template #main>
+            <BannerDeals :selectedDeal="selectedDeal" @setDeal="setDeal"></BannerDeals>
 
-        <div class="w-full pl-5 lg:pl-2 my-6">
-            <h1 class="text-3xl lg:text-4xl title-section text-center">
-                Os ultimos conteúdos sobre cuidados e estética !
-            </h1>
+            <div class="w-full pl-5 lg:pl-2 my-6">
+                <h1 class="text-3xl lg:text-4xl title-section text-center">
+                    Os ultimos conteúdos sobre cuidados e estética !
+                </h1>
 
-        </div>
+            </div>
 
-        <CardsBlog :posts="$page.props.posts"></CardsBlog>
+            <CardsBlog :posts="$page.props.posts"></CardsBlog>
 
-        <Modal :selectedDeal="selectedDeal"></Modal>
+            <Modal :selectedDeal="selectedDeal"></Modal>
+        </template>
+
 
     </MainLayout>
 </template>

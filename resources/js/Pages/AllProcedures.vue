@@ -11,6 +11,8 @@ import Procedures from '@/Components/Procedures/Procedures.vue';
     <Head :title="$page.props.title" />
 
     <MainLayout>
-        <Procedures></Procedures>
+        <template #main>
+            <Procedures></Procedures>
+        </template>
     </MainLayout>
 </template>
