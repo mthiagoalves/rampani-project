@@ -35,6 +35,7 @@ export default {
                 Toast.fire({
                     icon: "success",
                     title: response.data.message
+                    
                 });
 
                 btnSubmit.style.pointerEvents = 'all';

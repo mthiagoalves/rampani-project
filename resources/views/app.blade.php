@@ -10,6 +10,7 @@
     <meta name="image" property="og:image" content="/imgs/icons/title-icon.png">
     <link rel="icon" href="/imgs/icons/title-icon.png">
     <link href="/css/style.css" rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title inertia>{{ config('app.name', 'Laravel') }}</title>
 

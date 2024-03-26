@@ -1,18 +1,148 @@
-<script setup>
-import Editor from '@tinymce/tinymce-vue'
-
+<script>
+import Editor from '@tinymce/tinymce-vue';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 import { ref, watch } from 'vue';
 
-const title = ref('');
-const slug = ref('');
 
-function generateSlug(title) {
-    return title.trim().toLowerCase().replace(/\s+/g, '-');
+export default {
+    components: {
+        'tinymce': Editor
+    },
+    setup() {
+
+        const title = ref('');
+        const link = ref('');
+        const slug = ref('');
+
+        function generateSlug(title) {
+            return title.trim().toLowerCase().replace(/\s+/g, '-');
+        }
+
+        watch(title, (newVal) => {
+            link.value = 'https://clinicarampani.com.br/blog/' + generateSlug(newVal);
+            slug.value = generateSlug(newVal);
+        });
+        return {
+            title,
+            link,
+            slug
+        }
+    },
+    methods: {
+
+        async submitForm() {
+
+            let btnSubmit = document.querySelector('.send-form');
+            btnSubmit.style.pointerEvents = 'none';
+            btnSubmit.innerHTML = `<div role="status"><svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/></svg><span class="sr-only">Loading...</span></div>`;
+
+            const myContent = tinymce.get("description_value").getContent();
+
+            const formData = {
+                title: this.$refs.title_value.value,
+                slug: this.$refs.slug_value.value,
+                sub_title: this.$refs.sub_title.value,
+                category: this.$refs.category.value,
+                published_in: this.$refs.published_in.value,
+                description: myContent,
+                meta_description: this.$refs.meta_description.value,
+                key_words: this.$refs.key_words.value,
+            };
+
+            try {
+                const response = await axios.post('/backoffice/create-post', formData);
+                console.log(response);
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 4000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: response.data.success
+                });
+
+                this.$refs.title_value.value = '',
+                this.$refs.slug_value.value = '',
+                this.$refs.link_value.value = '',
+                this.$refs.sub_title.value = '',
+                this.$refs.category.value = '',
+                this.$refs.published_in.value = '',
+                this.$refs.meta_description.value = '',
+                this.$refs.key_words.value = '',
+                tinymce.activeEditor.setContent('');
+
+                btnSubmit.style.pointerEvents = 'all';
+                btnSubmit.innerHTML = `<svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd"d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"clip-rule="evenodd"></path></svg>Salvar artigo`;
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro!',
+                    text: error.error,
+                });
+            }
+        },
+    },
+    data() {
+        return {
+            name: 'sample',
+            myModel: '',
+            myToolbar: 'undo redo | fontselect fontsizeselect forecolor backcolor | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat | code',
+            myPlugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode mentions',
+            myInit: {
+                images_dataimg_filter: function (img) {
+                    return false;
+                    return img.hasAttribute('internal-blob');
+                },
+                convert_urls: false,
+                height: 550,
+                automatic_uploads: false,
+                images_upload_base_path: '/../../',
+                relative_urls: false,
+                images_upload_handler: function (blobInfo, success, failure, folderName) {
+                    var xhr, formData;
+                    xhr = new XMLHttpRequest();
+                    xhr.withCredentials = false;
+
+                    xhr.open('POST', '/backoffice/image-post-upload');
+                    var token = document.head.querySelector("[name=csrf-token]").content;
+                    xhr.setRequestHeader("X-CSRF-Token", token);
+
+                    xhr.onload = function () {
+                        var json;
+
+                        if (xhr.status != 200) {
+                            failure('HTTP Error: ' + xhr.status);
+                            return;
+                        }
+                        json = JSON.parse(xhr.responseText);
+
+                        if (!json || typeof json.location != 'string') {
+                            failure('Invalid JSON: ' + xhr.responseText);
+                            return;
+                        }
+                        success(json.location);
+                    };
+
+                    formData = new FormData();
+                    formData.append('file', blobInfo.blob(), blobInfo.filename());
+
+                    xhr.send(formData);
+
+                },
+                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+            },
+        }
+    }
+
 }
-
-watch(title, (newVal) => {
-    slug.value = 'https://clinicarampani.com.br/blog/' + generateSlug(newVal);
-});
 </script>
 
 <template>
@@ -35,67 +165,92 @@ watch(title, (newVal) => {
                         <span class="sr-only">Close modal</span>
                     </button>
                 </div>
-                <form class="p-4 md:p-5">
+                <form class="p-4 md:p-5" @submit.prevent="submitForm">
                     <div class="grid gap-4 mb-4 grid-cols-2">
                         <div class="col-span-2 sm:col-span-1">
-                            <label for="name"
+                            <label for="title"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Titulo do
                                 artigo</label>
-                            <input type="text" name="name" id="name" v-model="title"
+                            <input type="text" ref="title_value" id="title" v-model="title"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="Escreva o titulo do artigo" required="">
                         </div>
                         <div class="col-span-2 sm:col-span-1">
-                            <label for="slug"
+                            <label for="link"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Link</label>
-                            <input type="text" name="slug" id="slug" v-model="slug"
+                            <input type="text" ref="link_value" id="link" v-model="link"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                placeholder="https://clinicarampani.com.br/blog/" required="" disabled>
+                                placeholder="https://clinicarampani.com.br/blog/" disabled>
+                            <input type="hidden" ref="slug_value" id="slug" v-model="slug"
+                                class="hidden" required="" disabled>
                         </div>
                         <div class="col-span-2 sm:col-span-1">
                             <label for="sub-title"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Subtitulo (Se
                                 houver)</label>
-                            <input type="text" name="sub-title" id="sub-title"
+                            <input type="text" name="sub_title" id="sub-title" ref="sub_title"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="Escreva o subtitulo do artigo (Se houver)" required="">
                         </div>
+                        <div class="grid gap-4 mb-4 grid-cols-2">
+
+                            <div class="col-span-2 sm:col-span-1">
+                                <label for="category"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categoria</label>
+                                <select id="category" ref="category"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                    <option selected="" disabled>Selecione uma Categoria</option>
+                                    <option value="Bumbum">Bumbum</option>
+                                    <option value="CLiníca de Estética">Cliníca de Estética</option>
+                                    <option value="Cuidados">Cuidados</option>
+                                    <option value="Dicas">Dicas</option>
+                                    <option value="Drenagem Linfática">Drenagem Linfática</option>
+                                    <option value="Estética">Estética</option>
+                                    <option value="Estética Preventiva">Estética Preventiva</option>
+                                    <option value="Harmonização de Glúteos">Harmonização de Glúteos</option>
+                                    <option value="PRocedimento Estético">Procedimentos Estéticos</option>
+                                    <option value="Rampani">Rampani</option>
+                                    <option value="Saúde">Saúde</option>
+                                    <option value="Tratamento Estético">Tratamento Estético</option>
+                                    <option value="Verão">Verão</option>
+                                </select>
+                            </div>
+                            <div class="col-span-2 sm:col-span-1">
+                                <label for="published_in"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data de
+                                    Publicação</label>
+                                <input type="date" name="published_in" id="published_in" ref="published_in"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    required="">
+                            </div>
+                        </div>
                         <div class="col-span-2 sm:col-span-1">
-                            <label for="category"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categoria</label>
-                            <select id="category"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                <option selected="" disabled>Selecione uma Categoria</option>
-                                <option value="Bumbum">Bumbum</option>
-                                <option value="CLiníca de Estética">Cliníca de Estética</option>
-                                <option value="Cuidados">Cuidados</option>
-                                <option value="Dicas">Dicas</option>
-                                <option value="Drenagem Linfática">Drenagem Linfática</option>
-                                <option value="Estética">Estética</option>
-                                <option value="Estética Preventiva">Estética Preventiva</option>
-                                <option value="Harmonização de Glúteos">Harmonização de Glúteos</option>
-                                <option value="PRocedimento Estético">Procedimentos Estéticos</option>
-                                <option value="Rampani">Rampani</option>
-                                <option value="Saúde">Saúde</option>
-                                <option value="Tratamento Estético">Tratamento Estético</option>
-                                <option value="Verão">Verão</option>
-                            </select>
+                            <label for="meta_description"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Meta
+                                description</label>
+                            <input type="text" name="meta_description" id="meta_description" ref="meta_description"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder="Escreva a meta description do artigo">
+                        </div>
+                        <div class="col-span-2 sm:col-span-1">
+                            <label for="key-words"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Key words</label>
+                            <input type="text" name="key-words" id="key-words" ref="key_words"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder="blog, artigos, clinica, estetica, rampani...">
                         </div>
                         <div class="col-span-2" id="sample">
                             <label for="description"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Escreva o conteudo
                                 do artigo</label>
-                            <Editor api-key="xsaytgoxknpqs66x5benfgbmcqllvd7csc142rphf8g9rcaj" :init="{
-                                toolbar_mode: 'sliding',
-                                plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode mentions',
-                                toolbar: 'undo redo | fontselect fontsizeselect forecolor backcolor | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat | code',
-                            }">
-                            </Editor>
+                            <tinymce :plugins="myPlugins" :toolbar="myToolbar" :init="myInit" id="description_value"
+                                v-model="content" api-key="xsaytgoxknpqs66x5benfgbmcqllvd7csc142rphf8g9rcaj">
+                            </tinymce>
                         </div>
                     </div>
                     <div class="text-end">
                         <button type="submit"
-                            class="text-white inline-flex items-center justify-end bg-standard font-medium rounded-lg text-sm px-5 py-2.5 text-end dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            class="text-white inline-flex items-center justify-end bg-standard font-medium rounded-lg text-sm px-5 py-2.5 text-end dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 send-form">
                             <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
@@ -111,8 +266,4 @@ watch(title, (newVal) => {
     </div>
 </template>
 
-<style>
-.tox .tox-tinymce {
-    border-radius: .5rem;
-}
-</style>
+<style></style>

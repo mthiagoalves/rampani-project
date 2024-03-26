@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\BakcofficeController;
+use App\Http\Controllers\BackofficeController;
 use App\Http\Controllers\FormsController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ProfileController;
@@ -32,11 +32,13 @@ Route::post('/geral-scheduling', [FormsController::class, 'geralScheduling'])->n
 Route::post('/process-message', [FormsController::class, 'processMessage'])->name('processMessage');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', [BakcofficeController::class, 'getDashboard'])->name('dashboard');
-    Route::get('/backoffice/homepage', [BakcofficeController::class, 'getHomepage'])->name('backoffice.homepage');
-    Route::get('/backoffice/procedimentos', [BakcofficeController::class, 'getProcedures'])->name('backoffice.procedures');
-    Route::get('/backoffice/campanhas', [BakcofficeController::class, 'getCampain'])->name('backoffice.campain');
-    Route::get('/backoffice/blog', [BakcofficeController::class, 'getBlog'])->name('backoffice.blog');
+    Route::get('/dashboard', [BackofficeController::class, 'getDashboard'])->name('dashboard');
+    Route::get('/backoffice/homepage', [BackofficeController::class, 'getHomepage'])->name('backoffice.homepage');
+    Route::get('/backoffice/procedimentos', [BackofficeController::class, 'getProcedures'])->name('backoffice.procedures');
+    Route::get('/backoffice/campanhas', [BackofficeController::class, 'getCampain'])->name('backoffice.campain');
+    Route::get('/backoffice/blog', [BackofficeController::class, 'getBlog'])->name('backoffice.blog');
+    Route::post('/backoffice/create-post', [BackofficeController::class, 'createPost'])->name('backoffice.create-post');
+    Route::post('/backoffice/image-post-upload', [BackofficeController::class, 'uploadImagePost'])->name('backoffice.image-post');
 });
 
 
