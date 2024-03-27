@@ -34,15 +34,17 @@ class BackofficeController extends Controller
         return Inertia::render('Backoffice/Blog');
     }
 
-    public function createPost(Request $request){
+    public function createPost(Request $request)
+    {
         $dataRequest = $request->all();
 
         $response = BlogRepositorie::createPost($dataRequest);
 
-        if(isset($response)) {
+        if ($response->getStatusCode() === 200) {
             return response()->json(['success' => 'Artigo criado com sucesso!'], 200);
+        } else {
+            return response()->json(['error' => $response->getContent() . ' :('], $response->getStatusCode());
         }
-        return response()->json(['error' => 'Algo de errado aconteceu na criação do artigo :('], 422);
     }
 
     public function uploadImagePost(Request $request)

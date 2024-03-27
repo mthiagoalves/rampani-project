@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Posts;
+use Illuminate\Support\Facades\Validator;
 
 class BlogRepositorie
 {
@@ -19,17 +20,73 @@ class BlogRepositorie
 
     public static function createPost($dataRequest)
     {
-        return Posts::create([
-            'title' => $dataRequest['title'],
-            'sub_title' => $dataRequest['sub_title'],
-            'slug' => $dataRequest['slug'],
-            'category_id' => $dataRequest['category'],
-            'description' => $dataRequest['description'],
-            'published_in' => $dataRequest['published_in'],
-            'meta_description' => $dataRequest['meta_description'],
-            'key_words' => $dataRequest['key_words'],
-            'is_active' => 1
-        ]);
+        try {
+
+            $validator = Validator::make($dataRequest, [
+                "title" => "string|required",
+                "sub_title" => "string|nullable",
+                "slug" => "string|required",
+                "category" => "string|required",
+                "description" => "string|required",
+                'published_in' => 'nullable',
+                "key_words" => "string|nullable",
+                "meta_description" => "string|nullable",
+                "thumbnail" => "mimes:jpg,bmp,png",
+                "banner" => "mimes:jpg,bmp,png",
+            ]);
+
+            if ($validator->fails()) {
+                return response(implode(PHP_EOL, $validator->errors()->all()), 422);
+            }
+
+            $postCreated = Posts::create([
+                'title' => $dataRequest['title'],
+                'sub_title' => $dataRequest['sub_title'],
+                'slug' => $dataRequest['slug'],
+                'category_id' => $dataRequest['category'],
+                'description' => $dataRequest['description'],
+                'published_in' => $dataRequest['published_in'],
+                'meta_description' => $dataRequest['meta_description'],
+                'key_words' => $dataRequest['key_words'],
+                'is_active' => 1
+            ]);
+
+            self::uploadThumbnail($dataRequest['thumbnail'], $postCreated->slug);
+
+            self::uploadBanner($dataRequest['banner'], $postCreated->slug);
+
+            return response('', 200);
+
+        } catch (\Throwable $e) {
+            return response('Wrong error was happening', 422);
+
+        }
+    }
+
+    private static function uploadThumbnail($thumbnail, $slug)
+    {
+        if (isset($thumbnail) && $thumbnail->isValid()) {
+            $path_thumbnail = $thumbnail;
+
+            $custom_name_file = $slug . "-thumbnail.jpg";
+
+            $folder_thumbnail = "imgs/posts/thumbnails/";
+
+            $path_thumbnail->move($folder_thumbnail, $custom_name_file);
+        }
+    }
+
+    private static function uploadBanner($banner, $slug)
+    {
+        if (isset($banner) && $banner->isValid()) {
+            $path_banner = $banner;
+
+            $custom_name_file = $slug . "-banner.jpg";
+
+            $folder_banner = "imgs/posts/banners/";
+
+            $path_banner->move($folder_banner, $custom_name_file);
+        }
     }
 
     public static function uploadImagePost($request)

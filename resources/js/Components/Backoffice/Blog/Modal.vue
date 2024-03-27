@@ -46,9 +46,10 @@ export default {
     methods: {
         handleFilePondInit: function () {
             console.log("FilePond has initialized");
+            this.$refs.pond_thumbnail.getFiles();
+            this.$refs.pond_banner.getFiles();
+            console.log(this.$refs.pond_thumbnail.getFiles());
 
-            // example of instance method call on pond reference
-            this.$refs.pond.getFiles();
         },
         async submitForm() {
             let btnSubmit = document.querySelector(".send-form");
@@ -57,16 +58,26 @@ export default {
 
             const myContent = tinymce.get("description_value").getContent();
 
-            const formData = {
-                title: this.$refs.title_value.value,
-                slug: this.$refs.slug_value.value,
-                sub_title: this.$refs.sub_title.value,
-                category: this.$refs.category.value,
-                published_in: this.$refs.published_in.value,
-                description: myContent,
-                meta_description: this.$refs.meta_description.value,
-                key_words: this.$refs.key_words.value,
-            };
+            let thumbnailFile = this.$refs.pond_thumbnail.getFiles()[0];
+            let bannerFile = this.$refs.pond_banner.getFiles()[0];
+
+            let formData = new FormData();
+
+            formData.append('title', this.$refs.title_value.value);
+            formData.append('slug', this.$refs.slug_value.value);
+            formData.append('sub_title', this.$refs.sub_title.value);
+            formData.append('category', this.$refs.category.value);
+            formData.append('published_in', this.$refs.published_in.value);
+            formData.append('description', myContent);
+            formData.append('meta_description', this.$refs.meta_description.value);
+            formData.append('key_words', this.$refs.key_words.value);
+
+            if (thumbnailFile) {
+                formData.append('thumbnail', thumbnailFile.file);
+            }
+            if (bannerFile) {
+                formData.append('banner', bannerFile.file);
+            }
 
             try {
                 const response = await axios.post(
@@ -99,6 +110,8 @@ export default {
                     (this.$refs.meta_description.value = ""),
                     (this.$refs.key_words.value = ""),
                     tinymce.activeEditor.setContent("");
+                this.$refs.pond_thumbnail.removeFiles();
+                this.$refs.pond_banner.removeFiles();
 
                 btnSubmit.style.pointerEvents = "all";
                 btnSubmit.innerHTML = `<svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd"d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"clip-rule="evenodd"></path></svg>Salvar artigo`;
@@ -113,6 +126,8 @@ export default {
     },
     data() {
         return {
+            myFileThumbnail: [],
+            myFileBanner: [],
             name: "sample",
             myModel: "",
             myToolbar:
@@ -180,41 +195,21 @@ export default {
 </script>
 
 <template>
-    <div
-        id="crud-modal"
-        tabindex="-1"
-        aria-hidden="true"
-        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
-    >
+    <div id="crud-modal" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-full max-h-full">
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                <div
-                    class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600"
-                >
-                    <h3
-                        class="text-lg font-semibold text-gray-900 dark:text-white"
-                    >
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
                         Criando novo artigo
                     </h3>
-                    <button
-                        type="button"
+                    <button type="button"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-modal-toggle="crud-modal"
-                    >
-                        <svg
-                            class="w-3 h-3"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 14 14"
-                        >
-                            <path
-                                stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                            />
+                        data-modal-toggle="crud-modal">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                         </svg>
                         <span class="sr-only">Close modal</span>
                     </button>
@@ -222,74 +217,36 @@ export default {
                 <form class="p-4 md:p-5" @submit.prevent="submitForm">
                     <div class="grid gap-4 mb-4 grid-cols-2">
                         <div class="col-span-2 sm:col-span-1">
-                            <label
-                                for="title"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                >Titulo do artigo</label
-                            >
-                            <input
-                                type="text"
-                                ref="title_value"
-                                id="title"
-                                v-model="title"
+                            <label for="title"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Titulo do
+                                artigo</label>
+                            <input type="text" ref="title_value" id="title" v-model="title"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                placeholder="Escreva o titulo do artigo"
-                                required=""
-                            />
+                                placeholder="Escreva o titulo do artigo" required="" />
                         </div>
                         <div class="col-span-2 sm:col-span-1">
-                            <label
-                                for="link"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                >Link</label
-                            >
-                            <input
-                                type="text"
-                                ref="link_value"
-                                id="link"
-                                v-model="link"
+                            <label for="link"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Link</label>
+                            <input type="text" ref="link_value" id="link" v-model="link"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                placeholder="https://clinicarampani.com.br/blog/"
-                                disabled
-                            />
-                            <input
-                                type="hidden"
-                                ref="slug_value"
-                                id="slug"
-                                v-model="slug"
-                                class="hidden"
-                                required=""
-                                disabled
-                            />
+                                placeholder="https://clinicarampani.com.br/blog/" disabled />
+                            <input type="hidden" ref="slug_value" id="slug" v-model="slug" class="hidden" required=""
+                                disabled />
                         </div>
                         <div class="col-span-2 sm:col-span-1">
-                            <label
-                                for="sub-title"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                >Subtitulo (Se houver)</label
-                            >
-                            <input
-                                type="text"
-                                name="sub_title"
-                                id="sub-title"
-                                ref="sub_title"
+                            <label for="sub-title"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Subtitulo (Se
+                                houver)</label>
+                            <input type="text" name="sub_title" id="sub-title" ref="sub_title"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                placeholder="Escreva o subtitulo do artigo (Se houver)"
-                                required=""
-                            />
+                                placeholder="Escreva o subtitulo do artigo (Se houver)" required="" />
                         </div>
                         <div class="grid gap-4 mb-4 grid-cols-2">
                             <div class="col-span-2 sm:col-span-1">
-                                <label
-                                    for="category"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                    >Categoria</label
-                                >
-                                <select
-                                    id="category"
-                                    ref="category"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                >
+                                <label for="category"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categoria</label>
+                                <select id="category" ref="category"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                     <option selected="" disabled>
                                         Selecione uma Categoria
                                     </option>
@@ -321,126 +278,68 @@ export default {
                                 </select>
                             </div>
                             <div class="col-span-2 sm:col-span-1">
-                                <label
-                                    for="published_in"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                    >Data de Publicação</label
-                                >
-                                <input
-                                    type="date"
-                                    name="published_in"
-                                    id="published_in"
-                                    ref="published_in"
+                                <label for="published_in"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data de
+                                    Publicação</label>
+                                <input type="date" name="published_in" id="published_in" ref="published_in"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    required=""
-                                />
+                                    required="" />
                             </div>
                         </div>
                         <div class="col-span-2 sm:col-span-1">
-                            <label
-                                for="meta_description"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                >Meta description</label
-                            >
-                            <input
-                                type="text"
-                                name="meta_description"
-                                id="meta_description"
-                                ref="meta_description"
+                            <label for="meta_description"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Meta
+                                description</label>
+                            <input type="text" name="meta_description" id="meta_description" ref="meta_description"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                placeholder="Escreva a meta description do artigo"
-                            />
+                                placeholder="Escreva a meta description do artigo" />
                         </div>
                         <div class="col-span-2 sm:col-span-1">
-                            <label
-                                for="key-words"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                >Key words</label
-                            >
-                            <input
-                                type="text"
-                                name="key-words"
-                                id="key-words"
-                                ref="key_words"
+                            <label for="key-words"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Key words</label>
+                            <input type="text" name="key-words" id="key-words" ref="key_words"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                placeholder="blog, artigos, clinica, estetica, rampani..."
-                            />
+                                placeholder="blog, artigos, clinica, estetica, rampani..." />
                         </div>
                         <div class="col-span-2" id="sample">
-                            <label
-                                for="description"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                >Escreva o conteudo do artigo</label
-                            >
-                            <tinymce
-                                :plugins="myPlugins"
-                                :toolbar="myToolbar"
-                                :init="myInit"
-                                id="description_value"
-                                v-model="content"
-                                api-key="xsaytgoxknpqs66x5benfgbmcqllvd7csc142rphf8g9rcaj"
-                            >
+                            <label for="description"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Escreva o conteudo
+                                do artigo</label>
+                            <tinymce :plugins="myPlugins" :toolbar="myToolbar" :init="myInit" id="description_value"
+                                v-model="content" api-key="xsaytgoxknpqs66x5benfgbmcqllvd7csc142rphf8g9rcaj">
                             </tinymce>
                         </div>
                         <div class="col-span-2 sm:col-span-1">
-                            <label
-                                for="meta_description"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                >Imagem de capa</label
-                            >
-                            <file-pond
-                                name="thumbnail"
-                                ref="banner"
-                                class-name="my-pond"
-                                imageValidateSizeMaxWidth="850"
-                                imageValidateSizeMinWidth="850"
-                                imageValidateSizeMaxHeight="950"
-                                imageValidateSizeMinHeight="950"
-                                label-idle="Clique ou solte as imagens aqui..."
-                                allow-multiple="true"
-                                accepted-file-types="image/jpeg, image/png"
-                                v-bind:files="myFiles"
-                                v-on:init="handleFilePondInit"
-                            />
+                            <label for="meta_description"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Imagem de
+                                capa (Dimensões: 850x950)</label>
+                            <file-pond name="thumbnail" ref="pond_thumbnail" class-name="my-pond"
+                                imageValidateSizeMaxWidth="850" imageValidateSizeMinWidth="850"
+                                imageValidateSizeMaxHeight="950" imageValidateSizeMinHeight="950"
+                                label-idle="Clique ou solte as imagens aqui (Dimensões: 850x950)..."
+                                allow-multiple="true" accepted-file-types="image/jpeg, image/png"
+                                :files="myFileThumbnail" v-on:init="handleFilePondInit" />
                         </div>
                         <div class="col-span-2 sm:col-span-1">
-                            <label
-                                for="key-words"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                >Banner do artigo</label
-                            >
-                            <file-pond
-                                name="banner"
-                                ref="banner"
-                                class-name="my-pond"
-                                imageValidateSizeMaxWidth="1500"
-                                imageValidateSizeMinWidth="1500"
-                                imageValidateSizeMaxHeight="400"
-                                imageValidateSizeMinHeight="400"
-                                label-idle="Clique ou solte as imagens aqui..."
-                                allow-multiple="true"
-                                accepted-file-types="image/jpeg, image/png"
-                                v-bind:files="myFiles"
-                                v-on:init="handleFilePondInit"
-                            />
+                            <label for="key-words"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Banner do
+                                artigo (Dimensões: 1500x400)</label>
+                            <file-pond name="banner" ref="pond_banner" class-name="my-pond"
+                                imageValidateSizeMaxWidth="1500" imageValidateSizeMinWidth="1500"
+                                imageValidateSizeMaxHeight="400" imageValidateSizeMinHeight="400"
+                                label-idle="Clique ou solte as imagens aqui (Dimensões: 1500x400)..."
+                                allow-multiple="true" accepted-file-types="image/jpeg, image/png"
+                                v-on:init="handleFilePondInit" />
                         </div>
                     </div>
                     <div class="text-end">
-                        <button
-                            type="submit"
-                            class="text-white inline-flex items-center justify-end bg-standard font-medium rounded-lg text-sm px-5 py-2.5 text-end dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 send-form"
-                        >
-                            <svg
-                                class="me-1 -ms-1 w-5 h-5"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    fill-rule="evenodd"
+                        <button type="submit"
+                            class="text-white inline-flex items-center justify-end bg-standard font-medium rounded-lg text-sm px-5 py-2.5 text-end dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 send-form">
+                            <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clip-rule="evenodd"
-                                ></path>
+                                    clip-rule="evenodd"></path>
                             </svg>
                             Salvar artigo
                         </button>

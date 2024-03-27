@@ -59,7 +59,8 @@ const copyLink = (event) => {
     <MainLayout>
         <template #main>
             <div class="title-background h-64 flex flex-col justify-center align-center sm:mb-16 mb-10 relative"
-                :style="{ backgroundImage: `url('https://dummyimage.com/1500x400/3a9e41/2b339c')` }">
+                :style="{ backgroundImage: `url('/imgs/posts/banners/${ $page.props.post.slug}-banner.jpg')` }">
+
                 <div class="overlay">
                 </div>
                 <div class="text-banner">
