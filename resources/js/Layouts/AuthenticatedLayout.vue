@@ -201,4 +201,8 @@ onMounted(() => {
 .bg-standard:hover {
     background-color: var(--color-standard-hover);
 }
+
+.filepond--root .filepond--credits{
+    display: none;
+}
 </style>
