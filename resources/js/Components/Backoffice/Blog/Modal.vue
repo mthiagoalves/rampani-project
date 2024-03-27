@@ -7,8 +7,7 @@ import vueFilePond from "vue-filepond";
 
 import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.esm.js";
 import FilePondPluginImagePreview from "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.esm.js";
-import FilePondPluginImageValidateSize from 'filepond-plugin-image-validate-size';
-
+import FilePondPluginImageValidateSize from "filepond-plugin-image-validate-size";
 
 import "filepond/dist/filepond.min.css";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css";
@@ -22,7 +21,7 @@ const FilePond = vueFilePond(
 export default {
     components: {
         tinymce: Editor,
-        FilePond
+        FilePond,
     },
     setup() {
         const title = ref("");
@@ -391,8 +390,12 @@ export default {
                             >
                             <file-pond
                                 name="thumbnail"
-                                ref="pond"
+                                ref="banner"
                                 class-name="my-pond"
+                                imageValidateSizeMaxWidth="850"
+                                imageValidateSizeMinWidth="850"
+                                imageValidateSizeMaxHeight="950"
+                                imageValidateSizeMinHeight="950"
                                 label-idle="Clique ou solte as imagens aqui..."
                                 allow-multiple="true"
                                 accepted-file-types="image/jpeg, image/png"
@@ -406,13 +409,19 @@ export default {
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                 >Banner do artigo</label
                             >
-                            <input
-                                type="text"
-                                name="key-words"
-                                id="key-words"
-                                ref="key_words"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                placeholder="blog, artigos, clinica, estetica, rampani..."
+                            <file-pond
+                                name="banner"
+                                ref="banner"
+                                class-name="my-pond"
+                                imageValidateSizeMaxWidth="1500"
+                                imageValidateSizeMinWidth="1500"
+                                imageValidateSizeMaxHeight="400"
+                                imageValidateSizeMinHeight="400"
+                                label-idle="Clique ou solte as imagens aqui..."
+                                allow-multiple="true"
+                                accepted-file-types="image/jpeg, image/png"
+                                v-bind:files="myFiles"
+                                v-on:init="handleFilePondInit"
                             />
                         </div>
                     </div>
