@@ -49,7 +49,7 @@ class BlogRepositorie
                 'title' => $dataRequest['title'],
                 'sub_title' => $dataRequest['sub_title'],
                 'slug' => $dataRequest['slug'],
-                'category_id' => $dataRequest['category'],
+                'categories' => $dataRequest['category'],
                 'description' => $dataRequest['description'],
                 'published_in' => $dataRequest['published_in'],
                 'meta_description' => $dataRequest['meta_description'],
@@ -62,10 +62,32 @@ class BlogRepositorie
             self::uploadBanner($dataRequest['banner'], $postCreated->slug);
 
             return response('', 200);
+        } catch (\Throwable $e) {
+            return response($e->getMessage(), 422);
+        }
+    }
+
+    public static function createCategory($dataRequest)
+    {
+        try {
+            $validator = Validator::make($dataRequest, [
+                'name' => 'string|required',
+                'slug' => 'string|required',
+            ]);
+
+            if ($validator->fails()) {
+                return response(implode(PHP_EOL, $validator->errors()->all()), 422);
+            }
+
+            Categories::create([
+                'name' => $dataRequest['name'],
+                'slug' => $dataRequest['slug']
+            ]);
+
+            return response('', 200);
 
         } catch (\Throwable $e) {
-            return response('Wrong error was happening', 422);
-
+            return response($e->getMessage(), 422);
         }
     }
 

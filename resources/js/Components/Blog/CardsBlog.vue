@@ -3,6 +3,16 @@ import { defineProps } from 'vue';
 
 const props = defineProps(['posts']);
 
+const formatCategories = (categories) => {
+    if (!categories) return '';
+    return categories.split(',').map(category => category.trim()).join(', ');
+};
+
+props.posts.map(post => ({
+    ...post,
+    categories: formatCategories(post.categories)
+}));
+
 </script>
 
 <template>
@@ -22,7 +32,7 @@ const props = defineProps(['posts']);
                             <img src="imgs/icons/open-book.png" alt="" class="h-16">
                             <div class="div-text-category">
                                 <img src="/imgs/icons/tag.png" alt="" class="h-6">
-                                <p class="category-post ml-1">{{ post.category_id }}</p>
+                                <p class="category-post ml-1">{{ post.categories }}</p>
                             </div>
                         </div>
                     </div>

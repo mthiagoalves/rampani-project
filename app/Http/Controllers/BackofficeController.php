@@ -58,8 +58,16 @@ class BackofficeController extends Controller
         return response($response);
     }
 
-    public function createCategorie(Request $request)
+    public function createCategory(Request $request)
     {
         $dataRequest = $request->all();
+
+        $response = BlogRepositorie::createCategory($dataRequest);
+
+        if ($response->getStatusCode() === 200) {
+            return response()->json(['success' => 'Nova categoria adicionada!'], 200);
+        } else {
+            return response()->json(['error' => $response->getContent() . ' :('], $response->getStatusCode());
+        }
     }
 }

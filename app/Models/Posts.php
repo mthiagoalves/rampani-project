@@ -15,11 +15,22 @@ class Posts extends Model
         'title',
         'sub_title',
         'slug',
-        'category_id',
+        'categories',
         'published_in',
         'description',
         'meta_description',
         'key_words',
         'is_active'
     ];
+
+    public function setCategoryIdAttribute($value)
+    {
+        $this->attributes['catetories'] = json_encode($value);
+    }
+
+    // Accessor para desserializar o JSON de categorias de volta para um array ao recuperar do banco de dados
+    public function getCategoryIdAttribute($value)
+    {
+        return json_decode($value, true);
+    }
 }

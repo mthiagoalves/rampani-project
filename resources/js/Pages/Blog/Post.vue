@@ -7,6 +7,16 @@ import MainLayout from '@/Layouts/MainLayout.vue';
 import CtaSchedule from '@/Components/CtaSchedule.vue';
 import Modal from '@/Components/Modal.vue';
 
+
+const props = defineProps(['post']);
+const formatCategories = (categories) => {
+    if (!categories) return '';
+    return categories.split(',').map(category => category.trim()).join(', ');
+};
+
+const formattedCategories = ref(formatCategories(props.post.categories));
+const categories = formattedCategories.value;
+
 const selectedDeal = ref(null);
 
 const setDeal = (deal) => {
@@ -48,23 +58,24 @@ const copyLink = (event) => {
 <template>
 
     <Head>
-        <title>{{ $page.props.title }}</title>
+        <title>{{ post.title }}</title>
         <meta head-key="description" name="description" content="This is a page specific description" />
     </Head>
     <MainLayout>
         <template #main>
             <div class="title-background h-64 flex flex-col justify-center align-center sm:mb-16 mb-10 relative"
-                :style="{ backgroundImage: `url('/imgs/posts/banners/${ $page.props.post.slug}-banner.jpg')` }">
+                :style="{ backgroundImage: `url('/imgs/posts/banners/${post.slug}-banner.jpg')` }">
                 <div class="overlay">
                 </div>
                 <div class="text-banner">
                     <h1 class="text-3xl lg:text-5xl text-center pt-6 title-section uppercase">
-                        {{ $page.props.post.title }}
+                        {{ post.title }}
                     </h1>
-                    <p class="text-2xl lg:text3xl  uppercase text-center text-white" v-if="$page.props.post.sub_title">{{ $page.props.post.sub_title }}</p>
+                    <p class="text-2xl lg:text3xl  uppercase text-center text-white" v-if="post.sub_title">
+                        {{ post.sub_title }}</p>
                     <div class="flex align-center justify-center pt-6">
                         <img src="/imgs/icons/tag.png" alt="" class="h-6">
-                        <p class="text-2xl text-white ml-1">{{ $page.props.post.category_id }}</p>
+                        <p class="text-2xl text-white ml-1">{{ categories }}</p>
                     </div>
                 </div>
             </div>
@@ -72,9 +83,9 @@ const copyLink = (event) => {
                 <p></p>
                 <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8 px-4 sm:px-0">
                     <div class="lg:col-span-2">
-                        <p v-html="$page.props.post.description"></p>
+                        <p v-html="post.description"></p>
                     </div>
-                    <div class="sm:block hidden flex flex-col">
+                    <div class="sm:flex hidden flex-col">
                         <a :href="route('male-aesthetic')">
                             <img src="https://dummyimage.com/500x700/754c75/fff" alt="">
                         </a>

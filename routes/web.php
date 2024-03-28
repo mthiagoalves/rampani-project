@@ -38,6 +38,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/backoffice/campanhas', [BackofficeController::class, 'getCampain'])->name('backoffice.campain');
     Route::get('/backoffice/blog', [BackofficeController::class, 'getBlog'])->name('backoffice.blog');
     Route::post('/backoffice/create-post', [BackofficeController::class, 'createPost'])->name('backoffice.create-post');
+    Route::post('/backoffice/create-category', [BackofficeController::class, 'createCategory'])->name('backoffice.create-category');
     Route::post('/backoffice/image-post-upload', [BackofficeController::class, 'uploadImagePost'])->name('backoffice.image-post');
 });
 

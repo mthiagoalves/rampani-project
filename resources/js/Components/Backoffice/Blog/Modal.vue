@@ -61,12 +61,22 @@ export default {
             let thumbnailFile = this.$refs.pond_thumbnail.getFiles()[0];
             let bannerFile = this.$refs.pond_banner.getFiles()[0];
 
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+            const selectedValues = [];
+
+            checkboxes.forEach(function (checkbox) {
+                if (checkbox.checked) {
+                    selectedValues.push(checkbox.value);
+                }
+            });
+
             let formData = new FormData();
 
             formData.append('title', this.$refs.title_value.value);
             formData.append('slug', this.$refs.slug_value.value);
             formData.append('sub_title', this.$refs.sub_title.value);
-            formData.append('category', this.$refs.category.value);
+            formData.append('category', selectedValues);
             formData.append('published_in', this.$refs.published_in.value);
             formData.append('description', myContent);
             formData.append('meta_description', this.$refs.meta_description.value);
@@ -84,7 +94,6 @@ export default {
                     "/backoffice/create-post",
                     formData
                 );
-                console.log(response);
                 const Toast = Swal.mixin({
                     toast: true,
                     position: "top-end",
@@ -102,14 +111,16 @@ export default {
                 });
 
                 (this.$refs.title_value.value = ""),
-                    (this.$refs.slug_value.value = ""),
-                    (this.$refs.link_value.value = ""),
-                    (this.$refs.sub_title.value = ""),
-                    (this.$refs.category.value = ""),
-                    (this.$refs.published_in.value = ""),
-                    (this.$refs.meta_description.value = ""),
-                    (this.$refs.key_words.value = ""),
-                    tinymce.activeEditor.setContent("");
+                (this.$refs.slug_value.value = ""),
+                (this.$refs.link_value.value = ""),
+                (this.$refs.sub_title.value = ""),
+                (this.$refs.published_in.value = ""),
+                (this.$refs.meta_description.value = ""),
+                (this.$refs.key_words.value = ""),
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                tinymce.activeEditor.setContent("");
                 this.$refs.pond_thumbnail.removeFiles();
                 this.$refs.pond_banner.removeFiles();
 
@@ -257,12 +268,12 @@ export default {
 
                                 <div id="dropdownDefaultCheckbox"
                                     class="z-10 hidden w-80 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600">
-                                    <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
+                                    <ul id="checkboxList" class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
                                         aria-labelledby="dropdownCheckboxButton">
                                         <li v-for="(category, index) in allCategories" :key="index">
                                             <div class="flex items-center">
                                                 <input :id="'checkbox-item-' + index" type="checkbox"
-                                                    :value="category.slug"
+                                                    :value="category.name"
                                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                                 <label :for="'checkbox-item-' + index"
                                                     class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{
@@ -301,7 +312,7 @@ export default {
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Escreva o conteudo
                                 do artigo</label>
                             <tinymce :plugins="myPlugins" :toolbar="myToolbar" :init="myInit" id="description_value"
-                                v-model="content" api-key="xsaytgoxknpqs66x5benfgbmcqllvd7csc142rphf8g9rcaj">
+                                api-key="xsaytgoxknpqs66x5benfgbmcqllvd7csc142rphf8g9rcaj">
                             </tinymce>
                         </div>
                         <div class="col-span-2 sm:col-span-1">
