@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Categories;
 use App\Models\Posts;
 use Illuminate\Support\Facades\Validator;
 
@@ -11,6 +12,11 @@ class BlogRepositorie
     public static function getAllPosts()
     {
         return Posts::where('is_active', true)->orderBy('id', 'DESC')->get();
+    }
+
+    public static function getAllCategories()
+    {
+        return Categories::all();
     }
 
     public static function getPost($slug)

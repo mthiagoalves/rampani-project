@@ -18,7 +18,9 @@ const FilePond = vueFilePond(
     FilePondPluginImageValidateSize
 );
 
+
 export default {
+    props: ['allCategories'],
     components: {
         tinymce: Editor,
         FilePond,
@@ -48,8 +50,6 @@ export default {
             console.log("FilePond has initialized");
             this.$refs.pond_thumbnail.getFiles();
             this.$refs.pond_banner.getFiles();
-            console.log(this.$refs.pond_thumbnail.getFiles());
-
         },
         async submitForm() {
             let btnSubmit = document.querySelector(".send-form");
@@ -241,41 +241,36 @@ export default {
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="Escreva o subtitulo do artigo (Se houver)" required="" />
                         </div>
-                        <div class="grid gap-4 mb-4 grid-cols-2">
+                        <div class="grid gap-4 grid-cols-2">
                             <div class="col-span-2 sm:col-span-1">
                                 <label for="category"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categoria</label>
-                                <select id="category" ref="category"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                    <option selected="" disabled>
-                                        Selecione uma Categoria
-                                    </option>
-                                    <option value="Bumbum">Bumbum</option>
-                                    <option value="CLiníca de Estética">
-                                        Cliníca de Estética
-                                    </option>
-                                    <option value="Cuidados">Cuidados</option>
-                                    <option value="Dicas">Dicas</option>
-                                    <option value="Drenagem Linfática">
-                                        Drenagem Linfática
-                                    </option>
-                                    <option value="Estética">Estética</option>
-                                    <option value="Estética Preventiva">
-                                        Estética Preventiva
-                                    </option>
-                                    <option value="Harmonização de Glúteos">
-                                        Harmonização de Glúteos
-                                    </option>
-                                    <option value="PRocedimento Estético">
-                                        Procedimentos Estéticos
-                                    </option>
-                                    <option value="Rampani">Rampani</option>
-                                    <option value="Saúde">Saúde</option>
-                                    <option value="Tratamento Estético">
-                                        Tratamento Estético
-                                    </option>
-                                    <option value="Verão">Verão</option>
-                                </select>
+                                <button id="dropdownCheckboxButton" data-dropdown-toggle="dropdownDefaultCheckbox"
+                                    class="text-white inline-flex items-center justify-between bg-standard font-medium rounded-lg text-sm px-5 py-2.5 text-end dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-full"
+                                    type="button">Selecione a categoria do artigo <svg class="w-2.5 h-2.5 ms-3"
+                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 10 6">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 1 4 4 4-4" />
+                                    </svg>
+                                </button>
+
+                                <div id="dropdownDefaultCheckbox"
+                                    class="z-10 hidden w-80 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600">
+                                    <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
+                                        aria-labelledby="dropdownCheckboxButton">
+                                        <li v-for="(category, index) in allCategories" :key="index">
+                                            <div class="flex items-center">
+                                                <input :id="'checkbox-item-' + index" type="checkbox"
+                                                    :value="category.slug"
+                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                <label :for="'checkbox-item-' + index"
+                                                    class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{
+                    category.name }}</label>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class="col-span-2 sm:col-span-1">
                                 <label for="published_in"

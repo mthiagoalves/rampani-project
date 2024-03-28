@@ -28,8 +28,6 @@ class FrontendController extends Controller
     {
         $posts = BlogRepositorie::getAllPosts();
 
-        // dd($posts);
-
         return Inertia::render('Blog', ['title' => 'Clínica Rampani - Blog', 'posts' => $posts]);
     }
 

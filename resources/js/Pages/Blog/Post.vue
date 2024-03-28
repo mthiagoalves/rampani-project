@@ -14,23 +14,18 @@ const setDeal = (deal) => {
 };
 
 const copyLink = (event) => {
-    event.preventDefault(); // Evita o comportamento padrão do link
+    event.preventDefault();
 
-    // Obtém o link atual da página
     const url = window.location.href;
 
-    // Cria um elemento de input temporário
     const input = document.createElement('input');
     input.value = url;
     document.body.appendChild(input);
 
-    // Seleciona e copia o conteúdo do input
     input.select();
     document.execCommand('copy');
 
-    // Remove o input temporário
     document.body.removeChild(input);
-
 
     const Toast = Swal.mixin({
         toast: true,
@@ -60,14 +55,14 @@ const copyLink = (event) => {
         <template #main>
             <div class="title-background h-64 flex flex-col justify-center align-center sm:mb-16 mb-10 relative"
                 :style="{ backgroundImage: `url('/imgs/posts/banners/${ $page.props.post.slug}-banner.jpg')` }">
-
                 <div class="overlay">
                 </div>
                 <div class="text-banner">
-                    <h1 class="text-3xl lg:text-4xl text-center py-6 title-section uppercase">
+                    <h1 class="text-3xl lg:text-5xl text-center pt-6 title-section uppercase">
                         {{ $page.props.post.title }}
                     </h1>
-                    <div class="flex align-center justify-center">
+                    <p class="text-2xl lg:text3xl  uppercase text-center text-white" v-if="$page.props.post.sub_title">{{ $page.props.post.sub_title }}</p>
+                    <div class="flex align-center justify-center pt-6">
                         <img src="/imgs/icons/tag.png" alt="" class="h-6">
                         <p class="text-2xl text-white ml-1">{{ $page.props.post.category_id }}</p>
                     </div>

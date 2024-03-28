@@ -31,7 +31,11 @@ class BackofficeController extends Controller
 
     public function getBlog()
     {
-        return Inertia::render('Backoffice/Blog');
+        $posts = BlogRepositorie::getAllPosts();
+
+        $categories = BlogRepositorie::getAllCategories();
+
+        return Inertia::render('Backoffice/Blog', ['posts' => $posts, 'categories' => $categories]);
     }
 
     public function createPost(Request $request)
@@ -52,5 +56,10 @@ class BackofficeController extends Controller
         $response = BlogRepositorie::uploadImagePost($request);
 
         return response($response);
+    }
+
+    public function createCategorie(Request $request)
+    {
+        $dataRequest = $request->all();
     }
 }
