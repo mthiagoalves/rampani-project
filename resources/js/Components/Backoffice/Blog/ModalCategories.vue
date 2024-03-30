@@ -86,17 +86,122 @@ const addCategory = async () => {
         }
 
     });
+};
 
+const removeCategory = async (index, categorySlug) => {
+    const slugCategory = categorySlug;
+
+    let formData = new FormData;
+
+    formData.append('slug', slugCategory);
+
+    Swal.fire({
+        title: "Tem certeza?",
+        text: "A categoria vai ser deletada pra sempre!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#e4a2a3",
+        cancelButtonColor: "#666666",
+        confirmButtonText: "Sim, quero deletar!"
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            try {
+                const response = await axios.post(
+                    "/backoffice/remove-category",
+                    formData
+                );
+
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 4000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    },
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: response.data.success,
+                });
+
+                allCategories.splice(index, 1);
+
+            } catch (error) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Erro!",
+                    text: 'Aconteceu algum erro na remoção da categoria',
+                });
+            }
+
+        }
+    });
 
 };
+
+const updateCategory = async (index, slug, name) => {
+    const slugCategory = slug;
+    const nameCategory = name;
+
+    const { value: updatedName } = await Swal.fire({
+        title: `Atualize a categoria: ${nameCategory}`,
+        input: "text",
+        inputAttributes: {
+            autocapitalize: "off"
+        },
+        inputValue: nameCategory,
+        showCancelButton: true,
+        confirmButtonColor: "#e4a2a3",
+        cancelButtonColor: "#666666",
+        confirmButtonText: "Atualizar"
+    });
+
+    if (updatedName) {
+        try {
+            const formData = new FormData();
+            formData.append('old_slug', slugCategory);
+            formData.append('name', updatedName);
+            formData.append('slug', generateSlug(updatedName));
+
+            const response = await axios.post("/backoffice/update-category", formData);
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 4000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                },
+            });
+            Toast.fire({
+                icon: "success",
+                title: response.data.success,
+            });
+
+            allCategories[index] = { slug: generateSlug(updatedName), name: updatedName };
+
+        } catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Erro!",
+                text: error.error,
+            });
+        }
+    }
+};
+
 </script>
 <template>
     <div id="crud-modal-categories" tabindex="-1" aria-hidden="true"
         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-md max-h-full">
-            <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                <!-- Modal header -->
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
                         Categorias
@@ -130,15 +235,16 @@ const addCategory = async () => {
                         <tbody id="tr-table">
                             <tr v-for="(category, index) in allCategories" :key="index"
                                 class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <td
+                                    :class="['px-6', 'py-4', 'font-medium', 'text-gray-900', 'whitespace-nowrap', 'dark:text-white', 'td-update-category' + index]">
                                     {{ category.name }}
                                 </td>
                                 <td class="px-4 inline-flex">
-                                    <a href="#"
-                                        class="hover:underline m-2 transition-all duration-300 hover:animate-bounce">
+                                    <a @click="updateCategory(index, category.slug, category.name)"
+                                        :class="['hover:underline', 'm-2', 'cursor-pointer', 'cta-update-category-' + index]">
                                         <img src="/imgs/icons/pen.png" alt="" class="h-6 mx-1"></a>
-                                    <a href="#"
-                                        class="hover:underline m-2 transition-all duration-300 hover:animate-bounce">
+                                    <a @click="removeCategory(index, category.slug)"
+                                        :class="['hover:underline', 'm-2', 'cursor-pointer', 'cta-remove-category-' + index]">
                                         <img src="/imgs/icons/trash.png" alt="" class="h-6 mx-1">
                                     </a>
                                 </td>

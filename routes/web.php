@@ -39,6 +39,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/backoffice/blog', [BackofficeController::class, 'getBlog'])->name('backoffice.blog');
     Route::post('/backoffice/create-post', [BackofficeController::class, 'createPost'])->name('backoffice.create-post');
     Route::post('/backoffice/create-category', [BackofficeController::class, 'createCategory'])->name('backoffice.create-category');
+    Route::post('/backoffice/remove-category', [BackofficeController::class, 'removeCategory'])->name('backoffice.remove-category');
+    Route::post('/backoffice/update-category', [BackofficeController::class, 'updateCategory'])->name('backoffice.update-category');
     Route::post('/backoffice/image-post-upload', [BackofficeController::class, 'uploadImagePost'])->name('backoffice.image-post');
 });
 

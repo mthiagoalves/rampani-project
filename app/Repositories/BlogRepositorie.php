@@ -85,7 +85,55 @@ class BlogRepositorie
             ]);
 
             return response('', 200);
+        } catch (\Throwable $e) {
+            return response($e->getMessage(), 422);
+        }
+    }
 
+    public static function updateCategory($dataRequest)
+    {
+        $validator = Validator::make($dataRequest, [
+            'name' => 'string|required',
+            'slug' => 'string|required',
+            'old_slug' => 'string|required',
+
+        ]);
+
+        if ($validator->fails()) {
+            return response(implode(PHP_EOL, $validator->errors()->all()), 422);
+        }
+
+        try {
+            $category = Categories::where('slug', $dataRequest['old_slug']);
+
+            $category->update([
+                'name' => $dataRequest['name'],
+                'slug' => $dataRequest['slug']
+            ]);
+
+            return response('', 200);
+        } catch (\Throwable $e) {
+            return response($e->getMessage(), 422);
+        }
+    }
+
+    public static function removeCategory($dataRequest)
+    {
+        $validator = Validator::make($dataRequest, [
+            'slug' => 'string|required',
+        ]);
+
+        if ($validator->fails()) {
+            return response(implode(PHP_EOL, $validator->errors()->all()), 422);
+        }
+
+        try {
+
+            $category = Categories::where('slug', $dataRequest['slug'])->first();
+
+            $category->delete();
+
+            return response('', 200);
         } catch (\Throwable $e) {
             return response($e->getMessage(), 422);
         }

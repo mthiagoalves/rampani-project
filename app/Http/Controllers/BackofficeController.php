@@ -51,6 +51,32 @@ class BackofficeController extends Controller
         }
     }
 
+    public function updateCategory(Request $request)
+    {
+        $dataRequest = $request->all();
+
+        $response = BlogRepositorie::updateCategory($dataRequest);
+
+        if ($response->getStatusCode() === 200) {
+            return response()->json(['success' => 'Categoria removida com sucesso!'], 200);
+        } else {
+            return response()->json(['error' => $response->getContent() . ' :('], $response->getStatusCode());
+        }
+    }
+
+    public function removeCategory(Request $request)
+    {
+        $dataRequest = $request->all();
+
+        $response = BlogRepositorie::removeCategory($dataRequest);
+
+        if ($response->getStatusCode() === 200) {
+            return response()->json(['success' => 'Categoria removida com sucesso!'], 200);
+        } else {
+            return response()->json(['error' => $response->getContent() . ' :('], $response->getStatusCode());
+        }
+    }
+
     public function uploadImagePost(Request $request)
     {
         $response = BlogRepositorie::uploadImagePost($request);

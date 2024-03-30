@@ -3,6 +3,7 @@ import { Head } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import Modal from '@/Components/Backoffice/Blog/Modal.vue';
 import ModalCategories from '@/Components/Backoffice/Blog/ModalCategories.vue';
+import ModalUpdate from '@/Components/Backoffice/Blog/ModalUpdate.vue';
 import { defineProps } from 'vue';
 
 const { props, categories } = defineProps(['posts', 'categories']);
@@ -40,7 +41,7 @@ const { props, categories } = defineProps(['posts', 'categories']);
             <div class="container ml-auto mr-auto flex flex-wrap items-start justify-center">
                 <div v-for="post in posts" :key="posts.id"
                     class="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 my-2 /lg:pl-2 lg:pr-2 cursor-pointer">
-                    <a data-modal-target="crud-modal" data-modal-toggle="crud-modal">
+                    <a data-modal-target="crud-modal-update" data-modal-toggle="crud-modal-update">
                         <div
                             class="bg-white rounded-lg m-h-64 transform hover:translate-y-2 hover:shadow-xl transition duration-300">
                             <figure class="mb-2">
@@ -59,8 +60,9 @@ const { props, categories } = defineProps(['posts', 'categories']);
                 </div>
             </div>
         </div>
-        <Modal :allCategories="categories"></Modal>
-        <ModalCategories :allCategories="categories"></ModalCategories>
+        <Modal :allCategories="categories" />
+        <ModalCategories :allCategories="categories" />
+        <ModalUpdate :allCategories="categories" />
     </AuthenticatedLayout>
 </template>
 
