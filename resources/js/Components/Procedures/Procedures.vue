@@ -122,8 +122,7 @@ const setDeal = (deal) => {
                             </h5>
                             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ truncateContent(procedure.content)
                                 }}</p>
-                            <button class="btn-know-more" data-modal-target="extralarge-modal"
-                                data-modal-toggle="extralarge-modal" @click="sendContent(procedure)">
+                            <button class="btn-know-more">
                                 <p>
                                     Ler mais >>
                                 </p>
