@@ -262,7 +262,7 @@ export default {
                                 houver)</label>
                             <input type="text" name="sub_title" id="sub-title" ref="sub_title"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5"
-                                placeholder="Escreva o subtitulo do artigo (Se houver)" required=""
+                                placeholder="Escreva o subtitulo do artigo (Se houver)"
                                 :value="selectedPost.sub_title" />
                         </div>
                         <div class="grid gap-4 grid-cols-2">

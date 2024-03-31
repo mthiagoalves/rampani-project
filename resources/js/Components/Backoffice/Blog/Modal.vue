@@ -249,7 +249,7 @@ export default {
                                 houver)</label>
                             <input type="text" name="sub_title" id="sub-title" ref="sub_title"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                placeholder="Escreva o subtitulo do artigo (Se houver)" required="" />
+                                placeholder="Escreva o subtitulo do artigo (Se houver)"/>
                         </div>
                         <div class="grid gap-4 grid-cols-2">
                             <div class="col-span-2 sm:col-span-1">
