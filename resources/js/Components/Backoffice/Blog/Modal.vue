@@ -129,7 +129,7 @@ export default {
                 Swal.fire({
                     icon: "error",
                     title: "Erro!",
-                    text: error.error,
+                    text: 'Algo de errado com a criação do artigo 😔',
                 });
             }
         },

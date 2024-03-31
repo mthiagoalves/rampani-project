@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-class HomepageRepositorie
+class HomepageRepository
 {
 
     public static function getHomepageContent()

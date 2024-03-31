@@ -242,7 +242,7 @@ export default {
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Titulo do
                                 artigo</label>
                             <input type="text" ref="title_value" id="title" :value="selectedPost.title"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5"
                                 placeholder="Escreva o título do artigo" required />
 
                         </div>
@@ -250,7 +250,7 @@ export default {
                             <label for="link"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Link</label>
                             <input type="text" ref="link_value" id="link"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5"
                                 :value="'https://clinicarampani.com.br/blog/' + selectedPost.slug" disabled />
 
                             <input type="hidden" ref="slug_value" id="slug" :value="selectedPost.slug" class="hidden"
@@ -261,7 +261,7 @@ export default {
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Subtitulo (Se
                                 houver)</label>
                             <input type="text" name="sub_title" id="sub-title" ref="sub_title"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5"
                                 placeholder="Escreva o subtitulo do artigo (Se houver)" required=""
                                 :value="selectedPost.sub_title" />
                         </div>
@@ -271,7 +271,7 @@ export default {
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categoria</label>
                                 <button id="dropdownCheckboxButtonUpdate"
                                     data-dropdown-toggle="dropdownDefaultCheckboxUpdate"
-                                    class="text-white inline-flex items-center justify-between bg-standard font-medium rounded-lg text-sm px-5 py-2.5 text-end dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-full"
+                                    class="text-white inline-flex items-center justify-between bg-standard font-medium rounded-lg text-sm px-5 py-2.5 text-end w-full"
                                     type="button">Selecione a categoria do artigo <svg class="w-2.5 h-2.5 ms-3"
                                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                         viewBox="0 0 10 6">
@@ -281,7 +281,7 @@ export default {
                                 </button>
 
                                 <div id="dropdownDefaultCheckboxUpdate"
-                                    class="z-10 hidden w-80 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600">
+                                    class="z-10 hidden w-80 bg-white divide-y divide-gray-100 rounded-lg shadow">
                                     <ul id="checkboxList" class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
                                         aria-labelledby="dropdownCheckboxButtonUpdate">
                                         <li v-for="(category, index) in allCategories" :key="index">
@@ -289,7 +289,7 @@ export default {
                                                 <input :id="'checkbox-item-' + index" type="checkbox"
                                                     :value="category.name"
                                                     :checked="categoriesPost.includes(category.name)"
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus-standard border-standard">
                                                 <label :for="'checkbox-item-' + index"
                                                     class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{
                             category.name }}</label>
@@ -304,7 +304,7 @@ export default {
                                     Publicação</label>
                                 <input type="date" name="published_in" id="published_in" ref="published_in"
                                     :value="selectedPost.published_in"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5"
                                     required />
                             </div>
                         </div>
@@ -313,7 +313,7 @@ export default {
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Meta
                                 description</label>
                             <input type="text" name="meta_description" id="meta_description" ref="meta_description"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5"
                                 placeholder="Escreva a meta description do artigo"
                                 :value="selectedPost.meta_description" />
                         </div>
@@ -321,7 +321,7 @@ export default {
                             <label for="key-words"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Key words</label>
                             <input type="text" name="key-words" id="key-words" ref="key_words"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus-standard border-standard block w-full p-2.5"
                                 placeholder="blog, artigos, clinica, estetica, rampani..."
                                 :value="selectedPost.key_words" />
                         </div>
@@ -359,7 +359,7 @@ export default {
                     </div>
                     <div class="text-end">
                         <button type="submit"
-                            class="text-white inline-flex items-center justify-end bg-standard font-medium rounded-lg text-sm px-5 py-2.5 text-end dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 send-form-update">
+                            class="text-white inline-flex items-center justify-end bg-standard font-medium rounded-lg text-sm px-5 py-2.5 text-end send-form-update">
                             <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"

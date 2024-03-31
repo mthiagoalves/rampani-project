@@ -51,14 +51,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::post('/backoffice/remove-post', [BackofficeController::class, 'removePost'])->name('backoffice.remove-post');
 
+    Route::post('/backoffice/image-post-upload', [BackofficeController::class, 'uploadImagePost'])->name('backoffice.image-post');
+
     Route::post('/backoffice/create-category', [BackofficeController::class, 'createCategory'])->name('backoffice.create-category');
 
     Route::post('/backoffice/remove-category', [BackofficeController::class, 'removeCategory'])->name('backoffice.remove-category');
 
     Route::post('/backoffice/update-category', [BackofficeController::class, 'updateCategory'])->name('backoffice.update-category');
 
-    Route::post('/backoffice/image-post-upload', [BackofficeController::class, 'uploadImagePost'])->name('backoffice.image-post');
-
+    Route::post('/backoffice/create-campain', [BackofficeController::class, 'createCampain'])->name('backoffice.create-campain');
 });
 
 

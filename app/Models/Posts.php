@@ -32,7 +32,6 @@ class Posts extends Model
         $this->attributes['catetories'] = json_encode($value);
     }
 
-    // Accessor para desserializar o JSON de categorias de volta para um array ao recuperar do banco de dados
     public function getCategoryIdAttribute($value)
     {
         return json_decode($value, true);
