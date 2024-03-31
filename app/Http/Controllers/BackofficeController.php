@@ -51,6 +51,19 @@ class BackofficeController extends Controller
         }
     }
 
+    public function updatePost(Request $request)
+    {
+        $dataRequest = $request->all();
+
+        $response = BlogRepositorie::updatePost($dataRequest);
+
+        if ($response->getStatusCode() === 200) {
+            return response()->json(['success' => 'Artigo atualizado com sucesso!'], 200);
+        } else {
+            return response()->json(['error' => $response->getContent() . ' :('], $response->getStatusCode());
+        }
+    }
+
     public function updateCategory(Request $request)
     {
         $dataRequest = $request->all();

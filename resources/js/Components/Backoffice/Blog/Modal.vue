@@ -47,7 +47,6 @@ export default {
     },
     methods: {
         handleFilePondInit: function () {
-            console.log("FilePond has initialized");
             this.$refs.pond_thumbnail.getFiles();
             this.$refs.pond_banner.getFiles();
         },

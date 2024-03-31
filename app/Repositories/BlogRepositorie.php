@@ -45,6 +45,11 @@ class BlogRepositorie
                 return response(implode(PHP_EOL, $validator->errors()->all()), 422);
             }
 
+            if (Posts::where('title', $dataRequest['title'])->exists()) {
+                return response('O título já existe', 422);
+            }
+
+
             $postCreated = Posts::create([
                 'title' => $dataRequest['title'],
                 'sub_title' => $dataRequest['sub_title'],
@@ -60,6 +65,51 @@ class BlogRepositorie
             self::uploadThumbnail($dataRequest['thumbnail'], $postCreated->slug);
 
             self::uploadBanner($dataRequest['banner'], $postCreated->slug);
+
+            return response('', 200);
+        } catch (\Throwable $e) {
+            return response($e->getMessage(), 422);
+        }
+    }
+
+    public static function updatePost($dataRequest)
+    {
+        try {
+
+            $validator = Validator::make($dataRequest, [
+                "title" => "string|required",
+                "sub_title" => "string|nullable",
+                "slug" => "string|required",
+                "category" => "string|required",
+                "description" => "string|required",
+                'published_in' => 'nullable',
+                "key_words" => "string|nullable",
+                "meta_description" => "string|nullable",
+                "thumbnail" => "mimes:jpg,bmp,png",
+                "banner" => "mimes:jpg,bmp,png",
+            ]);
+
+            if ($validator->fails()) {
+                return response(implode(PHP_EOL, $validator->errors()->all()), 422);
+            }
+
+            $postUpdated = Posts::where('id', $dataRequest['id'])->first();
+
+            $postUpdated->update([
+                'title' => $dataRequest['title'],
+                'sub_title' => $dataRequest['sub_title'],
+                'slug' => $dataRequest['slug'],
+                'categories' => $dataRequest['category'],
+                'description' => $dataRequest['description'],
+                'published_in' => $dataRequest['published_in'],
+                'meta_description' => $dataRequest['meta_description'],
+                'key_words' => $dataRequest['key_words'],
+                'is_active' => 1
+            ]);
+
+            self::uploadThumbnail($dataRequest['thumbnail'], $postUpdated->slug);
+
+            self::uploadBanner($dataRequest['banner'], $postUpdated->slug);
 
             return response('', 200);
         } catch (\Throwable $e) {
