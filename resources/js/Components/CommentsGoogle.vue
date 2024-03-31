@@ -232,7 +232,7 @@
 
 .depoimment {
     font-size: .6rem;
-    height: 90px;
+    height: 65px;
 
 }
 
@@ -306,14 +306,12 @@ export default {
     },
     setup() {
         const onSwiper = (swiper) => {
-            console.log(swiper);
         };
 
         const onSlideChange = () => {
-            console.log('slide change');
         };
 
-        const slidesPerView = window.innerWidth >= 768 ? 5.75 : 1;
+        const slidesPerView = window.innerWidth >= 768 ? 4.75 : 1;
 
         return {
             onSwiper,

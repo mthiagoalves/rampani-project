@@ -1,35 +1,27 @@
 <script setup>
 import { defineEmits, defineProps } from 'vue';
 
-const props = defineProps(['selectedDeal']);
+const { dealNew, campaigns } = defineProps(['selectedDeal', 'campaigns']);
 const emit = defineEmits();
 
 const setDeal = (deal) => {
-    props.selectedDeal = deal;
     emit('setDeal', deal);
 };
 
-const banners = [
-    { id: 1, imgSrc: '/imgs/banners/banner-01.png', imgSrcMobile: '/imgs/banners/banner-01-m.png', deal: 'Deals 1' },
-    { id: 2, imgSrc: '/imgs/banners/banner-02.png', imgSrcMobile: '/imgs/banners/banner-02-m.png', deal: 'Deals 2' },
-    { id: 3, imgSrc: '/imgs/banners/banner-03.png', imgSrcMobile: '/imgs/banners/banner-03-m.png', deal: 'Deals 3' },
-    { id: 4, imgSrc: '/imgs/banners/banner-04.png', imgSrcMobile: '/imgs/banners/banner-04-m.png', deal: 'Deals 4' },
-    { id: 5, imgSrc: '/imgs/banners/banner-05.png', imgSrcMobile: '/imgs/banners/banner-05-m.png', deal: 'Deals 5' },
-];
 </script>
 
 <template>
     <div id="default-carousel" class="relative w-full" data-carousel="slide">
         <div class="relative h-120 overflow-hidden md:h-120">
-            <div v-for="banner in banners" :key="banner.id" class="hidden duration-700 ease-in-out" data-carousel-item>
+            <div v-for="campaign in campaigns.campaigns" :key="campaign.id" class="hidden duration-700 ease-in-out" data-carousel-item>
                 <a type="button" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
-                    @click="setDeal(banner.deal)" class="btn-deals">
-                    <img :src="banner.imgSrc"
+                    @click="setDeal(campaign.name)" class="cursor-pointer">
+                    <img :src="`/imgs/campaigns/${campaign.slug}.jpg`"
                         class="absolute w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 hidden sm:block"
-                        alt="...">
-                    <img :src="banner.imgSrcMobile"
+                        :alt="campaign.name">
+                    <img :src="`/imgs/campaigns/${campaign.slug}-m.jpg`"
                         class="absolute w-1200 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 block sm:hidden"
-                        alt="...">
+                        :alt="campaign.name">
                 </a>
             </div>
         </div>
@@ -62,9 +54,3 @@ const banners = [
         </button>
     </div>
 </template>
-
-<style>
-.btn-deals {
-    cursor: pointer;
-}
-</style>

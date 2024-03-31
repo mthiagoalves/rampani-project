@@ -12,6 +12,11 @@ class CampainRepository
         return Campaigns::orderBy('order', 'ASC')->get();
     }
 
+    public static function getAllCampaignsActive()
+    {
+        return Campaigns::where('is_active', true)->orderBy('order', 'ASC')->get();
+    }
+
     public static function createCampain($dataRequest)
     {
         try {

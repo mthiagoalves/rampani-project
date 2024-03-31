@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, defineProps } from 'vue';
 import { Head } from '@inertiajs/vue3';
 import BannerTop from '@/Components/BannerTop.vue';
 import FirstSection from '@/Components/FirstSection.vue';
@@ -9,6 +9,8 @@ import CommentsGoogle from '@/Components/CommentsGoogle.vue';
 import FormContact from '@/Components/FormContact.vue';
 import MainLayout from '@/Layouts/MainLayout.vue';
 import Modal from '@/Components/Modal.vue';
+
+const campaigns = defineProps(['campaigns'])
 
 const selectedDeal = ref(null);
 
@@ -26,18 +28,17 @@ const setDeal = (deal) => {
 
     <MainLayout>
          <template #main>
-             <BannerTop :selectedDeal="selectedDeal" @setDeal="setDeal">
+             <BannerTop @setDeal="setDeal">
 
              </BannerTop>
 
              <FirstSection></FirstSection>
 
-             <BannerDeals :selectedDeal="selectedDeal" @setDeal="setDeal"></BannerDeals>
+             <BannerDeals :campaigns="campaigns" @setDeal="setDeal"></BannerDeals>
 
              <InspirationalPhrase>
 
              </InspirationalPhrase>
-
 
              <CommentsGoogle>
 

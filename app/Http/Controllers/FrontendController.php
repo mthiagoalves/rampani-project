@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\BlogRepositorie;
+use App\Repositories\CampainRepository;
 use App\Repositories\HomepageRepositorie;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -11,7 +12,9 @@ class FrontendController extends Controller
 {
     public function getHomepage()
     {
-        return Inertia::render('Homepage', ['title' => 'Clinica Rampani']);
+        $campaigns = CampainRepository::getAllCampaignsActive();
+
+        return Inertia::render('Homepage', ['title' => 'Clinica Rampani', 'campaigns' => $campaigns]);
     }
 
     public function getProcedures()
@@ -28,7 +31,10 @@ class FrontendController extends Controller
     {
         $posts = BlogRepositorie::getAllPosts();
 
-        return Inertia::render('Blog', ['title' => 'Clínica Rampani - Blog', 'posts' => $posts]);
+        $campaigns = CampainRepository::getAllCampaignsActive();
+
+
+        return Inertia::render('Blog', ['title' => 'Clínica Rampani - Blog', 'posts' => $posts, 'campaigns' => $campaigns]);
     }
 
     public function getPost($slug)

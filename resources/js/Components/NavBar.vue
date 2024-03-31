@@ -9,10 +9,12 @@ const isHomePage = computed(() => route().current('homepage'));
 const isLandingMaleAesthetic = computed(() => route().current('male-aesthetic'));
 
 onMounted(() => {
-    setTimeout(() => {
-        const navbarHeight = document.querySelector('.give-mg').offsetHeight;
-        emit('navbarHeight', navbarHeight);
-    }, 200);
+    if (!isHomePage.value && !isLandingMaleAesthetic.value) {
+        setTimeout(() => {
+            const navbarHeight = document.querySelector('.give-mg').offsetHeight;
+            emit('navbarHeight', navbarHeight);
+        }, 200);
+    }
 });
 </script>
 <template>

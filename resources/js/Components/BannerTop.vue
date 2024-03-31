@@ -1,11 +1,9 @@
 <script setup>
-import { defineEmits, defineProps } from 'vue';
+import { defineEmits } from 'vue';
 
-const props = defineProps(['selectedDeal']);
 const emit = defineEmits();
 
 const setDeal = (deal) => {
-    props.selectedDeal = deal;
     emit('setDeal', deal);
 };
 </script>

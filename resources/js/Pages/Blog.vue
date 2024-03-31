@@ -1,11 +1,13 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, defineProps } from 'vue';
 import { Head } from '@inertiajs/vue3';
 
 import MainLayout from '@/Layouts/MainLayout.vue';
 import BannerDeals from '@/Components/BannerDeals.vue';
 import CardsBlog from '@/Components/Blog/CardsBlog.vue';
 import Modal from '@/Components/Modal.vue';
+
+const campaigns = defineProps(['campaigns']);
 
 const selectedDeal = ref(null);
 
@@ -20,7 +22,7 @@ const setDeal = (deal) => {
     <MainLayout>
 
         <template #main>
-            <BannerDeals :selectedDeal="selectedDeal" @setDeal="setDeal"></BannerDeals>
+            <BannerDeals :campaigns="campaigns" @setDeal="setDeal"></BannerDeals>
 
             <div class="w-full pl-5 lg:pl-2 my-6">
                 <h1 class="text-3xl lg:text-4xl title-section text-center">
