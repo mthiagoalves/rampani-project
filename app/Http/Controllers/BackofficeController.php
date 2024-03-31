@@ -27,7 +27,9 @@ class BackofficeController extends Controller
 
     public function getCampain()
     {
-        return Inertia::render('Backoffice/Campain');
+        $campaings = CampainRepository::getAllCampaigns();
+
+        return Inertia::render('Backoffice/Campain', ['campaings' => $campaings]);
     }
 
     public function getBlog()

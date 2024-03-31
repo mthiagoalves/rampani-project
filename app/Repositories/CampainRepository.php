@@ -9,7 +9,7 @@ class CampainRepository
 {
     public static function getAllCampaigns()
     {
-        return Campaigns::all()->orderBy('order', 'ASC');
+        return Campaigns::orderBy('order', 'ASC')->get();
     }
 
     public static function createCampain($dataRequest)

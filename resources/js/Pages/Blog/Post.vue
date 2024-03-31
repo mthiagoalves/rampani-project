@@ -117,7 +117,6 @@ const copyLink = (event) => {
 
             <Modal :selectedDeal="selectedDeal"></Modal>
         </template>
-
     </MainLayout>
 </template>
 
