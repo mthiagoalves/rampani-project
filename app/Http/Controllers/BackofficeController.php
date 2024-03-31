@@ -64,6 +64,19 @@ class BackofficeController extends Controller
         }
     }
 
+    public function removePost(Request $request)
+    {
+        $dataRequest = $request->all();
+
+        $response = BlogRepositorie::removePost($dataRequest);
+
+        if ($response->getStatusCode() === 200) {
+            return response()->json(['success' => 'Categoria removida com sucesso!'], 200);
+        } else {
+            return response()->json(['error' => $response->getContent() . ' :('], $response->getStatusCode());
+        }
+    }
+
     public function updateCategory(Request $request)
     {
         $dataRequest = $request->all();

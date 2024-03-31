@@ -117,6 +117,28 @@ class BlogRepositorie
         }
     }
 
+    public static function removePost($dataRequest)
+    {
+        $validator = Validator::make($dataRequest, [
+            'id' => 'string|required',
+        ]);
+
+        if ($validator->fails()) {
+            return response(implode(PHP_EOL, $validator->errors()->all()), 422);
+        }
+
+        try {
+
+            $category = Posts::findOrFail($dataRequest['id']);
+
+            $category->delete();
+
+            return response('', 200);
+        } catch (\Throwable $e) {
+            return response($e->getMessage(), 422);
+        }
+    }
+
     public static function createCategory($dataRequest)
     {
         try {

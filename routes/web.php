@@ -49,6 +49,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::post('/backoffice/update-post', [BackofficeController::class, 'updatePost'])->name('backoffice.update-post');
 
+    Route::post('/backoffice/remove-post', [BackofficeController::class, 'removePost'])->name('backoffice.remove-post');
+
     Route::post('/backoffice/create-category', [BackofficeController::class, 'createCategory'])->name('backoffice.create-category');
 
     Route::post('/backoffice/remove-category', [BackofficeController::class, 'removeCategory'])->name('backoffice.remove-category');
