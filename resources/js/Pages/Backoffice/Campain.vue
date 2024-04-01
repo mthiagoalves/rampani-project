@@ -53,6 +53,9 @@ const sendContent = (campaign) => {
                                         Tipo da campanha
                                     </th>
                                     <th scope="col" class="px-6 py-3">
+                                        Ordem de exibição dos banners
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
                                         Status
                                     </th>
                                     <th scope="col" class="px-6 py-3">
@@ -67,13 +70,16 @@ const sendContent = (campaign) => {
                                     <th scope="row"
                                         class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                         <img class="w-12 h-12 rounded-full"
-                                            :src="`/imgs/campaigns/${campaign.slug}-m.jpg`" alt="Jese image">
+                                            :src="`/imgs/campaigns/${campaign.slug}-m.jpg`" :alt="`Campanha ${campaign.name}`">
                                         <div class="ps-3">
                                             <div class="text-base font-semibold">{{ campaign.name }}</div>
                                         </div>
                                     </th>
                                     <td class="px-6 py-4">
                                         {{ campaign.type }}
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        {{ campaign.order }}º
                                     </td>
                                     <td class="px-6 py-4">
                                         <div class="flex items-center">

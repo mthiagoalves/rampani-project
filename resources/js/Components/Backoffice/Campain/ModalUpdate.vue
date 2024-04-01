@@ -176,6 +176,7 @@ export default {
                                 <option value="Comercial">Comercial</option>
                                 <option value="Inspiracional">Inspiracional</option>
                                 <option value="Novo Procedimento">Novo procedimento</option>
+                                <option value="Novo procedimento (Com Landing Page)">Novo procedimento (Com Landing Page)</option>
                                 <option value="Outros">Outros</option>
                             </select>
                         </div>
