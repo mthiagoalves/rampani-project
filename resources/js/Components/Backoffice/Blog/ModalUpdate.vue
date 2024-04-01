@@ -24,8 +24,7 @@ function generateSlug(title) {
 
 export default {
     props: {
-        allCategories: { type: Array, default: [] },
-        postCategories: { type: String, default: '' },
+        allCategories: Array,
         selectedPost: Object
     },
     components: {

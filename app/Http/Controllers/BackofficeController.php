@@ -138,4 +138,16 @@ class BackofficeController extends Controller
             return response()->json(['error' => $response->getContent() . ' :('], $response->getStatusCode());
         }
     }
+    public function updateCampain(Request $request)
+    {
+        $dataRequest = $request->all();
+
+        $response = CampainRepository::updateCampain($dataRequest);
+
+        if ($response->getStatusCode() === 200) {
+            return response()->json(['success' => 'Campanha atualizada com sucesso!'], 200);
+        } else {
+            return response()->json(['error' => $response->getContent() . ' :('], $response->getStatusCode());
+        }
+    }
 }

@@ -5,8 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-    <meta name="title" property="og:title" content="Clinica Rampani">
-    <meta name="description" property="og:description" content="meta decription here">
     <meta name="image" property="og:image" content="/imgs/icons/title-icon.png">
     <link rel="icon" href="/imgs/icons/title-icon.png">
     <link href="/css/style.css" rel="stylesheet">

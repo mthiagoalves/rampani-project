@@ -60,6 +60,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/backoffice/update-category', [BackofficeController::class, 'updateCategory'])->name('backoffice.update-category');
 
     Route::post('/backoffice/create-campain', [BackofficeController::class, 'createCampain'])->name('backoffice.create-campain');
+
+    Route::post('/backoffice/update-campain', [BackofficeController::class, 'updateCampain'])->name('backoffice.update-campain');
 });
 
 

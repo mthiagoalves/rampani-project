@@ -38,7 +38,7 @@ class CampainRepository
                 return response('Essa campanha já existe', 422);
             }
 
-            if($dataRequest['is_active'] === 'true'){
+            if ($dataRequest['is_active'] === 'true') {
                 $is_active = true;
             } else {
                 $is_active = false;
@@ -55,6 +55,49 @@ class CampainRepository
             self::uploadBannerPc($dataRequest['banner_pc'], $campainCreated->slug);
 
             self::uploadBannerMobile($dataRequest['banner_mobile'], $campainCreated->slug);
+
+            return response('', 200);
+        } catch (\Throwable $e) {
+            return response($e->getMessage(), 422);
+        }
+    }
+
+    public static function updateCampain($dataRequest)
+    {
+        try {
+            $validator = Validator::make($dataRequest, [
+                'name' => 'string|required',
+                'slug' => 'string|required',
+                'type' => 'string|required',
+                'order' => 'integer|required',
+                'is_active' => 'string|required',
+                'banner_pc' => 'mimes:jpg,bmp,png',
+                'banner_mobile' => 'mimes:jpg,bmp,png',
+            ]);
+
+            if ($validator->fails()) {
+                return response(implode(PHP_EOL, $validator->errors()->all()), 422);
+            }
+
+            if ($dataRequest['is_active'] === 'true') {
+                $is_active = true;
+            } else {
+                $is_active = false;
+            }
+
+            $campaignUpdated = Campaigns::where('id', $dataRequest['id'])->first();
+
+            $campaignUpdated->update([
+                'name' => $dataRequest['name'],
+                'slug' => $dataRequest['slug'],
+                'type' => $dataRequest['type'],
+                'order' => $dataRequest['order'],
+                'is_active' => $is_active
+            ]);
+
+            self::uploadBannerPc($dataRequest['banner_pc'], $campaignUpdated->slug);
+
+            self::uploadBannerMobile($dataRequest['banner_mobile'], $campaignUpdated->slug);
 
             return response('', 200);
         } catch (\Throwable $e) {

@@ -50,7 +50,7 @@ const copyLink = (event) => {
     });
     Toast.fire({
         icon: "success",
-        title: "Link copiado, ja pode compartilhar!"
+        title: "Link copiado, pronto para compartilhar!"
     });
 };
 
@@ -59,7 +59,11 @@ const copyLink = (event) => {
 
     <Head>
         <title>{{ post.title }}</title>
-        <meta head-key="description" name="description" content="This is a page specific description" />
+        <meta head-key="description" name="description" :content="post.meta_description" />
+        <meta name="title" property="og:title" :content="post.title">
+        <meta name="description" property="og:description" :content="post.meta_description">
+        <meta name="keywords" property="og:keywords" :content="post.key_words">
+        <meta name="keywords" head-key="keywords" :content="post.key_words">
     </Head>
     <MainLayout>
         <template #main>

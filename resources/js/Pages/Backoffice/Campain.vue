@@ -1,10 +1,17 @@
 <script setup>
 import Modal from '@/Components/Backoffice/Campain/Modal.vue';
+import ModalUpdate from '@/Components/Backoffice/Campain/ModalUpdate.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
-import { defineProps } from 'vue';
+import { defineProps, ref } from 'vue';
 
 const campaigs = defineProps(['campaings']);
+
+const selectedCampaing = ref('');
+
+const sendContent = (campaign) => {
+    selectedCampaing.value = campaign;
+};
 
 </script>
 
@@ -59,23 +66,26 @@ const campaigs = defineProps(['campaings']);
 
                                     <th scope="row"
                                         class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                        <img class="w-12 h-12 rounded-full" :src="`/imgs/campaigns/${campaign.slug}-m.jpg`"
-                                            alt="Jese image">
+                                        <img class="w-12 h-12 rounded-full"
+                                            :src="`/imgs/campaigns/${campaign.slug}-m.jpg`" alt="Jese image">
                                         <div class="ps-3">
-                                            <div class="text-base font-semibold">{{campaign.name}}</div>
+                                            <div class="text-base font-semibold">{{ campaign.name }}</div>
                                         </div>
                                     </th>
                                     <td class="px-6 py-4">
-                                        {{campaign.type}}
+                                        {{ campaign.type }}
                                     </td>
                                     <td class="px-6 py-4">
                                         <div class="flex items-center">
-                                            <div :class="{ 'h-2.5 w-2.5 rounded-full bg-green-500 me-2': campaign.is_active === 1, 'h-2.5 w-2.5 rounded-full bg-red-500 me-2': campaign.is_active === 0 }"></div> {{ campaign.is_active === 1 ? 'Online' : 'Offline' }}
+                                            <div
+                                                :class="{ 'h-2.5 w-2.5 rounded-full bg-green-500 me-2': campaign.is_active === 1, 'h-2.5 w-2.5 rounded-full bg-red-500 me-2': campaign.is_active === 0 }">
+                                            </div> {{ campaign.is_active === 1 ? 'Online' : 'Offline' }}
                                         </div>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <a href="#"
-                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar
+                                        <a @click="sendContent(campaign)" data-modal-target="crud-modal-update"
+                                            data-modal-toggle="crud-modal-update"
+                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer">Editar
                                             campanha</a>
                                     </td>
                                 </tr>
@@ -88,5 +98,6 @@ const campaigs = defineProps(['campaings']);
             </div>
         </div>
         <Modal />
+        <ModalUpdate :selectedCampaing="selectedCampaing" />
     </AuthenticatedLayout>
 </template>

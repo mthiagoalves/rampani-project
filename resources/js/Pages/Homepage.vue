@@ -27,26 +27,20 @@ const setDeal = (deal) => {
     </Head>
 
     <MainLayout>
-         <template #main>
-             <BannerTop @setDeal="setDeal">
+        <template #main>
+            <BannerTop @setDeal="setDeal" />
 
-             </BannerTop>
+            <FirstSection />
 
-             <FirstSection></FirstSection>
+            <BannerDeals :campaigns="campaigns" @setDeal="setDeal" />
 
-             <BannerDeals :campaigns="campaigns" @setDeal="setDeal"></BannerDeals>
+            <InspirationalPhrase />
 
-             <InspirationalPhrase>
+            <CommentsGoogle />
 
-             </InspirationalPhrase>
+            <FormContact />
 
-             <CommentsGoogle>
-
-             </CommentsGoogle>
-
-             <FormContact></FormContact>
-
-             <Modal :selectedDeal="selectedDeal"></Modal>
-         </template>
+            <Modal :selectedDeal="selectedDeal"></Modal>
+        </template>
     </MainLayout>
 </template>
