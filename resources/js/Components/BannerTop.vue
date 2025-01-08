@@ -6,6 +6,13 @@ const emit = defineEmits();
 const setDeal = (deal) => {
     emit('setDeal', deal);
 };
+
+document.querySelectorAll('video').forEach(video => {
+    video.addEventListener('ended', () => {
+        video.currentTime = 0; // Volta ao início
+        video.play();         // Reproduz novamente
+    });
+});
 </script>
 
 <template>
@@ -13,8 +20,7 @@ const setDeal = (deal) => {
         <div class="gradient-div"></div>
         <div class="flex">
             <div class="w-100">
-                <img src="https://dummyimage.com/1920x800/ad9345/fff" alt="" class="img-banner hidden sm:block">
-                <img src="https://dummyimage.com/850x1350/ad9345/fff" alt="" class="img-banner block sm:hidden">
+                <video src="/imgs/video.mp4" autoplay loop muted></video>
             </div>
         </div>
         <div class="text-banner absolute">

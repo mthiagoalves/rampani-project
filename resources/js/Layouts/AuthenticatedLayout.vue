@@ -183,6 +183,10 @@ onMounted(() => {
     opacity: 1;
 }
 
+.tox-notifications-container {
+   left: -10000px !important;
+}
+
 .focus-standard:focus,
 .border-standard {
     border-color: var(--color-standard) !important;
@@ -198,11 +202,12 @@ onMounted(() => {
     background-color: var(--color-standard);
     transition: var(--transition-standard);
 }
+
 .bg-standard:hover {
     background-color: var(--color-standard-hover);
 }
 
-.filepond--root .filepond--credits{
+.filepond--root .filepond--credits {
     display: none;
 }
 </style>
